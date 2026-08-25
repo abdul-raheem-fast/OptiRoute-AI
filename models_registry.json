@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "description": "Model registry for the multi-LLM evaluation and routing suite. Add a new model by copying the _template entry, filling in its fields, and running run_eval.py --model <key>. Prices are USD per 1M tokens and reflect the snapshot_date listed per model.",
+    "schema": {
+      "provider": "Human-readable provider name",
+      "api_base": "OpenAI-compatible base URL; env var name in {} is resolved at runtime",
+      "model_id": "Exact model ID sent to the API",
+      "api_key_env": "Environment variable holding the API key",
+      "price_per_1m_input": "USD per 1M prompt tokens",
+      "price_per_1m_output": "USD per 1M completion tokens",
+      "snapshot_date": "Date the pricing/config was captured",
+      "notes": "Free-form notes"
+    }
+  },
+  "_template": {
+    "provider": "",
+    "api_base": "{NEW_PROVIDER_API_BASE}",
+    "model_id": "",
+    "api_key_env": "NEW_PROVIDER_API_KEY",
+    "price_per_1m_input": 0.0,
+    "price_per_1m_output": 0.0,
+    "snapshot_date": "",
+    "notes": ""
+  },
+  "gpt-5": {
+    "provider": "OpenAI",
+    "api_base": "https://api.openai.com/v1",
+    "model_id": "gpt-5",
+    "api_key_env": "OPENAI_API_KEY",
+    "price_per_1m_input": 1.25,
+    "price_per_1m_output": 10.0,
+    "snapshot_date": "2025-08",
+    "notes": "Frontier accuracy ceiling in original ensemble"
+  },
+  "gpt-4.1": {
+    "provider": "OpenAI",
+    "api_base": "https://api.openai.com/v1",
+    "model_id": "gpt-4.1",
+    "api_key_env": "OPENAI_API_KEY",
+    "price_per_1m_input": 2.0,
+    "price_per_1m_output": 8.0,
+    "snapshot_date": "2025-08",
+    "notes": "Enterprise baseline"
+  },
+  "claude-sonnet-4": {
+    "provider": "Anthropic",
+    "api_base": "https://api.anthropic.com/v1",
+    "model_id": "claude-sonnet-4-20250514",
+    "api_key_env": "ANTHROPIC_API_KEY",
+    "price_per_1m_input": 3.0,
+    "price_per_1m_output": 15.0,
+    "snapshot_date": "2025-08",
+    "notes": "Anthropic endpoint is OpenAI-compatible via /v1/chat/completions"
+  },
+  "gemini-2.5-pro": {
+    "provider": "Google DeepMind",
+    "api_base": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "model_id": "gemini-2.5-pro",
+    "api_key_env": "GEMINI_API_KEY",
+    "price_per_1m_input": 1.25,
+    "price_per_1m_output": 10.0,
+    "snapshot_date": "2025-08",
+    "notes": "Gemini offers an OpenAI-compatible endpoint"
+  },
+  "gemini-2.5-flash": {
+    "provider": "Google DeepMind",
+    "api_base": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "model_id": "gemini-2.5-flash",
+    "api_key_env": "GEMINI_API_KEY",
+    "price_per_1m_input": 0.30,
+    "price_per_1m_output": 2.5,
+    "snapshot_date": "2025-08",
+    "notes": "Ultra-low-latency anchor"
+  },
+  "deepseek-v3-0324": {
+    "provider": "DeepSeek AI",
+    "api_base": "https://api.deepseek.com/v1",
+    "model_id": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "price_per_1m_input": 0.27,
+    "price_per_1m_output": 1.1,
+    "snapshot_date": "2025-08",
+    "notes": "Cost-efficiency Pareto frontier model"
+  },
+  "Qwen3-8B": {
+    "provider": "Alibaba Cloud / local",
+    "api_base": "{QWEN_API_BASE}",
+    "model_id": "qwen3-8b",
+    "api_key_env": "QWEN_API_KEY",
+    "price_per_1m_input": 0.0,
+    "price_per_1m_output": 0.0,
+    "snapshot_date": "2025-08",
+    "notes": "Originally self-hosted; point api_base at any OpenAI-compatible server (vLLM/Ollama/DashScope)"
+  },
+  "Llama-3.1-8B-Instruct": {
+    "provider": "Meta / local",
+    "api_base": "{LLAMA_API_BASE}",
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "api_key_env": "LLAMA_API_KEY",
+    "price_per_1m_input": 0.0,
+    "price_per_1m_output": 0.0,
+    "snapshot_date": "2025-08",
+    "notes": "Zero-cost anchor; originally self-hosted via local inference server"
+  }
+}
