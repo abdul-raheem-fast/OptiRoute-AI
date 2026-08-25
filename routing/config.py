@@ -32,4 +32,8 @@ CHEAPEST = "Llama-3.1-8B-Instruct"
 # correctly. The sweep below is reported in the headline table.
 ALPHA_SWEEP = [0.0, 0.001, 0.002, 0.005, 0.01]
 
+# Default operating point used by the practical routers (A3): trades a small
+# amount of cost for substantially lower latency in the oracle sweep (A2).
+ALPHA = 0.002
+
 SEED = 42
