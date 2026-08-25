@@ -28,10 +28,10 @@ work.
 ### Umar Shoaib — dataset integrity & evaluation protocol
 | ID | Task | Output | Status |
 |---|---|---|---|
-| U1 | Stratified 70/15/15 split (capability × difficulty) + leakage audit | `routing/splits.py`, split manifest | unclaimed |
-| U2 | aligned_7 dedup verification (246 known duplicates) + report | dedup report | unclaimed |
-| U3 | Difficulty tiers from cross-model agreement; validate distributions | tier column + report | unclaimed |
-| U4 | Evaluation metrics implementation (cost reduction, oracle gap, A_min=90% check) | `routing/metrics.py` + tests | unclaimed |
+| U1 | Stratified 70/15/15 split (capability × difficulty) + leakage audit | `routing/splits.py`, split manifest | done 2026-08-25 |
+| U2 | aligned_7 dedup verification (246 known duplicates) + report | `routing/validate_dedup.py` | done 2026-08-25 |
+| U3 | Difficulty tiers from cross-model agreement; validate distributions | tier column + report | done 2026-08-25 |
+| U4 | Evaluation metrics implementation (cost reduction, oracle gap, A_min=90% check) | `routing/metrics.py` + tests | done 2026-08-25 |
 
 ### Ahmad Rasheed — baselines & visualization
 | ID | Task | Output | Status |

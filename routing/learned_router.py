@@ -22,10 +22,8 @@ Features (all knowable before dispatch):
 Training data: aligned_8 train split + deduplicated aligned_7 extended set
 (2.4x more supervision for the 7 models present there).
 
-NOTE (provisional split): until task U1 lands the official stratified splits,
-this script derives a 70/15/15 stratified-by-class split internally
-(seed=SEED). Results are honest held-out test numbers under that provisional
-split and MUST be re-run once U1 merges.
+NOTE (splits): uses the official stratified splits from routing/splits.py
+(task U1). Re-run this script whenever the splits or matrix are rebuilt.
 """
 import csv
 import hashlib
@@ -33,7 +31,8 @@ import hashlib
 import numpy as np
 import pandas as pd
 
-from routing.config import ALIGNED7_DIR, ALPHA, MODELS, OUT_DIR, RESULTS_DIR, SEED
+from routing.config import ALIGNED7_DIR, ALPHA, MODELS, OUT_DIR, QUALITY_FLOOR, RESULTS_DIR
+from routing.splits import load_splits
 
 csv.field_size_limit(100000000)
 
@@ -41,7 +40,6 @@ D_HASH = 2048          # hashed char 4-gram dimensions
 L2 = 1e-4
 LR = 0.25
 ITERS = 600
-QUALITY_FLOOR = 0.90   # router must keep >= 90% of always-strongest accuracy
 
 
 # ---------------------------------------------------------------- features
@@ -114,21 +112,6 @@ def train_heads(X, Y):
 
 
 # ---------------------------------------------------------------- routing
-def provisional_split(meta):
-    """70/15/15 stratified by class. PROVISIONAL - replaced by task U1."""
-    rng = np.random.default_rng(SEED)
-    tr, va, te = [], [], []
-    for _, grp in meta.groupby("dataset_name"):
-        idx = grp.index.to_numpy()
-        rng.shuffle(idx)
-        n = len(idx)
-        n_tr, n_va = int(0.7 * n), int(0.15 * n)
-        tr += idx[:n_tr].tolist()
-        va += idx[n_tr:n_tr + n_va].tolist()
-        te += idx[n_tr + n_va:].tolist()
-    return tr, va, te
-
-
 def load_aligned7_aux():
     """Deduplicated aligned_7 rows as aux supervision (7 of 8 models)."""
     rows = []
@@ -179,7 +162,7 @@ def main():
     C = matrix.pivot(index="query_id", columns="model_name", values="cost")[MODELS]
     L = matrix.pivot(index="query_id", columns="model_name", values="latency")[MODELS]
 
-    tr, va, te = provisional_split(meta)
+    tr, va, te, _ = load_splits()
     tr_set = set(tr)
     meta_va, meta_te = meta.loc[va], meta.loc[te]
     K_va, C_va, L_va = K.loc[va], C.loc[va], L.loc[va]
@@ -218,7 +201,7 @@ def main():
     # Transparent threshold curve on val, then pick t* under the quality floor.
     floor = QUALITY_FLOOR * K_va[MODELS[-1]].mean() * 100
     print(f"train {len(tr)}+{len(aux)} aux | val {len(va)} | test {len(te)} "
-          f"(provisional split, floor={floor:.1f}%)")
+          f"(official U1 split, floor={floor:.1f}%)")
     print("\nval threshold curve:")
     best, best_cost = None, np.inf
     for t in np.arange(0.50, 0.96, 0.05):
