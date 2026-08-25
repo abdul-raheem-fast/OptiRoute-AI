@@ -1,7 +1,5 @@
 # AetherFlow — Dynamic Multi-LLM Routing & Benchmark Suite
 
-Final Year Project (Fall 2025 – Spring 2026).
-
 AetherFlow is a standardized empirical benchmark suite and routing research
 framework. It evaluates eight state-of-the-art LLMs across 26 benchmark
 sources (consolidated into five capability classes) under a strict
@@ -33,13 +31,10 @@ the gap between practical and theoretically optimal routing.
 
 ## Documentation
 
-- `AetherFlow_Master_Project_Document.docx` — master project & literature review
-- `AetherFlow_Project_and_Literature_Review.md` — markdown twin of the above
 - `model_selection_rationale.md`, `model_citations_and_references.md`
-- `master_project_and_dataset_documentation.md`
 - `PHASE2_TASK_ASSIGNMENTS.md` — Phase 2 work breakdown per contributor
 
 ## Status
 
 Phase 1 (benchmark construction & landscape analysis): complete.
-Phase 2 (routing experiments): in progress — see task board.
+Phase 2 (routing experiments): complete — see task board and `routing/results/`.

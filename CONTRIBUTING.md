@@ -1,6 +1,6 @@
 # Contributing to AetherFlow
 
-Three-person FYP team working on a shared development machine.
+Three-person team working on a shared development machine.
 
 ## Team
 

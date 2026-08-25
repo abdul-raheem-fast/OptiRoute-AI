@@ -1,7 +1,7 @@
 """Task U4: shared evaluation metrics for all routing policies.
 
 Every router (static baselines R1, cascade R2, learned A3, oracle A2) is
-scored through the same functions so the thesis tables are directly
+scored through the same functions so the paper tables are directly
 comparable. Report columns:
 
   accuracy_pct                    held-out correctness of the routed choice

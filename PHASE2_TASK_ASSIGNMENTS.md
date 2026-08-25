@@ -23,7 +23,7 @@ work.
 | A2 | Oracle router (argmin cost + α·latency s.t. correct) | `routing/oracle.py`, headline table | done 2026-08-25 |
 | A3 | Learned router ("our method": query features → predicted correctness) | `routing/learned_router.py` | done 2026-08-25 (provisional split; re-run after U1) |
 | A4 | Repo hygiene: fix stale `validate_cleaned.py` paths/schema | passing validator | done 2026-08-25 |
-| A5 | Integration: end-to-end `routing/run_all.py` + thesis numbers | results bundle | done 2026-08-25 |
+| A5 | Integration: end-to-end `routing/run_all.py` + final results | results bundle | done 2026-08-25 |
 
 ### Umar Shoaib — dataset integrity & evaluation protocol
 | ID | Task | Output | Status |

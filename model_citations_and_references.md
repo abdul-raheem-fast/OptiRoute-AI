@@ -144,6 +144,6 @@ To contextualize why this ensemble of 8 models is evaluated for **LLM Routers**,
 
 ---
 
-## 3. Summary for Thesis / Paper Inclusion
+## 3. Summary for Paper / Report Inclusion
 
-This document provides the formal citation list required for academic submissions. All 8 models evaluated in your dataset are backed by peer-reviewed or official technical reports from **Meta AI, Alibaba Cloud, DeepSeek AI, Google DeepMind, OpenAI, and Anthropic**, alongside foundational routing frameworks from **Stanford University and UC Berkeley**.
+This document provides the formal citation list required for public technical reports. All 8 models evaluated in your dataset are backed by peer-reviewed or official technical reports from **Meta AI, Alibaba Cloud, DeepSeek AI, Google DeepMind, OpenAI, and Anthropic**, alongside foundational routing frameworks from **Stanford University and UC Berkeley**.

@@ -1,6 +1,6 @@
 """Task A2: per-query oracle routing policy and headline results.
 
-Oracle definition (master doc sec. 6): for every query q,
+Oracle definition: for every query q,
     m*(q) = argmin_m [ C_m(q) + alpha * L_m(q) ]  subject to  correct_m(q) = 1
 If no model answers q correctly, the oracle falls back to the cheapest model
 (the query is lost either way; cost is minimized).

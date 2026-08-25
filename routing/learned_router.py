@@ -12,7 +12,7 @@ P(correct_m | features), and routes with a learned-confidence cascade
            else the strongest model
 
 The threshold t is tuned on the VALIDATION split under the constraint
-accuracy >= QUALITY_FLOOR * always-strongest (the thesis target), minimizing
+accuracy >= QUALITY_FLOOR * always-strongest (the quality target), minimizing
 cost among thresholds that satisfy it. The full val curve is printed for
 transparency.
 

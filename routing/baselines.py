@@ -3,7 +3,7 @@
 Protocol (matches U4): every policy is fitted on the TRAIN split only,
 any confidence threshold is tuned on VAL under the quality floor, and the
 printed table is the official TEST split. All policies are scored through
-routing.metrics.build_report so the thesis tables line up exactly.
+routing.metrics.build_report so the paper tables line up exactly.
 
 R1 static   : always-strongest, always-cheapest, random, class-based
 R2 dynamic  : prior-cascade  (class-prior confidence, cheap->strong)
