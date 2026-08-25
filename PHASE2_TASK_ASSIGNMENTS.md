@@ -1,0 +1,53 @@
+# Phase 2 Task Assignments — AetherFlow Routing Experiments
+
+**Target deadline:** September 3, 2026
+**Working agreement:** each contributor works on their own branch
+(`feature/<task-id>`), pushes under their own GitHub identity, and opens a
+pull request into `main`. Commits are attributed to whoever actually did the
+work.
+
+## Contributor identities
+
+| Contributor | GitHub username | Git email | Area of responsibility |
+|---|---|---|---|
+| Abdul Raheem | `abdul-raheem-fast` | abdulraheemghauri@gmail.com | Core infrastructure, oracle policy, integration |
+| Umar Shoaib | `Umar-kh05` | umarshoaib66@gmail.com | Dataset integrity, splits, evaluation protocol |
+| Ahmad Rasheed | `ahmadrasheed10` | ahmad5116492@gmail.com | Router baselines, visualization of results |
+
+## Task board (all statuses: unclaimed until work starts)
+
+### Abdul Raheem — core infrastructure & oracle
+| ID | Task | Output | Status |
+|---|---|---|---|
+| A1 | Routing data matrix builder (pivot aligned_8 → query × model outcomes) | `routing/build_matrix.py`, `routing/data/` | unclaimed |
+| A2 | Oracle router (argmin cost + α·latency s.t. correct) | `routing/oracle.py`, headline table | unclaimed |
+| A3 | Learned router ("our method": query features → predicted correctness) | `routing/learned_router.py` | unclaimed |
+| A4 | Repo hygiene: fix stale `validate_cleaned.py` paths/schema | passing validator | unclaimed |
+| A5 | Integration: end-to-end `routing/run_all.py` + thesis numbers | results bundle | unclaimed |
+
+### Umar Shoaib — dataset integrity & evaluation protocol
+| ID | Task | Output | Status |
+|---|---|---|---|
+| U1 | Stratified 70/15/15 split (capability × difficulty) + leakage audit | `routing/splits.py`, split manifest | unclaimed |
+| U2 | aligned_7 dedup verification (246 known duplicates) + report | dedup report | unclaimed |
+| U3 | Difficulty tiers from cross-model agreement; validate distributions | tier column + report | unclaimed |
+| U4 | Evaluation metrics implementation (cost reduction, oracle gap, A_min=90% check) | `routing/metrics.py` + tests | unclaimed |
+
+### Ahmad Rasheed — baselines & visualization
+| ID | Task | Output | Status |
+|---|---|---|---|
+| R1 | Static baselines (always-strongest, always-cheapest, random, class-based) | `routing/baselines.py` | unclaimed |
+| R2 | FrugalGPT-style cascade baseline + kNN/learned-signal baseline | same module | unclaimed |
+| R3 | Results visualization (main table plot, class × difficulty breakdown, oracle-gap curves) | `routing/plots.py`, figures | unclaimed |
+| R4 | Fresh-model integration demo on 300-query subset (run_eval.py + registry) | demo log + slide | unclaimed |
+
+## Sequence (logical development order)
+
+1. A1 → (U1, U2, U3 in parallel) → A2 → R1 → R2 → A3 → U4 → A5 → R3 → R4
+
+## Ground rules
+
+- Never force-push to `main`; resolve conflicts via rebase on your branch.
+- Data (`cleaned/`, `*.csv`) stays out of git — it is shared out-of-band.
+- Every PR must include the console output / figures it produces, pasted in
+  the PR description, so reviewers can verify without the dataset.
