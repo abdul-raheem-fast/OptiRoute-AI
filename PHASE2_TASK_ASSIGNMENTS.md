@@ -36,10 +36,10 @@ work.
 ### Ahmad Rasheed — baselines & visualization
 | ID | Task | Output | Status |
 |---|---|---|---|
-| R1 | Static baselines (always-strongest, always-cheapest, random, class-based) | `routing/baselines.py` | unclaimed |
-| R2 | FrugalGPT-style cascade baseline + kNN/learned-signal baseline | same module | unclaimed |
-| R3 | Results visualization (main table plot, class × difficulty breakdown, oracle-gap curves) | `routing/plots.py`, figures | unclaimed |
-| R4 | Fresh-model integration demo on 300-query subset (run_eval.py + registry) | demo log + slide | unclaimed |
+| R1 | Static baselines (always-strongest, always-cheapest, random, class-based) | `routing/baselines.py` | done 2026-08-25 |
+| R2 | FrugalGPT-style cascade baseline + kNN/learned-signal baseline | same module | done 2026-08-25 |
+| R3 | Results visualization (main table plot, class × difficulty breakdown, oracle-gap curves) | `routing/plots.py`, figures | done 2026-08-25 |
+| R4 | Fresh-model integration demo on 300-query subset (run_eval.py + registry) | demo log + slide | done 2026-08-25 |
 
 ## Sequence (logical development order)
 
