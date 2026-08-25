@@ -21,7 +21,7 @@ work.
 |---|---|---|---|
 | A1 | Routing data matrix builder (pivot aligned_8 → query × model outcomes) | `routing/build_matrix.py`, `routing/data/` | done 2026-08-25 |
 | A2 | Oracle router (argmin cost + α·latency s.t. correct) | `routing/oracle.py`, headline table | done 2026-08-25 |
-| A3 | Learned router ("our method": query features → predicted correctness) | `routing/learned_router.py` | unclaimed |
+| A3 | Learned router ("our method": query features → predicted correctness) | `routing/learned_router.py` | done 2026-08-25 (provisional split; re-run after U1) |
 | A4 | Repo hygiene: fix stale `validate_cleaned.py` paths/schema | passing validator | unclaimed |
 | A5 | Integration: end-to-end `routing/run_all.py` + thesis numbers | results bundle | unclaimed |
 
