@@ -36,4 +36,8 @@ ALPHA_SWEEP = [0.0, 0.001, 0.002, 0.005, 0.01]
 # amount of cost for substantially lower latency in the oracle sweep (A2).
 ALPHA = 0.002
 
+# Thesis target: practical routers must keep at least this fraction of the
+# always-strongest policy's accuracy (A_min = 90% in the master doc).
+QUALITY_FLOOR = 0.90
+
 SEED = 42
