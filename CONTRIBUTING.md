@@ -42,7 +42,7 @@ local identity for the next session owner to overwrite.
 ## Branch & merge workflow
 
 1. Work on your feature branch: `feature/<task-id>-<short-name>`
-   (see `PHASE2_TASK_ASSIGNMENTS.md` for task IDs).
+   (task IDs tracked on the Phase 2 board).
 2. Push the branch under **your own GitHub account** (each contributor
    authenticates themselves; never share tokens, passwords, or keys).
 3. Open a Pull Request into `main`; paste the console output / figures the

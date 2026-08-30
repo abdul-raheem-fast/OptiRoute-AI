@@ -14,10 +14,10 @@ the gap between practical and theoretically optimal routing.
 |---|---|
 | `cleaned/` *(not in git — 1.3 GB, shared out-of-band)* | `aligned_8_models/` (1,887 × 8), `aligned_7_models/` (3,352 × 7), `individual/` |
 | `raw/` *(not in git)* | Uncleaned per-model source CSVs — the inputs to the Phase-1 cleaning pipeline |
-| `phase1/` | Historical Phase-1 scripts (cleaning, auditing, analysis, graphing) + the analysis notebook, kept for provenance |
-| `graphs_output/` | Phase 1 analysis figures (accuracy, cost, latency, tradeoffs) |
+| `scripts/` | Historical Phase-1 scripts (cleaning, auditing, analysis, graphing) + the analysis notebook, kept for provenance |
+| `figures/` | Phase 1 analysis figures (accuracy, cost, latency, tradeoffs) |
 | `screenshots/` *(not in git)* | Dashboard captures for slides and docs |
-| `Research Papers (AetherFlow)/` | The five reviewed papers (FrugalGPT, RouteLLM, Self-REF, Confident-or-Seek-Stronger, LLMRouterBench) |
+| `references/` | The five reviewed papers (FrugalGPT, RouteLLM, Self-REF, Confident-or-Seek-Stronger, LLMRouterBench) |
 | `run_eval.py` + `models_registry.json` | Generic OpenAI-compatible evaluation harness + config-driven model registry |
 | `validate_cleaned.py` | Active dataset gate (run_all stage 0) |
 | `routing/` | Phase 2 routing experiments (oracle, baselines, learned router) |
@@ -34,8 +34,7 @@ the gap between practical and theoretically optimal routing.
 
 ## Documentation
 
-- `model_selection_rationale.md`, `model_citations_and_references.md`
-- `PHASE2_TASK_ASSIGNMENTS.md` — Phase 2 work breakdown per contributor
+- `docs/model_selection_rationale.md`, `docs/model_citations_and_references.md`
 
 ## Live demo (web dashboard + routing API)
 

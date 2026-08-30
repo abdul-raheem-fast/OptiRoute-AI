@@ -12,6 +12,7 @@ let RESULTS = null;       // /api/results payload
 
 /* ------------------------------------------------------------ boot */
 async function boot() {
+  initTheme();
   const [meta, results] = await Promise.all([
     fetch("/api/models").then((r) => r.json()),
     fetch("/api/results").then((r) => r.json()),
@@ -24,6 +25,40 @@ async function boot() {
   renderPareto();
   initCalculator();
   renderModelsTable();
+  initReveal();
+}
+
+/* ----------------------------------------------------------- theme */
+function initTheme() {
+  const btn = $("#theme-toggle");
+  const apply = (t) => {
+    document.documentElement.dataset.theme = t;
+    btn.textContent = t === "dark" ? "Light" : "Dark";
+  };
+  apply(localStorage.getItem("af-theme") || "light");
+  btn.addEventListener("click", () => {
+    const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("af-theme", t);
+    apply(t);
+  });
+}
+
+/* -------------------------------------------------- reveal on scroll */
+function initReveal() {
+  const els = document.querySelectorAll(".panel, .hero .wrap");
+  if (!("IntersectionObserver" in window)) {
+    els.forEach((e) => e.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (en.isIntersecting) {
+        en.target.classList.add("is-visible");
+        io.unobserve(en.target);
+      }
+    }
+  }, { threshold: 0.08 });
+  els.forEach((e) => io.observe(e));
 }
 
 /* ------------------------------------------------------- simulator */
@@ -88,7 +123,7 @@ function renderDecision(d) {
       const chosen = m.model === d.chosen_model;
       return `<div class="probbar ${chosen ? "chosen" : ""}">
         <span class="probbar-name">${esc(m.model)}</span>
-        <span class="probbar-track"><span class="probbar-fill" style="width:${(p * 100).toFixed(1)}%"></span></span>
+        <span class="probbar-track"><span class="probbar-fill" data-w="${(p * 100).toFixed(1)}" style="width:0"></span></span>
         <span class="probbar-val">${(p * 100).toFixed(1)}%</span>
       </div>`;
     })
@@ -96,7 +131,7 @@ function renderDecision(d) {
 
   $("#sim-output").innerHTML = `
     <span class="decision-label">Routed to</span>
-    <div class="decision-model">${esc(d.chosen_model)}</div>
+    <div class="decision-model pop">${esc(d.chosen_model)}</div>
     <div class="decision-meta">
       class: <strong>${esc(d.query_class)}</strong><span class="sep">|</span>
       est. cost ${fmtUSD(perQuery, 6)}/query vs GPT-5 ${fmtUSD(gpt5, 6)}
@@ -123,6 +158,38 @@ function renderDecision(d) {
   $("#sim-cascade").innerHTML =
     `<div class="cascade-title">Cascade walk (threshold t = ${d.threshold.toFixed(2)})</div>
      <div class="cascade">${joined}${fallback}</div>`;
+
+  // Animate: bars fill left-to-right, cascade steps walk in one by one.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll("#sim-output .probbar-fill").forEach((f) => {
+      f.style.width = f.dataset.w + "%";
+    });
+    document.querySelectorAll("#sim-cascade .cstep, #sim-cascade .cstep-arrow").forEach((el, i) => {
+      el.style.animation = "rise 0.3s ease forwards";
+      el.style.animationDelay = (i * 70) + "ms";
+    });
+  }));
+  refreshSessionStats();
+}
+
+/* ------------------------------------------------- session stats */
+async function refreshSessionStats() {
+  try {
+    const s = await fetch("/api/stats").then((r) => r.json());
+    if (!s.session_queries) return;
+    const colors = ["#0e5a4a", "#4aa88e", "#b8860b", "#8d897a",
+                    "#5b7c99", "#a06a4c", "#7a5b99", "#c05b5b"];
+    $("#sim-stats").hidden = false;
+    $("#sim-stats-total").textContent = s.session_queries;
+    $("#sim-stats-bar").innerHTML = META.models
+      .map((m, idx) => {
+        const n = s.distribution[m.model] || 0;
+        if (!n) return "";
+        return `<span style="width:${((n / s.session_queries) * 100).toFixed(1)}%;
+          background:${colors[idx % colors.length]}" title="${esc(m.model)}: ${n}"></span>`;
+      })
+      .join("");
+  } catch (e) { /* stats panel is decorative — never break routing on it */ }
 }
 
 /* ---------------------------------------------------- policy table */
@@ -200,13 +267,14 @@ function renderPareto() {
     "always-cheapest": { anchor: "start", dx: 10, dy: 4 },
   };
   for (const p of pts) {
-    const fill = p.learned ? "#0e5a4a" : p.oracle ? "#b8860b" : "#8d897a";
+    const cls = p.learned ? "pt-learned" : p.oracle ? "pt-oracle" : "pt-default";
     const rr = p.learned || p.oracle ? 7 : 5;
-    g += `<circle cx="${X(p.cost)}" cy="${Y(p.acc)}" r="${rr}" fill="${fill}"
-          stroke="#fff" stroke-width="1.5"/>`;
+    g += `<circle class="pareto-dot ${cls}" cx="${X(p.cost)}" cy="${Y(p.acc)}" r="${rr}"
+          stroke="var(--panel)" stroke-width="1.5"
+          data-name="${esc(p.name)}" data-acc="${p.acc.toFixed(2)}" data-cost="${p.cost.toFixed(6)}"/>`;
     const pos = LABEL_POS[p.name] || { anchor: "start", dx: 10, dy: 4 };
-    g += `<text class="pt-label" x="${X(p.cost) + pos.dx}" y="${Y(p.acc) + pos.dy}"
-          text-anchor="${pos.anchor}" ${p.learned ? 'font-weight="bold" fill="#0e5a4a"' : ""}>${esc(p.name)}</text>`;
+    g += `<text class="pt-label ${p.learned ? "learned-lbl" : ""}" x="${X(p.cost) + pos.dx}" y="${Y(p.acc) + pos.dy}"
+          text-anchor="${pos.anchor}">${esc(p.name)}</text>`;
   }
   // axes titles
   g += `<text class="axis-label" x="${(W + m.l - m.r) / 2}" y="${H - 8}" text-anchor="middle">avg cost per query (USD)</text>`;
@@ -215,6 +283,24 @@ function renderPareto() {
 
   $("#pareto-chart").innerHTML =
     `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cost vs accuracy per routing policy">${g}</svg>`;
+
+  // Hover tooltips with exact numbers per policy dot.
+  const holder = $("#pareto-chart");
+  const tip = document.createElement("div");
+  tip.id = "chart-tip";
+  holder.appendChild(tip);
+  holder.querySelectorAll(".pareto-dot").forEach((c) => {
+    c.addEventListener("mouseenter", () => {
+      tip.innerHTML = `<strong>${esc(c.dataset.name)}</strong><br>
+        ${c.dataset.acc}% accuracy<br>${fmtUSD(Number(c.dataset.cost), 5)} / query`;
+      const box = holder.getBoundingClientRect();
+      const r = c.getBoundingClientRect();
+      tip.style.display = "block";
+      tip.style.left = (r.left - box.left + r.width / 2 + 12) + "px";
+      tip.style.top = (r.top - box.top - 14) + "px";
+    });
+    c.addEventListener("mouseleave", () => { tip.style.display = "none"; });
+  });
 }
 
 /* -------------------------------------------------- calculator */
@@ -272,6 +358,7 @@ function renderModelsTable() {
 }
 
 boot().catch((err) => {
+  document.querySelectorAll(".panel, .hero .wrap").forEach((e) => e.classList.add("is-visible"));
   document.body.insertAdjacentHTML(
     "beforeend",
     `<div style="position:fixed;bottom:16px;left:16px;background:#8a3324;color:#fff;

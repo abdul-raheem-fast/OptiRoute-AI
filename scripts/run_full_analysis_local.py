@@ -8,7 +8,7 @@ import seaborn as sns
 csv.field_size_limit(100000000)
 
 source_dir = r"D:\AetherFlow\cleaned\aligned_8_models"
-out_dir = r"D:\AetherFlow\graphs_output"
+out_dir = r"D:\AetherFlow\figures"
 os.makedirs(out_dir, exist_ok=True)
 
 csv_files = sorted(glob.glob(os.path.join(source_dir, "*.csv")))

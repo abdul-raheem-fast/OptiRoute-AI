@@ -19,7 +19,9 @@
       <a href="#results">Results</a>
       <a href="#calculator">Savings</a>
       <a href="#models">Models</a>
+      <a href="#how">How</a>
       <a href="/api/docs" target="_blank" rel="noopener">API</a>
+      <button id="theme-toggle" class="theme-toggle" title="Toggle color scheme">Dark</button>
     </nav>
   </div>
 </header>
@@ -106,6 +108,11 @@
     </div>
 
     <div id="sim-cascade"></div>
+
+    <div id="sim-stats" class="sim-stats" hidden>
+      <span class="decision-label">This session &mdash; <span id="sim-stats-total"></span> queries routed</span>
+      <div class="sim-stats-bar" id="sim-stats-bar" style="margin-top:8px"></div>
+    </div>
   </section>
 
   <!-- ================================================== results -->
@@ -169,6 +176,38 @@
          with registry pricing (USD per 1M tokens).</p>
     </div>
     <div id="models-table"></div>
+  </section>
+
+  <!-- ================================================== how it works -->
+  <section id="how" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">05</span> How the cascade works</h2>
+      <p>No live model calls are needed to decide &mdash; the router is a small
+         trained scorer that runs before any dispatch.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="sec-no">a</span>
+        <h3>Score, don&rsquo;t ask</h3>
+        <p>From the query text alone &mdash; hashed n-gram features, text stats,
+           capability class &mdash; a per-model head estimates P(correct) for all
+           eight models. Milliseconds, zero tokens spent.</p>
+      </div>
+      <div class="how-step">
+        <span class="sec-no">b</span>
+        <h3>Walk cheapest-first</h3>
+        <p>Models are tried in ascending cost order. The first one whose
+           P(correct) clears the threshold t&thinsp;=&thinsp;0.95 gets the query.
+           Confidence is the gate; cost is the ordering.</p>
+      </div>
+      <div class="how-step">
+        <span class="sec-no">c</span>
+        <h3>Escalate when unsure</h3>
+        <p>If no model clears the bar, the query falls back to the strongest
+           model &mdash; the safety valve that keeps quality at 94.8% of
+           always-GPT-5 while cutting cost 68.4%.</p>
+      </div>
+    </div>
   </section>
 
 </main>
