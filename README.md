@@ -13,12 +13,15 @@ the gap between practical and theoretically optimal routing.
 | Path | Contents |
 |---|---|
 | `cleaned/` *(not in git — 1.3 GB, shared out-of-band)* | `aligned_8_models/` (1,887 × 8), `aligned_7_models/` (3,352 × 7), `individual/` |
+| `raw/` *(not in git)* | Uncleaned per-model source CSVs — the inputs to the Phase-1 cleaning pipeline |
+| `phase1/` | Historical Phase-1 scripts (cleaning, auditing, analysis, graphing) + the analysis notebook, kept for provenance |
 | `graphs_output/` | Phase 1 analysis figures (accuracy, cost, latency, tradeoffs) |
+| `screenshots/` *(not in git)* | Dashboard captures for slides and docs |
 | `Research Papers (AetherFlow)/` | The five reviewed papers (FrugalGPT, RouteLLM, Self-REF, Confident-or-Seek-Stronger, LLMRouterBench) |
 | `run_eval.py` + `models_registry.json` | Generic OpenAI-compatible evaluation harness + config-driven model registry |
-| `clean_and_merge_all.py`, `sanitize_excel_csvs.py`, `audit_junk_data.py`, `validate_cleaned.py`, `add_query_ids.py` | Data cleaning / auditing / alignment pipeline |
-| `analyze_8_models.py`, `run_full_analysis_local.py`, `generate_*.py` | Phase 1 analysis & graph generation |
+| `validate_cleaned.py` | Active dataset gate (run_all stage 0) |
 | `routing/` | Phase 2 routing experiments (oracle, baselines, learned router) |
+| `webapp/` | Live dashboard + routing API (`python -m webapp.server`) |
 
 ## Dataset (out of git)
 
@@ -33,6 +36,19 @@ the gap between practical and theoretically optimal routing.
 
 - `model_selection_rationale.md`, `model_citations_and_references.md`
 - `PHASE2_TASK_ASSIGNMENTS.md` — Phase 2 work breakdown per contributor
+
+## Live demo (web dashboard + routing API)
+
+A self-contained dashboard with an offline routing simulator (the trained A3
+router scores queries locally — no model API keys needed), the frozen
+test-split tables, the cost-accuracy frontier, and a savings calculator.
+
+    python -m webapp.export_weights   # once per matrix rebuild: trains + saves router heads
+    python -m webapp.server           # http://127.0.0.1:8317
+
+Interactive API docs at `/api/docs`. The simulator's displayed per-query cost
+and latency are benchmark averages of the chosen model; headline savings
+always come from the measured test split.
 
 ## Status
 

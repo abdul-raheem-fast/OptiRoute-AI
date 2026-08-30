@@ -82,6 +82,16 @@
     "snapshot_date": "2025-08",
     "notes": "Cost-efficiency Pareto frontier model"
   },
+  "Qwen3.8-Max": {
+    "provider": "Alibaba Cloud / Model Studio",
+    "api_base": "{QWEN38_MAX_API_BASE}",
+    "model_id": "qwen3.8-max",
+    "api_key_env": "DASHSCOPE_API_KEY",
+    "price_per_1m_input": 2.0,
+    "price_per_1m_output": 6.0,
+    "snapshot_date": "2026-08",
+    "notes": "9th-model extension; set QWEN38_MAX_API_BASE to the workspace OpenAI-compatible URL, e.g. https://<WorkspaceId>.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1"
+  },
   "Qwen3-8B": {
     "provider": "Alibaba Cloud / local",
     "api_base": "{QWEN_API_BASE}",

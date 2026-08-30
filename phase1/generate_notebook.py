@@ -186,7 +186,7 @@ notebook_content = {
  "nbformat_minor": 2
 }
 
-notebook_path = r"c:\Users\Abdul Raheem\Desktop\New folder\model_accuracy_analysis.ipynb"
+notebook_path = r"D:\AetherFlow\phase1\model_accuracy_analysis.ipynb"
 with open(notebook_path, mode='w', encoding='utf-8') as f:
     json.dump(notebook_content, f, indent=2)
 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AetherFlow — Dynamic Multi-LLM Routing</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <div class="wordmark">
+      <span class="wordmark-name">AetherFlow</span>
+      <span class="wordmark-sub">Dynamic Multi-LLM Routing &amp; Benchmark Suite</span>
+    </div>
+    <nav class="topnav">
+      <a href="#simulator">Simulator</a>
+      <a href="#results">Results</a>
+      <a href="#calculator">Savings</a>
+      <a href="#models">Models</a>
+      <a href="/api/docs" target="_blank" rel="noopener">API</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Route every query to the cheapest model<br>that will get it right.</h1>
+    <p class="hero-lede">
+      Eight production LLMs, 1,887 aligned benchmark queries, five capability
+      classes. A learned cascade decides — before dispatch — which model each
+      query actually needs.
+    </p>
+    <div class="statline" id="hero-stats">
+      <div class="stat">
+        <span class="stat-num">68.4<small>%</small></span>
+        <span class="stat-label">cost reduction<br>vs always-GPT-5</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">94.8<small>%</small></span>
+        <span class="stat-label">of flagship quality<br>retained</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6,200<small>&times;</small></span>
+        <span class="stat-label">cost spread across<br>the model pool</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">80.8<small>%</small></span>
+        <span class="stat-label">oracle ceiling<br>cost reduction</span>
+      </div>
+    </div>
+    <p class="fineprint">Measured on the official held-out test split (282 queries),
+      quality floor = 90% of the always-strongest policy.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- ================================================== simulator -->
+  <section id="simulator" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">01</span> Routing simulator</h2>
+      <p>Type any prompt. The trained router scores all eight models offline —
+         no model API is called — and walks its cheapest-first cascade.</p>
+    </div>
+
+    <div class="sim-grid">
+      <div class="sim-input">
+        <label class="field-label" for="sim-query">Query</label>
+        <textarea id="sim-query" rows="6"
+          placeholder="e.g.  Write a Python function that returns the n-th Fibonacci number in O(log n)."></textarea>
+
+        <div class="sim-controls">
+          <div class="field">
+            <label class="field-label" for="sim-class">Capability class</label>
+            <select id="sim-class">
+              <option value="">auto-detect (heuristic)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="sim-threshold">
+              Confidence threshold <span id="sim-threshold-val" class="mono"></span>
+            </label>
+            <input type="range" id="sim-threshold" min="0.50" max="0.99" step="0.01">
+          </div>
+          <button id="sim-run" class="btn">Route it</button>
+        </div>
+
+        <div class="sim-examples">
+          <span class="field-label">Try:</span>
+          <button class="chip" data-q="What is the capital of Australia?">capital city</button>
+          <button class="chip" data-q="Write a Python function that merges two sorted linked lists into one sorted list.">merge lists</button>
+          <button class="chip" data-q="A fair coin is flipped 10 times. What is the probability of getting exactly 7 heads?">probability</button>
+          <button class="chip" data-q="Explain why the mitochondrion is called the powerhouse of the cell.">biology</button>
+        </div>
+      </div>
+
+      <div class="sim-output" id="sim-output">
+        <div class="sim-empty">
+          <p>The routing decision appears here.</p>
+          <p class="fineprint">Decision, per-model confidence, cascade trace,
+             and the estimated cost of the pick versus GPT-5.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="sim-cascade"></div>
+  </section>
+
+  <!-- ================================================== results -->
+  <section id="results" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">02</span> Measured results</h2>
+      <p>Frozen numbers from the committed pipeline — official test split,
+         282 queries, stratified by class and difficulty tier.</p>
+    </div>
+
+    <div class="results-grid">
+      <div>
+        <h3 class="table-title">Policy comparison</h3>
+        <div id="policy-table"></div>
+        <p class="fineprint">Floor: policy must keep &ge;90% of always-strongest
+        accuracy. Oracle = hindsight-optimal pick per query, the theoretical ceiling.</p>
+      </div>
+      <div>
+        <h3 class="table-title">Cost &ndash; accuracy frontier</h3>
+        <div id="pareto-chart"></div>
+        <p class="fineprint">Each point is a routing policy on the test split.
+        Up and to the left is better; the shaded band marks the quality floor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== calculator -->
+  <section id="calculator" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">03</span> What routing is worth</h2>
+      <p>Projection from measured per-query averages on the test split
+         (always-GPT-5 vs the learned cascade).</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="calc-input">
+        <label class="field-label" for="calc-volume">Queries per day</label>
+        <input type="number" id="calc-volume" value="10000" min="1" max="1000000" step="1">
+        <input type="range" id="calc-slider" min="2" max="6" step="0.1" value="4">
+        <p class="fineprint">Drag for scale: 100 &rarr; 1,000,000 queries/day.</p>
+      </div>
+      <div class="calc-output">
+        <div class="calc-row">
+          <span>Always GPT-5</span><strong id="calc-baseline" class="mono">—</strong>
+        </div>
+        <div class="calc-row">
+          <span>AetherFlow learned cascade</span><strong id="calc-routed" class="mono">—</strong>
+        </div>
+        <div class="calc-row calc-total">
+          <span>Saved per year</span><strong id="calc-saved" class="mono">—</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== models -->
+  <section id="models" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">04</span> The model pool</h2>
+      <p>Per-model accuracy by capability class on the aligned benchmark,
+         with registry pricing (USD per 1M tokens).</p>
+    </div>
+    <div id="models-table"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>AetherFlow &mdash; benchmark &amp; routing research suite.</span>
+  </div>
+</footer>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>

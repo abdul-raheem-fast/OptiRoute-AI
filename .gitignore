@@ -21,6 +21,10 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+.qoder/
+
+# ---- Local-only captures ----
+screenshots/
 
 # Temporary audit artifacts
 _tmp_*

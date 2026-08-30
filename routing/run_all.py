@@ -63,8 +63,8 @@ def _match(keys, prefix):
     raise KeyError(prefix)
 
 
-def collect_thesis_numbers():
-    """Regenerate routing/results/thesis_numbers.md from artifacts only."""
+def collect_headline_numbers():
+    """Regenerate routing/results/results_bundle.md from artifacts only."""
     meta = pd.read_csv(OUT_DIR / "query_meta.csv").drop_duplicates("query_id")
     n_q = len(meta)
     n_unsolvable = int((meta["n_correct"] == 0).sum())
@@ -148,7 +148,7 @@ def main():
     if "--from" in sys.argv:
         start = int(sys.argv[sys.argv.index("--from") + 1])
     run_stages("--fast" in args, start)
-    collect_thesis_numbers()
+    collect_headline_numbers()
     print("\nAll stages complete.")
 
 
