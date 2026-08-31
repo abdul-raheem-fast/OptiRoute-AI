@@ -1,4 +1,4 @@
-"""AetherFlow demo server: routing API + dashboard.
+"""OptiRoute AI demo server: routing API + dashboard.
 
     python -m webapp.server            (serves http://127.0.0.1:8317)
 
@@ -30,7 +30,7 @@ from webapp.router_core import RouterCore
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
-app = FastAPI(title="AetherFlow", docs_url="/api/docs", redoc_url=None)
+app = FastAPI(title="OptiRoute AI", docs_url="/api/docs", redoc_url=None)
 core = RouterCore()
 session = Counter()
 

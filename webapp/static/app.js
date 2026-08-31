@@ -1,4 +1,4 @@
-/* AetherFlow dashboard logic — vanilla JS, no dependencies. */
+/* OptiRoute AI dashboard logic — vanilla JS, no dependencies. */
 "use strict";
 
 const $ = (sel) => document.querySelector(sel);

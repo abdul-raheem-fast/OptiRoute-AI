@@ -147,7 +147,7 @@ def main():
                                                      encoding="utf-8")
 
     slide = [
-        "# Slide - Adding a model to AetherFlow (R4 demo)",
+        "# Slide - Adding a model to OptiRoute AI (R4 demo)",
         "",
         f"- One manual step: copy `_template` in models_registry.json, run "
         f"`run_eval.py --model <key>`",

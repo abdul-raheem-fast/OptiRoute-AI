@@ -1,4 +1,4 @@
-# AetherFlow — 3-Minute Demo Script
+# OptiRoute AI — 3-Minute Demo Script
 
 Server: `python -m webapp.server` → http://127.0.0.1:8317
 (Weights already exported; no API keys needed. Have the page open in a

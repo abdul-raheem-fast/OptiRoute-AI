@@ -1,4 +1,4 @@
-"""Inference core for the AetherFlow web demo.
+"""Inference core for the OptiRoute AI web demo.
 
 Loads the exported A3 router weights (webapp/export_weights.py) and answers
 single-query routing requests without touching any model API. Featurization

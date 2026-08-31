@@ -1,4 +1,4 @@
-# Contributing to AetherFlow
+# Contributing to OptiRoute AI
 
 Three-person team working on a shared development machine.
 

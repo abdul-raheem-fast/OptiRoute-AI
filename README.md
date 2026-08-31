@@ -1,6 +1,6 @@
-# AetherFlow — Dynamic Multi-LLM Routing & Benchmark Suite
+# OptiRoute AI — Intelligent LLM Router
 
-AetherFlow is a standardized empirical benchmark suite and routing research
+OptiRoute AI is a standardized empirical benchmark suite and routing research
 framework. It evaluates eight state-of-the-art LLMs across 26 benchmark
 sources (consolidated into five capability classes) under a strict
 query-aligned schema with per-query cost and latency. On top of this ground
