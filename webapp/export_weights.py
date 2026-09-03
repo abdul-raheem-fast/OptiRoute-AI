@@ -11,6 +11,11 @@ everything the live simulator needs to routing/models/router_weights.npz:
   t_star      - cascade threshold tuned on val under the quality floor
   avg_cost / avg_latency - per-model averages from the routing matrix
                            (display estimates for arbitrary queries)
+  tiers       - complexity tier names (easy/medium/hard); the live demo
+                DERIVES these from the router's own per-model confidence,
+                no separate classifier is trained
+  mode_*      - the three configurable routing policies (economy/balanced/
+                quality) with their thresholds and validation-split metrics
 
 Run after any matrix/splits rebuild:  python -m webapp.export_weights
 """
@@ -25,6 +30,17 @@ from routing.splits import load_splits
 
 WEIGHTS_DIR = ROOT / "routing" / "models"
 WEIGHTS_PATH = WEIGHTS_DIR / "router_weights.npz"
+
+# Configurable routing policies: (key, label, threshold). Balanced is replaced
+# by the val-tuned t* at export time; the others are fixed operating points.
+MODE_SPECS = [("economy", "Economy", 0.80),
+              ("balanced", "Balanced", None),   # None -> t_star
+              ("quality", "Quality First", 0.99)]
+MODE_DESC = {
+    "economy": "Maximum savings; routes to cheaper models more eagerly",
+    "balanced": "Best quality/cost tradeoff - the measured headline policy",
+    "quality": "Escalates aggressively toward the strongest models",
+}
 
 
 def main():
@@ -73,6 +89,22 @@ def main():
     t_star = best if best is not None else 0.95
     print(f"floor={floor:.1f}%  tuned t* = {t_star:.2f}")
 
+    # Configurable routing policies: measure each candidate threshold on the
+    # SAME validation split used to tune t*, so the mode cards quote honest
+    # val numbers rather than unmeasured claims.
+    tiers = ["easy", "medium", "hard"]
+    mode_keys, mode_t, mode_acc, mode_cost, mode_floor = [], [], [], [], []
+    for key, _label, mt in MODE_SPECS:
+        mt = t_star if mt is None else float(mt)
+        m = evaluate(K_va, C_va, L_va, route_cascade(p_va, mt))
+        mode_keys.append(key)
+        mode_t.append(round(mt, 4))
+        mode_acc.append(round(m["accuracy"], 2))
+        mode_cost.append(round(m["avg_cost"], 6))
+        mode_floor.append(bool(m["accuracy"] >= floor))
+        print(f"mode {key:9s} t={mt:.2f}  val acc={m['accuracy']:.2f}%  "
+              f"cost=${m['avg_cost']:.6f}  meets_floor={m['accuracy'] >= floor}")
+
     class_order = sorted(set(classes))
     payload = {
         "W": W, "b": b, "idf": idf,
@@ -82,6 +114,12 @@ def main():
         "alpha": np.array(ALPHA),
         "avg_cost": C.mean().values,
         "avg_latency": L.mean().values,
+        "tiers": np.array(tiers),
+        "mode_keys": np.array(mode_keys),
+        "mode_t": np.array(mode_t),
+        "mode_acc": np.array(mode_acc),
+        "mode_cost": np.array(mode_cost),
+        "mode_floor": np.array(mode_floor),
     }
     for cls in class_order:
         payload[f"prior_{cls}"] = prior[cls]
