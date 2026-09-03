@@ -15,12 +15,13 @@
       <span class="wordmark-sub">Intelligent LLM Router &amp; Benchmark Suite</span>
     </div>
     <nav class="topnav">
-      <a href="#simulator">Simulator</a>
+      <a href="#simulator">Arena</a>
       <a href="#results">Results</a>
+      <a href="#evidence">Evidence</a>
       <a href="#calculator">Savings</a>
+      <a href="#operations">Ops</a>
       <a href="#models">Models</a>
-      <a href="#how">How</a>
-      <a href="/api/docs" target="_blank" rel="noopener">API</a>
+      <a href="#playground">API</a>
       <button id="theme-toggle" class="theme-toggle" title="Toggle color scheme">Dark</button>
     </nav>
   </div>
@@ -32,7 +33,7 @@
     <p class="hero-lede">
       Eight production LLMs, 1,887 aligned benchmark queries, five capability
       classes. A learned cascade decides — before dispatch — which model each
-      query actually needs.
+      query actually needs. Cost is the objective; quality is the constraint.
     </p>
     <div class="statline" id="hero-stats">
       <div class="stat">
@@ -59,19 +60,23 @@
 
 <main class="wrap">
 
-  <!-- ================================================== simulator -->
+  <!-- ================================================== route arena -->
   <section id="simulator" class="panel">
     <div class="panel-head">
-      <h2><span class="sec-no">01</span> Routing simulator</h2>
-      <p>Type any prompt. The trained router scores all eight models offline —
-         no model API is called — and walks its cheapest-first cascade.</p>
+      <h2><span class="sec-no">01</span> Route arena</h2>
+      <p>Type any prompt — or challenge the router. The trained router scores
+         all eight models offline, estimates complexity, walks its
+         cheapest-first cascade, and explains the decision.</p>
     </div>
+
+    <div class="mode-switch" id="mode-switch" role="group" aria-label="Routing mode"></div>
+    <p class="fineprint mode-note" id="mode-note"></p>
 
     <div class="sim-grid">
       <div class="sim-input">
         <label class="field-label" for="sim-query">Query</label>
         <textarea id="sim-query" rows="6"
-          placeholder="e.g.  Write a Python function that returns the n-th Fibonacci number in O(log n)."></textarea>
+          placeholder="Click a real benchmark query below, or type your own. Note: free-text prompts outside the benchmark format are routed conservatively."></textarea>
 
         <div class="sim-controls">
           <div class="field">
@@ -90,19 +95,18 @@
         </div>
 
         <div class="sim-examples">
-          <span class="field-label">Try:</span>
-          <button class="chip" data-q="What is the capital of Australia?">capital city</button>
-          <button class="chip" data-q="Write a Python function that merges two sorted linked lists into one sorted list.">merge lists</button>
-          <button class="chip" data-q="A fair coin is flipped 10 times. What is the probability of getting exactly 7 heads?">probability</button>
-          <button class="chip" data-q="Explain why the mitochondrion is called the powerhouse of the cell.">biology</button>
+          <span class="field-label">Try a real benchmark query:</span>
+          <span id="sim-scenarios"></span>
+          <button class="chip chip-challenge" id="sim-challenge">Challenge the router</button>
         </div>
       </div>
 
       <div class="sim-output" id="sim-output">
         <div class="sim-empty">
           <p>The routing decision appears here.</p>
-          <p class="fineprint">Decision, per-model confidence, cascade trace,
-             and the estimated cost of the pick versus GPT-5.</p>
+          <p class="fineprint">Complexity estimate, per-model confidence,
+             cascade trace, the reasoning, and what this query saves
+             versus GPT-5.</p>
         </div>
       </div>
     </div>
@@ -137,14 +141,27 @@
         Up and to the left is better; the shaded band marks the quality floor.</p>
       </div>
     </div>
+
+    <div class="guardrail" id="guardrail"></div>
+  </section>
+
+  <!-- ================================================== evidence lab -->
+  <section id="evidence" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">03</span> Evidence lab</h2>
+      <p>The provenance behind every number on this page — split protocol,
+         seed, and the three reference policies side by side.</p>
+    </div>
+    <div class="ev-manifest" id="ev-manifest"></div>
+    <div class="ev-cards" id="ev-cards"></div>
   </section>
 
   <!-- ================================================== calculator -->
   <section id="calculator" class="panel">
     <div class="panel-head">
-      <h2><span class="sec-no">03</span> What routing is worth</h2>
-      <p>Projection from measured per-query averages on the test split
-         (always-GPT-5 vs the learned cascade).</p>
+      <h2><span class="sec-no">04</span> Business impact</h2>
+      <p>Projection from measured per-query averages on the test split:
+         your current strategy versus the OptiRoute learned cascade.</p>
     </div>
 
     <div class="calc-grid">
@@ -152,18 +169,46 @@
         <label class="field-label" for="calc-volume">Queries per day</label>
         <input type="number" id="calc-volume" value="10000" min="1" max="1000000" step="1">
         <input type="range" id="calc-slider" min="2" max="6" step="0.1" value="4">
-        <p class="fineprint">Drag for scale: 100 &rarr; 1,000,000 queries/day.</p>
+        <label class="field-label" for="calc-strategy" style="margin-top:14px">Current strategy</label>
+        <select id="calc-strategy"></select>
+        <p class="fineprint">Drag for scale: 100 &rarr; 1,000,000 queries/day.
+        Per-query costs are measured test-split averages of each policy.</p>
       </div>
-      <div class="calc-output">
-        <div class="calc-row">
-          <span>Always GPT-5</span><strong id="calc-baseline" class="mono">—</strong>
+      <div>
+        <div class="calc-output">
+          <div class="calc-row calc-head"><span>Without OptiRoute AI</span><strong id="calc-base-d" class="mono">—</strong></div>
+          <div class="calc-row"><span>Monthly</span><strong id="calc-base-m" class="mono">—</strong></div>
+          <div class="calc-row"><span>Yearly</span><strong id="calc-base-y" class="mono">—</strong></div>
+          <div class="calc-row calc-head"><span>With OptiRoute AI</span><strong id="calc-routed-d" class="mono">—</strong></div>
+          <div class="calc-row"><span>Monthly</span><strong id="calc-routed-m" class="mono">—</strong></div>
+          <div class="calc-row"><span>Yearly</span><strong id="calc-routed-y" class="mono">—</strong></div>
+          <div class="calc-row calc-total"><span>Annual savings</span><strong id="calc-saved" class="mono">—</strong></div>
         </div>
-        <div class="calc-row">
-          <span>OptiRoute AI learned cascade</span><strong id="calc-routed" class="mono">—</strong>
-        </div>
-        <div class="calc-row calc-total">
-          <span>Saved per year</span><strong id="calc-saved" class="mono">—</strong>
-        </div>
+        <div class="reinvest" id="calc-reinvest"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================== operations -->
+  <section id="operations" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">05</span> Operations</h2>
+      <p>Live telemetry of this demo session — every query routed through the
+         arena above is counted here. Session data, not production traffic.</p>
+    </div>
+    <div class="ops-grid" id="ops-cards"></div>
+    <div class="ops-charts">
+      <div>
+        <h3 class="table-title">Routing distribution by model</h3>
+        <div class="sim-stats-bar ops-bar" id="ops-model-bar"></div>
+      </div>
+      <div>
+        <h3 class="table-title">Complexity mix</h3>
+        <div class="sim-stats-bar ops-bar" id="ops-tier-bar"></div>
+      </div>
+      <div>
+        <h3 class="table-title">Cumulative estimated savings</h3>
+        <div id="ops-spark"></div>
       </div>
     </div>
   </section>
@@ -171,17 +216,17 @@
   <!-- ================================================== models -->
   <section id="models" class="panel">
     <div class="panel-head">
-      <h2><span class="sec-no">04</span> The model pool</h2>
+      <h2><span class="sec-no">06</span> The model pool</h2>
       <p>Per-model accuracy by capability class on the aligned benchmark,
          with registry pricing (USD per 1M tokens).</p>
     </div>
     <div id="models-table"></div>
   </section>
 
-  <!-- ================================================== how it works -->
+  <!-- ================================================== how + arch -->
   <section id="how" class="panel">
     <div class="panel-head">
-      <h2><span class="sec-no">05</span> How the cascade works</h2>
+      <h2><span class="sec-no">07</span> How it works</h2>
       <p>No live model calls are needed to decide &mdash; the router is a small
          trained scorer that runs before any dispatch.</p>
     </div>
@@ -206,6 +251,53 @@
         <p>If no model clears the bar, the query falls back to the strongest
            model &mdash; the safety valve that keeps quality at 94.8% of
            always-GPT-5 while cutting cost 68.4%.</p>
+      </div>
+    </div>
+    <h3 class="table-title" style="margin-top:32px">Request flow</h3>
+    <pre class="arch" id="arch-diagram">
+                        USER QUERY
+                            |
+                            v
+                +-----------------------+
+                |   FEATURE LAYER       |  hashed n-gram TF-IDF,
+                |                       |  text stats, capability class
+                +-----------+-----------+
+                            v
+                +-----------------------+
+                | CONFIDENCE ESTIMATION |  P(correct) for all 8 models
+                |                       |  + complexity tier estimate
+                +-----------+-----------+
+                            v
+                      ROUTING POLICY  (economy / balanced / quality)
+                   +----------+----------+
+                   v          v          v
+              efficient     mid      strongest
+               models      models     model
+                   +----------+----------+
+                            v
+                +-----------------------+
+                |  QUALITY GUARDRAIL    |  floor = 90% of always-strongest
+                +-----------+-----------+
+                            v
+                  RESPONSE + DECISION RECORD
+    </pre>
+  </section>
+
+  <!-- ================================================== playground -->
+  <section id="playground" class="panel">
+    <div class="panel-head">
+      <h2><span class="sec-no">08</span> API playground</h2>
+      <p>OptiRoute AI is an integration-ready routing engine. Every decision
+         on this page comes from this endpoint.</p>
+    </div>
+    <div class="pg-grid">
+      <div>
+        <h3 class="table-title">Request</h3>
+        <pre class="pg-pre" id="pg-req"></pre>
+      </div>
+      <div>
+        <h3 class="table-title">Response <button class="chip" id="pg-copy">copy curl</button></h3>
+        <pre class="pg-pre" id="pg-res">Route a query in the arena to see the live JSON response.</pre>
       </div>
     </div>
   </section>
