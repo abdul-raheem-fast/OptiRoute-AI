@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>OptiRoute AI — Intelligent LLM Routing</title>
+    <meta
+      name="description"
+      content="OptiRoute AI routes every query to the cheapest LLM that will get it right: 8 production models, 1,887 aligned benchmark queries, 68.4% lower cost at 94.8% of flagship quality."
+    />
+    <!-- Critical shell so there is no white flash before the bundle loads. -->
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: #07090d;
+        color: #e8ecf4;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+      }
+      #boot {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #6b7789;
+      }
+      #boot i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #2dd4bf;
+        animation: bootpulse 1.1s ease-in-out infinite;
+      }
+      @keyframes bootpulse {
+        0%,
+        100% {
+          opacity: 0.25;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.25);
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DBEsWqJJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D-N-4prS.css">
+  </head>
+  <body>
+    <div id="root">
+      <div id="boot"><i></i> loading router</div>
+    </div>
+  </body>
+</html>

@@ -23,8 +23,23 @@ desktop.ini
 .idea/
 .qoder/
 
+# ---- Node / React frontend (webapp/frontend) ----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.vite/
+# NOTE: webapp/frontend/dist is committed on purpose (611 KB) so the React
+# dashboard runs on a fresh clone with no Node toolchain. Rebuild it with:
+#   cd webapp/frontend && npm install && npm run build
+
+# ---- Test / tooling caches ----
+.pytest_cache/
+.coverage
+htmlcov/
+
 # ---- Local-only captures ----
 screenshots/
+_shots/
 
 # Temporary audit artifacts
 _tmp_*

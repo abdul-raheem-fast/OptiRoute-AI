@@ -1,16 +1,22 @@
-"""OptiRoute AI demo server: routing API + dashboard.
+"""OptiRoute AI demo server: routing API + React dashboard.
 
     python -m webapp.server            (serves http://127.0.0.1:8317)
 
 Endpoints
-  GET  /                 dashboard (static)
+  GET  /                 dashboard (built React bundle)
   POST /api/route        live routing decision for one query (no model APIs)
   GET  /api/results      frozen test-split policy table + threshold curve
                          + splits manifest
   GET  /api/models       registry + per-model benchmark aggregates
   GET  /api/modes        configurable routing-mode presets (val-tuned)
+  GET  /api/scenarios    curated real benchmark queries for the demo
   GET  /api/stats        session routing telemetry (demo-session data)
   GET  /health           liveness probe
+
+Frontend: the dashboard is a Vite + React app in webapp/frontend. Build it with
+`npm run build` (outputs webapp/frontend/dist) and this server serves that
+bundle. During development run `npm run dev` in webapp/frontend - Vite proxies
+/api and /health to this server on :8317.
 
 The /api/route endpoint runs the exported A3 router offline. Displayed cost
 and latency for arbitrary queries are benchmark averages of the chosen model
@@ -31,7 +37,14 @@ from routing.config import OUT_DIR, RESULTS_DIR
 from routing.splits import load_splits
 from webapp.router_core import RouterCore
 
-STATIC_DIR = Path(__file__).resolve().parent / "static"
+WEBAPP_DIR = Path(__file__).resolve().parent
+# Built React bundle (webapp/frontend/dist). Falls back to the legacy vanilla
+# dashboard in webapp/static if the frontend has not been built yet, so the API
+# keeps working on a fresh checkout.
+DIST_DIR = WEBAPP_DIR / "frontend" / "dist"
+LEGACY_DIR = WEBAPP_DIR / "static"
+FRONTEND_DIR = DIST_DIR if (DIST_DIR / "index.html").exists() else LEGACY_DIR
+ASSETS_DIR = FRONTEND_DIR / "assets"
 
 app = FastAPI(title="OptiRoute AI", docs_url="/api/docs", redoc_url=None)
 core = RouterCore()
@@ -235,12 +248,19 @@ def health():
     return {"status": "ok", "models": len(core.models)}
 
 
-app.mount("/assets", StaticFiles(directory=STATIC_DIR), name="assets")
+if ASSETS_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
 
 
 @app.get("/")
 def index():
-    return FileResponse(STATIC_DIR / "index.html")
+    entry = FRONTEND_DIR / "index.html"
+    if not entry.exists():
+        raise HTTPException(
+            503,
+            "dashboard not built - run: cd webapp/frontend && npm install && npm run build",
+        )
+    return FileResponse(entry)
 
 
 if __name__ == "__main__":
