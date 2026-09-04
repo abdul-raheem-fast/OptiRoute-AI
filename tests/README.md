@@ -1,7 +1,9 @@
 # OptiRoute AI — correctness test suite
 
 Verification-only pytest suite for the routing system (`routing/`,
-`webapp/router_core.py`, `webapp/export_weights.py`, `webapp/server.py`).
+`webapp/router_core.py`, `webapp/export_weights.py`, `webapp/server.py`) and its
+experimental multi-objective layer (`routing/pareto.py`, `routing/objectives.py`,
+`routing/sensitivity.py`, `routing/mo_core.py`, `webapp/mo_router.py`).
 It modifies **no** routing logic, weights or business behaviour; it only proves
 the router behaves correctly and consistently on every query, not on a few
 spot-checks.
@@ -19,7 +21,9 @@ Requires the generated artifacts to exist (`routing/data/*.csv`,
 `routing/models/router_weights.npz`) — i.e. run `python -m routing.run_all`
 and `python -m webapp.export_weights` first on a fresh checkout. No live model
 APIs and no running server are needed; the API is exercised in-process via
-`fastapi.testclient`.
+`fastapi.testclient`. The multi-objective tests additionally read
+`routing/models/mo_objectives.json` (from `python -m routing.tune_mo`) and
+**skip cleanly** if it is absent, so the legacy 61 stay green on a bare checkout.
 
 ## What each file verifies, and why a judge should care
 
@@ -33,6 +37,10 @@ APIs and no running server are needed; the API is exercised in-process via
 | `test_batch_consistency.py` | `route_cascade` (vectorized, offline eval) and `RouterCore.route` (loop, live API) select the **identical** model for every query in a ~46-query sample spanning all 5 classes; their probability vectors agree; plus a rule-level check on hand-built matrices. | Two independent implementations of one rule. Divergence here would mean the offline-reported numbers do not describe what the live API does. |
 | `test_performance.py` | 100 sequential `POST /api/route` calls: p50/p95/p99 latency bounds; a structural guard that the hot path never calls `np.load`/`open` (i.e. weights/idf are loaded once at startup, not per request); session telemetry structures stay bounded; traced-memory growth across the burst is negligible. | Catches the classic demo bug of reloading the weight file per request, and proves the endpoint is fast enough to click repeatedly live. |
 | `test_scenario_chips.py` | The six dashboard scenario chips (3 cheap / 3 escalate) and the challenge pool — real frozen test-split queries — each route to exactly the model, route-kind and saving their label promises. | These are the buttons a judge clicks first. A chip that contradicts its own label on stage is the worst possible failure. |
+| `test_mo_pareto.py` | Dominance under `{quality:+1, cost:−1, latency:−1}` is irreflexive, asymmetric and transitive; the `global`, `quality_floor` and `privacy_approved` frontiers match hand-computed sets; a globally-dominated model can still sit on a filtered-subset frontier; results are deterministic. | Proves the Pareto layer is real set mathematics, not a decorative chart — and that privacy filtering can re-enable a model the global view discards. |
+| `test_mo_privacy.py` | The sensitivity classifier is deterministic, in-process and makes **no** network/LLM call (asserted by monkeypatching the HTTP layer to fail); PII/credential/medical shapes return `{sensitivity, reason}`; the privacy mask runs **before** selection so a sensitive query never reaches an external model; policy provenance is administrator-configured. | Privacy is the one constraint where a silent leak is catastrophic. These tests make "filter before selection" an executable invariant, not a claim. |
+| `test_mo_router.py` | Utility ranking with a calibrated `routing_score` in [0,1]; hard constraints (privacy, latency budget, quality floor) applied before ranking; graceful degradation to the fastest eligible model when no budget is met (`latency_budget_unmet_used_fastest`); fallback to the strongest; per-mode determinism. | Shows the MO router degrades safely under adversarial constraints and never returns an unexplained or out-of-range score. |
+| `test_mo_api.py` | Backward compatibility (a legacy body yields the legacy schema with `p_correct` and **no** MO fields); MO opt-in dispatch (`router`, `mode=speed/private`, or any MO param); sensitive-query handling across all five modes; 422 validation on bad floors/budgets/enums; the four new endpoints; `/api/results` carries `mo_eval_report`. | Guarantees the multi-objective work is strictly additive — existing API clients keep working byte-for-byte while the new mode is opt-in. |
 
 ## Measured baselines (this machine, current weights)
 
