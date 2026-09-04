@@ -1,0 +1,22 @@
+# OptiRoute AI - Python runtime dependencies.
+#
+#   pip install -r requirements.txt        # research pipeline + demo server
+#   pip install -r requirements-dev.txt    # adds the 61-test correctness suite
+#
+# Requires Python 3.11+. The floors below are the exact versions the frozen
+# results (84.04% accuracy / $0.006023 per query / 94.8% of flagship quality on
+# the 282-query test split) were produced and verified with.
+#
+# The demo server and the routing API need NO API keys: the router scores
+# queries from exported weights in routing/models/router_weights.npz.
+
+# ---- core: routing experiments + inference engine ----
+numpy>=2.4.6          # feature matrices, the 8 logistic heads, cascade scoring
+pandas>=3.0.5         # routing_matrix pivots, stratified splits, report tables
+fastapi>=0.141.1      # POST /api/route and the rest of the demo API
+uvicorn>=0.52.4       # ASGI server for `python -m webapp.server` (:8317)
+pydantic>=2.13.5      # request validation: malformed input -> 422, never 500
+
+# ---- figures (routing.plots + the Phase-1 analysis scripts) ----
+matplotlib>=3.11.1
+seaborn>=0.13.2

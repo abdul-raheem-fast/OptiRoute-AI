@@ -170,7 +170,7 @@ weights.
 ```bash
 git clone https://github.com/abdul-raheem-fast/OptiRoute-AI.git
 cd OptiRoute-AI
-pip install numpy pandas fastapi uvicorn pydantic
+pip install -r requirements.txt
 
 python -m webapp.export_weights   # trains the heads + tunes t*, writes routing/models/router_weights.npz
 python -m webapp.server           # http://127.0.0.1:8317
@@ -387,7 +387,7 @@ environment variables — no key is ever committed.
 ## Verification: 61 automated correctness tests
 
 ```bash
-pip install pytest httpx
+pip install -r requirements-dev.txt
 pytest tests/            # 61 passed in ~20-30 s
 ```
 
@@ -451,6 +451,7 @@ from *benchmark-shaped* queries, which is exactly what the test split measures.
 | `webapp/` | **Delivery**: `server.py` (FastAPI), `router_core.py` (offline inference engine), `export_weights.py` (train + tune + persist), `smoke_test.py`, `static/` (legacy vanilla dashboard) |
 | `webapp/frontend/` | React 18 + TypeScript + Vite + Recharts dashboard (committed `dist/`, 25 source files) |
 | `tests/` | 61-test correctness suite + `tests/README.md` |
+| `requirements.txt` / `requirements-dev.txt` | Python dependencies: runtime + figures, and the test suite |
 | `scripts/` | Phase-1 provenance: cleaning, auditing, analysis, graphing + the analysis notebook |
 | `figures/` | Phase-1 analysis figures (accuracy, cost, latency, trade-offs) |
 | `docs/` | `model_selection_rationale.md`, `model_citations_and_references.md` |
@@ -460,9 +461,19 @@ from *benchmark-shaped* queries, which is exactly what the test split measures.
 | `DEMO_SCRIPT.md` | Narration-ready 3-minute walkthrough |
 | `cleaned/`, `raw/`, `*.csv` *(not in git)* | 1.3 GB benchmark data — `aligned_8_models/` (1,887 x 8), `aligned_7_models/` (3,352 x 7), `individual/` |
 
-Requires **Python 3.11+** (`numpy`, `pandas`, `fastapi`, `uvicorn`, `pydantic`;
-`pytest` + `httpx` for the test suite) and **Node 18+** only if you want to
-rebuild the frontend.
+Requires **Python 3.11+** — `pip install -r requirements.txt` pulls `numpy`,
+`pandas`, `fastapi`, `uvicorn`, `pydantic`, `matplotlib` and `seaborn`;
+`requirements-dev.txt` adds `pytest` + `httpx` for the verification suite.
+**Node 18+** is needed only to rebuild the frontend.
+
+**API keys: none** for the dashboard, the routing API or the tests — routing runs
+entirely on exported weights. Keys are needed only to re-run the Phase-1
+evaluation harness (`run_eval.py`), which reads them from the environment as
+named in `models_registry.json` (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`,
+`GEMINI_API_KEY`, `DEEPSEEK_API_KEY`, `DASHSCOPE_API_KEY`, `QWEN_API_KEY`,
+`LLAMA_API_KEY`, plus `*_API_BASE` URLs for the self-hosted models). No secret
+has ever been committed to this repository, and `.env`, `*.pem` and
+service-account files are gitignored.
 
 ---
 

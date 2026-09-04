@@ -1,0 +1,14 @@
+# OptiRoute AI - development / verification dependencies.
+#
+#   pip install -r requirements-dev.txt
+#   pytest tests/            # 61 passed
+#
+# The suite is verification only: it replays the frozen 282-query seed-42 test
+# split through the deployed router and asserts the published numbers, cascade
+# invariants, mode thresholds, adversarial-input behaviour, batch/single parity,
+# latency and memory. See tests/README.md.
+
+-r requirements.txt
+
+pytest>=9.1.1         # test runner
+httpx>=0.28.1         # transport for fastapi.testclient (in-process API tests)

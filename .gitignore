@@ -23,6 +23,17 @@ desktop.ini
 .idea/
 .qoder/
 
+# ---- Secrets (never commit; run_eval.py reads keys from the environment) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+secrets.json
+service-account*.json
+*-credentials.json
+
 # ---- Node / React frontend (webapp/frontend) ----
 node_modules/
 npm-debug.log*

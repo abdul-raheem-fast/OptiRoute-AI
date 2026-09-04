@@ -9,10 +9,10 @@ spot-checks.
 Run everything from the repository root:
 
 ```bash
-pip install pytest httpx          # test-only dependencies
-pytest tests/                     # full suite
-pytest tests/ -q -s               # also prints the measured reports below
-pytest tests/test_parity.py -q    # just the load-bearing parity check
+pip install -r requirements-dev.txt   # pytest + httpx + the runtime deps
+pytest tests/                         # full suite
+pytest tests/ -q -s                   # also prints the measured reports below
+pytest tests/test_parity.py -q        # just the load-bearing parity check
 ```
 
 Requires the generated artifacts to exist (`routing/data/*.csv`,
