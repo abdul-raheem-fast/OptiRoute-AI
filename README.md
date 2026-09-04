@@ -170,7 +170,7 @@ weights.
 ```bash
 git clone https://github.com/abdul-raheem-fast/OptiRoute-AI.git
 cd OptiRoute-AI
-pip install numpy pandas fastapi uvicorn pydantic httpx
+pip install numpy pandas fastapi uvicorn pydantic
 
 python -m webapp.export_weights   # trains the heads + tunes t*, writes routing/models/router_weights.npz
 python -m webapp.server           # http://127.0.0.1:8317
@@ -388,7 +388,7 @@ environment variables — no key is ever committed.
 
 ```bash
 pip install pytest httpx
-pytest tests/            # 61 passed in ~18 s
+pytest tests/            # 61 passed in ~20-30 s
 ```
 
 The suite is *verification only* — it never relaxes a tolerance to go green. See
@@ -460,9 +460,9 @@ from *benchmark-shaped* queries, which is exactly what the test split measures.
 | `DEMO_SCRIPT.md` | Narration-ready 3-minute walkthrough |
 | `cleaned/`, `raw/`, `*.csv` *(not in git)* | 1.3 GB benchmark data — `aligned_8_models/` (1,887 x 8), `aligned_7_models/` (3,352 x 7), `individual/` |
 
-Requires **Python 3.11+** (`numpy`, `pandas`, `fastapi`, `uvicorn`, `pydantic`,
-`httpx`; `pytest` for the suite) and **Node 18+** only if you want to rebuild the
-frontend.
+Requires **Python 3.11+** (`numpy`, `pandas`, `fastapi`, `uvicorn`, `pydantic`;
+`pytest` + `httpx` for the test suite) and **Node 18+** only if you want to
+rebuild the frontend.
 
 ---
 
