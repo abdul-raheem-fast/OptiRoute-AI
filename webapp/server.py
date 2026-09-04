@@ -34,6 +34,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from routing.config import OUT_DIR, RESULTS_DIR
+from routing.sensitivity import classify_sensitivity, load_policy, model_privacy
+from routing.pareto import dominated_by
 from routing.splits import load_splits
 from webapp.router_core import RouterCore
 
@@ -48,6 +50,20 @@ ASSETS_DIR = FRONTEND_DIR / "assets"
 
 app = FastAPI(title="OptiRoute AI", docs_url="/api/docs", redoc_url=None)
 core = RouterCore()
+
+# Multi-objective router (experimental/advanced). Its artifact lives in the
+# gitignored routing/models/, so degrade gracefully: the legacy path - and every
+# existing test - keeps working even if `python -m routing.tune_mo` has not run.
+try:
+    from webapp.mo_router import get_router
+    mo = get_router(core)
+    MO_ART = mo.art
+    MO_AVAILABLE = True
+except Exception:                                   # pragma: no cover
+    mo = None
+    MO_ART = None
+    MO_AVAILABLE = False
+
 session = Counter()
 session_log = deque(maxlen=500)
 
@@ -160,26 +176,69 @@ class RouteRequest(BaseModel):
     query: str = Field(min_length=1, max_length=20000)
     query_class: str | None = None
     threshold: float | None = Field(default=None, ge=0.5, le=0.99)
-    mode: str | None = Field(default=None, pattern="^(economy|balanced|quality)$")
+    # mode accepts the legacy three AND the two multi-objective-only modes.
+    mode: str | None = Field(
+        default=None, pattern="^(economy|balanced|quality|speed|private)$")
+    # ---- multi-objective extensions (all optional; omitting them keeps the
+    # ---- legacy behaviour byte-for-byte) ----
+    router: str | None = Field(default=None, pattern="^(legacy|multi_objective)$")
+    quality_floor: float | None = Field(default=None, ge=0.0, le=1.0)
+    latency_budget_ms: float | None = Field(default=None, gt=0.0)
+    sensitive: bool | None = None
+
+
+MO_ONLY_MODES = {"speed", "private"}
+
+
+def _wants_mo(req: RouteRequest) -> bool:
+    """Backward-compatible dispatch. The multi-objective router answers ONLY on
+    an explicit opt-in (``router``), an MO-only mode, or an MO-only parameter;
+    every legacy-shaped request still hits the published cascade untouched."""
+    if req.router == "multi_objective":
+        return True
+    if req.router == "legacy":
+        return False
+    if req.mode in MO_ONLY_MODES:
+        return True
+    return (req.quality_floor is not None or req.latency_budget_ms is not None
+            or req.sensitive is not None)
+
+
+def _tally(result: dict):
+    """Session telemetry - tolerant of both the legacy and the MO schema."""
+    chosen = result.get("chosen_model")
+    if chosen:
+        session[chosen] += 1
+    session["_total"] += 1
+    est = result.get("est_cost_per_query",
+                     result.get("estimated_cost_per_query", 0.0))
+    strong = result.get("strongest_cost_per_query")
+    saved = (strong - est) if strong is not None else 0.0
+    session["_saved"] += saved
+    if result.get("is_fallback"):
+        session["_esc"] += 1
+    tier = result.get("tier")
+    if tier:
+        session[f"_tier_{tier}"] += 1
+    session_log.append({"model": chosen, "tier": tier,
+                        "saved": round(saved, 6),
+                        "fallback": bool(result.get("is_fallback"))})
 
 
 @app.post("/api/route")
 def route(req: RouteRequest):
-    t = req.threshold if req.threshold is not None else \
-        MODE_T.get(req.mode or "balanced", core.t_star)
-    result = core.route(req.query, req.query_class, t)
-    session[result["chosen_model"]] += 1
-    session["_total"] += 1
-    saved = result["strongest_cost_per_query"] - result["est_cost_per_query"]
-    session["_saved"] += saved
-    if result["is_fallback"]:
-        session["_esc"] += 1
-    if result["tier"]:
-        session[f"_tier_{result['tier']}"] += 1
-    session_log.append({"model": result["chosen_model"],
-                        "tier": result["tier"],
-                        "saved": round(saved, 6),
-                        "fallback": result["is_fallback"]})
+    if _wants_mo(req):
+        if not MO_AVAILABLE:
+            raise HTTPException(
+                503,
+                "multi-objective router not built - run: python -m routing.tune_mo")
+        result = mo.route(req.query, req.query_class, req.mode,
+                          req.quality_floor, req.latency_budget_ms, req.sensitive)
+    else:
+        t = req.threshold if req.threshold is not None else \
+            MODE_T.get(req.mode or "balanced", core.t_star)
+        result = core.route(req.query, req.query_class, t)
+    _tally(result)
     return result
 
 
@@ -187,7 +246,7 @@ def route(req: RouteRequest):
 def results():
     out = {}
     for name in ("baselines_report", "learned_router_report",
-                 "oracle_report", "threshold_curves"):
+                 "oracle_report", "threshold_curves", "mo_eval_report"):
         path = RESULTS_DIR / f"{name}.csv"
         if path.exists():
             out[name] = pd.read_csv(path).to_dict(orient="records")
@@ -203,6 +262,90 @@ def results():
 @app.get("/api/modes")
 def modes():
     return {"modes": MODES, "t_star": core.t_star}
+
+
+class SensitivityRequest(BaseModel):
+    query: str = Field(min_length=1, max_length=20000)
+
+
+def _require_mo():
+    if not MO_AVAILABLE:
+        raise HTTPException(
+            503, "multi-objective router not built - run: python -m routing.tune_mo")
+
+
+@app.get("/api/objectives")
+def objectives():
+    """Multi-objective configuration + the measured evidence behind it.
+
+    Every number (weights aside) is a MEASURED train-split statistic or a
+    validation-split verification - nothing is invented. Exposes the mode
+    definitions, resolved hard constraints, per-head calibration diagnostics
+    and the legacy-vs-MO validation comparison.
+    """
+    _require_mo()
+    return {
+        "available": True,
+        "default_router": MO_ART["default_router"],
+        "mode_order": MO_ART["mode_order"],
+        "modes": MO_ART["modes"],
+        "normalization": MO_ART["normalization"],
+        "measured_train_stats": MO_ART["measured_train_stats"],
+        "calibration": MO_ART["calibration"],
+        "legacy_val": MO_ART["legacy_val"],
+        "meta": MO_ART["_meta"],
+    }
+
+
+@app.get("/api/pareto")
+def pareto():
+    """Pareto-frontier analysis over MEASURED train-split quality/cost/latency."""
+    _require_mo()
+    st = MO_ART["measured_train_stats"]
+    points = [{"model": m, "quality": st[m]["accuracy"], "cost": st[m]["cost"],
+               "latency_s": st[m]["latency_s"]} for m in core.models]
+    pts3 = [{"quality": p["quality"], "cost": p["cost"], "latency": p["latency_s"]}
+            for p in points]
+    dom = dominated_by(pts3)
+    for i, p in enumerate(points):
+        p["dominated_by"] = [points[j]["model"] for j in dom[i]]
+        p["on_global_frontier"] = p["model"] in MO_ART["frontiers"]["global"]
+    return {
+        "dimensions": {"quality": "higher is better", "cost": "lower is better",
+                       "latency": "lower is better"},
+        "points": points,
+        "frontiers": MO_ART["frontiers"],
+        "note": ("Frontier computed on measured train-split aggregates. A globally "
+                 "dominated model is never discarded outright: a privacy policy "
+                 "can still make it the eligible choice in another deployment."),
+    }
+
+
+@app.get("/api/privacy")
+def privacy():
+    """Deployment privacy policy + per-model privacy metadata.
+
+    No provider guarantees are fabricated: every field is administrator-configured
+    in webapp/privacy_policy.json and its provenance is reported.
+    """
+    pol = load_policy()
+    sens = pol.get("sensitivity", {})
+    return {
+        "deployment": pol.get("deployment", {}),
+        "models": {m: model_privacy(m) for m in core.models},
+        "sensitivity_rules": {"n_patterns": len(sens.get("patterns", [])),
+                              "keywords": sens.get("keywords", [])},
+        "provenance": pol.get("_meta", {}).get("provenance", ""),
+        "note": ("Local routing means the DECISION needs no extra LLM call; it "
+                 "does NOT mean the selected model is private. Privacy comes only "
+                 "from this policy filter."),
+    }
+
+
+@app.post("/api/sensitivity")
+def sensitivity(req: SensitivityRequest):
+    """Local, deterministic sensitivity check (no external LLM, no storage)."""
+    return classify_sensitivity(req.query)
 
 
 @app.get("/api/scenarios")

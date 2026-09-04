@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "description": "Deployment privacy policy for OptiRoute AI multi-objective routing. Administrators edit this file; the router reloads it at startup. Nothing here is a verified provider guarantee: retention/processing fields default to 'administrator-configured' unless the deployment has contractual evidence, and locally_hosted defaults are derived from models_registry.json notes ('originally self-hosted').",
+    "provenance": {
+      "locally_hosted": "models_registry.json notes: Llama-3.1-8B-Instruct and Qwen3-8B were originally self-hosted via local inference servers; all other entries point at public provider endpoints.",
+      "data_retention": "NOT verified by this project. Left as 'administrator-configured' so no provider privacy guarantee is fabricated.",
+      "pricing_and_latency": "Measured in routing/data/routing_matrix.csv (Phase-1 benchmark); not part of this file."
+    },
+    "semantics": {
+      "privacy_level": "local | external-api | external-api-contract",
+      "approved_for_sensitive": "model may receive queries the sensitivity classifier marks sensitive",
+      "hard_constraint": "The privacy filter runs BEFORE model selection: an ineligible model can never be selected, regardless of utility."
+    }
+  },
+  "deployment": {
+    "allow_external_models": true,
+    "allow_sensitive_queries": true,
+    "approved_for_sensitive": ["Llama-3.1-8B-Instruct", "Qwen3-8B"],
+    "note": "With allow_external_models=false the router behaves like private mode for every query. With allow_sensitive_queries=false, sensitive queries are refused instead of being routed to an approved model."
+  },
+  "sensitivity": {
+    "description": "Deterministic LOCAL classifier: regex patterns + keywords evaluated on the query text inside this process. No query ever leaves the machine to be classified, and raw query text is not logged by the router.",
+    "patterns": [
+      "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+      "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+      "\\b(?:\\+?\\d[ -.]?){10,15}\\b",
+      "\\b\\d{4}[ -]?\\d{4}[ -]?\\d{4}[ -]?\\d{4}\\b",
+      "\\b[A-Z]{2}\\d{2}[A-Z0-9]{10,30}\\b",
+      "\\b(password|passwd|secret|token|api[_-]?key)\\s*[:=]"
+    ],
+    "keywords": [
+      "patient", "medical record", "diagnosis", "health insurance",
+      "social security", "bank account", "credit card", "salary",
+      "legal counsel", "attorney-client", "minor child", "passport number",
+      "confidential", "proprietary", "trade secret", "personal data"
+    ]
+  },
+  "models": {
+    "Llama-3.1-8B-Instruct": {
+      "privacy_level": "local",
+      "external_api": false,
+      "locally_hosted": true,
+      "data_retention": "none - inference runs on deployment hardware",
+      "approved_for_sensitive": true,
+      "source": "models_registry.json: 'Zero-cost anchor; originally self-hosted via local inference server'"
+    },
+    "Qwen3-8B": {
+      "privacy_level": "local",
+      "external_api": false,
+      "locally_hosted": true,
+      "data_retention": "none - inference runs on deployment hardware",
+      "approved_for_sensitive": true,
+      "source": "models_registry.json: 'Originally self-hosted; point api_base at any OpenAI-compatible server'"
+    },
+    "deepseek-v3-0324": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base https://api.deepseek.com/v1"
+    },
+    "gemini-2.5-flash": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base generativelanguage.googleapis.com"
+    },
+    "gpt-4.1": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base https://api.openai.com/v1"
+    },
+    "claude-sonnet-4": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base https://api.anthropic.com/v1"
+    },
+    "gemini-2.5-pro": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base generativelanguage.googleapis.com"
+    },
+    "gpt-5": {
+      "privacy_level": "external-api",
+      "external_api": true,
+      "locally_hosted": false,
+      "data_retention": "administrator-configured",
+      "approved_for_sensitive": false,
+      "source": "models_registry.json: api_base https://api.openai.com/v1"
+    }
+  }
+}

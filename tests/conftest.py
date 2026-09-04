@@ -29,6 +29,25 @@ def core():
 
 
 @pytest.fixture(scope="session")
+def mo_art():
+    """The fitted multi-objective artifact (skips if it has not been built)."""
+    import json
+
+    path = OUT_DIR.parent / "models" / "mo_objectives.json"
+    if not path.exists():
+        pytest.skip("mo_objectives.json not built - run: python -m routing.tune_mo")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="session")
+def mo_router(core, mo_art):
+    """The live multi-objective router, sharing the frozen inference core."""
+    from webapp.mo_router import MoRouter
+
+    return MoRouter(core=core)
+
+
+@pytest.fixture(scope="session")
 def server_mod():
     import webapp.server as mod
 
