@@ -6,20 +6,28 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { HowItWorks } from "./components/HowItWorks";
 import { ModelPool } from "./components/ModelPool";
+import { MoEvidence } from "./components/MoEvidence";
+import { MoRouter } from "./components/MoRouter";
 import { Nav } from "./components/Nav";
 import { Operations } from "./components/Operations";
-import { Playground } from "./components/Playground";
 import { Results } from "./components/Results";
 import { RouteArena } from "./components/RouteArena";
 import { Skeleton } from "./components/ui";
-import { useBootstrap, useSessionStats, useTheme } from "./hooks";
+import { useBootstrap, useMultiObjective, useSessionStats, useTheme } from "./hooks";
 import { routeQuery } from "./lib/api";
+import type { MultiObjective } from "./lib/api";
 import type { RouteDecision } from "./lib/types";
+
+const EMPTY_MO: MultiObjective = {
+  available: false, objectives: null, pareto: null, privacy: null,
+};
 
 export function App() {
   const { data: boot, error: bootError, loading } = useBootstrap();
   const { theme, toggle } = useTheme();
   const { stats, refresh } = useSessionStats(4000);
+  const { mo, loading: moLoading } = useMultiObjective();
+  const moBundle = mo ?? EMPTY_MO;
 
   const [mode, setMode] = useState("balanced");
   const [threshold, setThreshold] = useState(0.95);
@@ -137,6 +145,12 @@ export function App() {
             onChallenge={handleChallenge}
           />
         </ErrorBoundary>
+        <ErrorBoundary label="Multi-objective router">
+          <MoRouter boot={boot} mo={moBundle} loading={moLoading} />
+        </ErrorBoundary>
+        <ErrorBoundary label="Pareto and privacy">
+          <MoEvidence mo={moBundle} results={boot.results} />
+        </ErrorBoundary>
         <ErrorBoundary label="Measured results">
           <Results rows={rows} />
         </ErrorBoundary>
@@ -154,9 +168,6 @@ export function App() {
         </ErrorBoundary>
         <ErrorBoundary label="How it works">
           <HowItWorks />
-        </ErrorBoundary>
-        <ErrorBoundary label="API playground">
-          <Playground query={query} mode={mode} decision={decision} />
         </ErrorBoundary>
       </main>
 

@@ -52,7 +52,7 @@ export function BusinessImpact({ rows }: { rows: PolicyRow[] }) {
   return (
     <Section
       id="impact"
-      index="04"
+      index="06"
       eyebrow="Business impact"
       title="What the routing decision is worth"
       lead="Projection from measured per-query averages on the test split: your current

@@ -101,7 +101,7 @@ export function Results({ rows }: { rows: PolicyRow[] }) {
   return (
     <Section
       id="results"
-      index="02"
+      index="04"
       eyebrow="Measured results"
       title="Frozen numbers from the committed pipeline"
       lead="Official held-out test split, stratified by capability class and difficulty

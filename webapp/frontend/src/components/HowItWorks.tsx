@@ -1,4 +1,4 @@
-import { Card, CardTitle, Section } from "./ui";
+import { Card, Section } from "./ui";
 
 const STEPS = [
   {
@@ -18,39 +18,11 @@ const STEPS = [
   },
 ];
 
-const ARCH = String.raw`
-                        USER QUERY
-                            |
-                            v
-                +-----------------------+
-                |   FEATURE LAYER       |  hashed n-gram TF-IDF,
-                |                       |  text stats, capability class
-                +-----------+-----------+
-                            v
-                +-----------------------+
-                | CONFIDENCE ESTIMATION |  P(correct) for all 8 models
-                |                       |  + complexity tier estimate
-                +-----------+-----------+
-                            v
-                      ROUTING POLICY  (economy / balanced / quality)
-                   +----------+----------+
-                   v          v          v
-              efficient     mid      strongest
-               models      models     model
-                   +----------+----------+
-                            v
-                +-----------------------+
-                |  QUALITY GUARDRAIL    |  floor = 90% of always-strongest
-                +-----------+-----------+
-                            v
-                  RESPONSE + DECISION RECORD
-`;
-
 export function HowItWorks() {
   return (
     <Section
       id="how"
-      index="07"
+      index="09"
       eyebrow="How it works"
       title="A decision made before any tokens are spent"
       lead="No live model calls are needed to route — the router is a small trained scorer
@@ -65,11 +37,6 @@ export function HowItWorks() {
           </Card>
         ))}
       </div>
-
-      <Card variant="elevated" style={{ marginTop: "var(--grid-gap)" }}>
-        <CardTitle hint="request flow">Architecture</CardTitle>
-        <pre className="arch">{ARCH}</pre>
-      </Card>
     </Section>
   );
 }

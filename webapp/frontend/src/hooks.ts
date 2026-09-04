@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { loadBootstrap, loadStats } from "./lib/api";
+import { loadBootstrap, loadMultiObjective, loadStats } from "./lib/api";
 import type { Bootstrap, StatsPayload } from "./lib/types";
+import type { MultiObjective } from "./lib/api";
 
 /** Fetches every payload the dashboard needs once, in parallel. */
 export function useBootstrap() {
@@ -22,6 +23,28 @@ export function useBootstrap() {
   }, []);
 
   return { data, error, loading: data === null && error === null };
+}
+
+/**
+ * Loads the multi-objective bundle (objectives + Pareto + privacy) once.
+ * Never throws to the caller: if the fitted artifact is absent the bundle
+ * reports available=false and the MO section renders an honest "not built"
+ * state, leaving the legacy dashboard fully functional.
+ */
+export function useMultiObjective() {
+  const [data, setData] = useState<MultiObjective | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    loadMultiObjective().then((d) => {
+      if (alive) setData(d);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  return { mo: data, loading: data === null };
 }
 
 export type Theme = "dark" | "light";

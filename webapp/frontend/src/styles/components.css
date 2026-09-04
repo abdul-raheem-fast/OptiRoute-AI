@@ -1144,3 +1144,268 @@ pre.arch {
     transform: rotate(360deg);
   }
 }
+
+/* ==========================================================================
+   Multi-objective router (experimental) + Pareto/privacy evidence.
+   Reuses the arena/card/table primitives above; only the new affordances
+   (objective spec, hard-constraint toggles, latency breakdown, model
+   comparison, Pareto legend, privacy grid) are defined here.
+   ========================================================================== */
+
+.table--tight th,
+.table--tight td {
+  padding: 6px 10px;
+  font-size: var(--fs-xs);
+}
+.table tbody tr.is-chosen-row {
+  background: var(--accent-soft);
+}
+.table tbody tr.is-chosen-row td {
+  color: var(--text);
+}
+.table tbody tr.is-legacy-row {
+  background: color-mix(in srgb, var(--accent-3) 12%, transparent);
+}
+.table tbody tr.is-mo-row td:first-child {
+  border-left: 2px solid var(--accent);
+}
+
+/* ---- objective spec block (measured val evidence beside the controls) ---- */
+.mo-spec {
+  margin-top: var(--s3);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--border);
+}
+.mo-val {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s3);
+}
+.mo-val .mv {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mo-val .mv i {
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mo-val .mv b {
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+.mo-mix {
+  margin-top: var(--s4);
+}
+
+/* ---- hard-constraint toggles + sliders ---- */
+.mo-constraints {
+  display: grid;
+  gap: var(--s2);
+  padding: var(--s4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+.mo-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  cursor: pointer;
+}
+.mo-toggle input {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+}
+.mo-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+.mo-slider input[type="range"] {
+  flex: 1;
+}
+.mo-slider input[type="range"]:disabled {
+  opacity: 0.4;
+}
+
+/* ---- decision metrics + latency breakdown ---- */
+.mo-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s3);
+  margin: var(--s4) 0;
+}
+.mo-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.mo-metric .k {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mo-metric .v {
+  font-size: var(--fs-lg);
+  color: var(--text);
+}
+.mo-metric .sub {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+.lat-parts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.lat-part {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.lat-part .k {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.lat-part .v {
+  font-size: var(--fs-sm);
+  color: var(--text);
+}
+.lat-part.is-total {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--accent-soft);
+}
+.lat-plus {
+  color: var(--text-3);
+  font-family: var(--font-mono);
+}
+
+.mo-reason {
+  margin: 0 0 var(--s3);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.constraint-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.cchip {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+  background: var(--surface-2);
+}
+.cchip.is-on {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border-strong));
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.callout--warn {
+  border-color: color-mix(in srgb, var(--warn) 45%, var(--border));
+  background: color-mix(in srgb, var(--warn) 10%, transparent);
+}
+
+/* ---- Pareto legend + evidence layout ---- */
+.pareto-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s3);
+}
+.pareto-legend .nm.dim {
+  color: var(--text-3);
+}
+
+.mo-evidence {
+  display: grid;
+  gap: var(--s5);
+}
+.tradeoff-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  margin-top: var(--s3);
+}
+.legend-swatch.is-legacy {
+  background: var(--accent-3);
+}
+.legend-swatch.is-mo {
+  background: var(--accent);
+}
+.mo-status-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border);
+}
+
+/* ---- privacy panel ---- */
+.privacy-grid {
+  display: grid;
+  gap: var(--s4);
+}
+.policy-flags {
+  display: grid;
+  gap: var(--s2);
+}
+.policy-flags .line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.sens-demo {
+  display: grid;
+  gap: var(--s2);
+}
+.sens-row {
+  display: flex;
+  gap: var(--s2);
+}
+.sens-row .input {
+  flex: 1;
+}
+.sens-result {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .mo-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+

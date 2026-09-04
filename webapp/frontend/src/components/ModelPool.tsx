@@ -9,7 +9,7 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
   return (
     <Section
       id="models"
-      index="06"
+      index="08"
       eyebrow="The model pool"
       title="Eight models, ordered cheapest to strongest"
       lead="Per-model accuracy by capability class on the aligned benchmark, with registry
