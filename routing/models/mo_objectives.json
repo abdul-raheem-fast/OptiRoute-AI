@@ -1,0 +1,413 @@
+{
+  "_meta": {
+    "generated_by": "python -m routing.tune_mo",
+    "provenance": "Heads frozen from routing/models/router_weights.npz. Measured per-model accuracy/cost/latency and Platt calibration are fit on the TRAIN split; modes are VERIFIED on VALIDATION; the TEST split is sealed (see routing.eval_mo). No value is invented.",
+    "splits": {
+      "train": 1322,
+      "val": 283
+    },
+    "strongest_model": "gpt-5",
+    "quality_floor_fraction": 0.9,
+    "resolved_floor90": 0.7952,
+    "flagship_latency_ms": 878.2,
+    "val_floor_pct": 81.73
+  },
+  "measured_train_stats": {
+    "Llama-3.1-8B-Instruct": {
+      "accuracy": 0.3722,
+      "cost": 1.3e-05,
+      "latency_s": 0.311,
+      "latency_ms": 310.5
+    },
+    "Qwen3-8B": {
+      "accuracy": 0.7746,
+      "cost": 0.00081,
+      "latency_s": 3.679,
+      "latency_ms": 3678.7
+    },
+    "deepseek-v3-0324": {
+      "accuracy": 0.761,
+      "cost": 0.000829,
+      "latency_s": 2.899,
+      "latency_ms": 2898.6
+    },
+    "gemini-2.5-flash": {
+      "accuracy": 0.7579,
+      "cost": 0.003474,
+      "latency_s": 0.196,
+      "latency_ms": 195.6
+    },
+    "gpt-4.1": {
+      "accuracy": 0.7239,
+      "cost": 0.004053,
+      "latency_s": 0.99,
+      "latency_ms": 989.9
+    },
+    "claude-sonnet-4": {
+      "accuracy": 0.7489,
+      "cost": 0.009778,
+      "latency_s": 0.321,
+      "latency_ms": 321.3
+    },
+    "gemini-2.5-pro": {
+      "accuracy": 0.8714,
+      "cost": 0.082725,
+      "latency_s": 1.889,
+      "latency_ms": 1889.1
+    },
+    "gpt-5": {
+      "accuracy": 0.8835,
+      "cost": 0.021286,
+      "latency_s": 0.878,
+      "latency_ms": 878.2
+    }
+  },
+  "normalization": {
+    "cost_min": 1.3331906202723157e-05,
+    "cost_max": 0.08272503309379724,
+    "latency_min": 0.1956476467473525,
+    "latency_max": 3.678675298789705
+  },
+  "calibration": {
+    "Llama-3.1-8B-Instruct": {
+      "a": 1.119448,
+      "b": 1.384525,
+      "train": {
+        "mean_gap_pts": -1.38,
+        "ece": 0.0504
+      },
+      "val": {
+        "mean_gap_pts": 2.32,
+        "ece": 0.0476
+      }
+    },
+    "Qwen3-8B": {
+      "a": 0.205327,
+      "b": 0.538744,
+      "train": {
+        "mean_gap_pts": -0.54,
+        "ece": 0.0152
+      },
+      "val": {
+        "mean_gap_pts": 2.42,
+        "ece": 0.0309
+      }
+    },
+    "deepseek-v3-0324": {
+      "a": 0.608745,
+      "b": 1.247738,
+      "train": {
+        "mean_gap_pts": -1.25,
+        "ece": 0.032
+      },
+      "val": {
+        "mean_gap_pts": -0.44,
+        "ece": 0.0243
+      }
+    },
+    "gemini-2.5-flash": {
+      "a": 0.268789,
+      "b": 1.360237,
+      "train": {
+        "mean_gap_pts": -1.36,
+        "ece": 0.0141
+      },
+      "val": {
+        "mean_gap_pts": -2.12,
+        "ece": 0.0228
+      }
+    },
+    "gpt-4.1": {
+      "a": 0.941194,
+      "b": 0.972642,
+      "train": {
+        "mean_gap_pts": -0.97,
+        "ece": 0.0528
+      },
+      "val": {
+        "mean_gap_pts": 0.27,
+        "ece": 0.0934
+      }
+    },
+    "claude-sonnet-4": {
+      "a": 0.47364,
+      "b": 1.563328,
+      "train": {
+        "mean_gap_pts": -1.56,
+        "ece": 0.0353
+      },
+      "val": {
+        "mean_gap_pts": -3.77,
+        "ece": 0.0424
+      }
+    },
+    "gemini-2.5-pro": {
+      "a": 1.430752,
+      "b": 1.01468,
+      "train": {
+        "mean_gap_pts": -1.01,
+        "ece": 0.0172
+      },
+      "val": {
+        "mean_gap_pts": -1.88,
+        "ece": 0.0324
+      }
+    },
+    "gpt-5": {
+      "a": 0.862103,
+      "b": 1.527704,
+      "train": {
+        "mean_gap_pts": -1.53,
+        "ece": 0.0153
+      },
+      "val": {
+        "mean_gap_pts": -3.99,
+        "ece": 0.0399
+      }
+    }
+  },
+  "frontiers": {
+    "global": [
+      "Llama-3.1-8B-Instruct",
+      "Qwen3-8B",
+      "deepseek-v3-0324",
+      "gemini-2.5-flash",
+      "gpt-5"
+    ],
+    "quality_floor": [
+      "gpt-5"
+    ],
+    "privacy_approved": [
+      "Llama-3.1-8B-Instruct",
+      "Qwen3-8B"
+    ]
+  },
+  "modes": {
+    "economy": {
+      "label": "Economy",
+      "description": "Maximum savings: cost is the objective; latency is a tiebreaker and quality enters through the calibrated score. Targets (and is verified against) the 90% policy quality floor.",
+      "lambda_cost": 1.0,
+      "lambda_latency": 0.1,
+      "quality_floor_rule": "floor90",
+      "policy_quality_floor_pct": 81.73,
+      "latency_budget_rule": null,
+      "latency_budget_ms": null,
+      "privacy_restricted": false,
+      "eligible_models": [
+        "Llama-3.1-8B-Instruct",
+        "Qwen3-8B",
+        "deepseek-v3-0324",
+        "gemini-2.5-flash",
+        "gpt-4.1",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "gpt-5"
+      ],
+      "val": {
+        "accuracy_pct": 80.57,
+        "avg_cost_per_query": 0.003512,
+        "avg_latency_s": 2.855,
+        "p50_latency_s": 0.121,
+        "p95_latency_s": 12.266,
+        "p99_latency_s": 19.666
+      },
+      "val_meets_floor": false,
+      "val_model_mix": {
+        "Llama-3.1-8B-Instruct": 0,
+        "Qwen3-8B": 113,
+        "deepseek-v3-0324": 6,
+        "gemini-2.5-flash": 57,
+        "gpt-4.1": 107,
+        "claude-sonnet-4": 0,
+        "gemini-2.5-pro": 0,
+        "gpt-5": 0
+      },
+      "notes": "High lambda_cost drives the cheap+fast models; the soft quality term still rejects models too weak to be worth free."
+    },
+    "balanced": {
+      "label": "Balanced",
+      "description": "Quality, cost and latency weighted jointly - the direct multi-objective successor of the legacy policy. Targets the 90% policy quality floor.",
+      "lambda_cost": 0.5,
+      "lambda_latency": 0.1,
+      "quality_floor_rule": "floor90",
+      "policy_quality_floor_pct": 81.73,
+      "latency_budget_rule": null,
+      "latency_budget_ms": null,
+      "privacy_restricted": false,
+      "eligible_models": [
+        "Llama-3.1-8B-Instruct",
+        "Qwen3-8B",
+        "deepseek-v3-0324",
+        "gemini-2.5-flash",
+        "gpt-4.1",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "gpt-5"
+      ],
+      "val": {
+        "accuracy_pct": 87.63,
+        "avg_cost_per_query": 0.017834,
+        "avg_latency_s": 0.407,
+        "p50_latency_s": 0.055,
+        "p95_latency_s": 1.151,
+        "p99_latency_s": 3.787
+      },
+      "val_meets_floor": true,
+      "val_model_mix": {
+        "Llama-3.1-8B-Instruct": 0,
+        "Qwen3-8B": 1,
+        "deepseek-v3-0324": 0,
+        "gemini-2.5-flash": 32,
+        "gpt-4.1": 107,
+        "claude-sonnet-4": 0,
+        "gemini-2.5-pro": 0,
+        "gpt-5": 143
+      },
+      "notes": "lambda_latency 0.1: latency breaks near-ties but does not override correctness (see module docstring)."
+    },
+    "speed": {
+      "label": "Speed",
+      "description": "Latency-budgeted routing: only models at or under the measured always-strongest average latency compete (HARD budget), then latency is the objective inside that set.",
+      "lambda_cost": 0.25,
+      "lambda_latency": 1.0,
+      "quality_floor_rule": "floor90",
+      "policy_quality_floor_pct": 81.73,
+      "latency_budget_rule": "flagship_latency",
+      "latency_budget_ms": 878.2,
+      "privacy_restricted": false,
+      "eligible_models": [
+        "Llama-3.1-8B-Instruct",
+        "Qwen3-8B",
+        "deepseek-v3-0324",
+        "gemini-2.5-flash",
+        "gpt-4.1",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "gpt-5"
+      ],
+      "val": {
+        "accuracy_pct": 76.68,
+        "avg_cost_per_query": 0.004653,
+        "avg_latency_s": 0.228,
+        "p50_latency_s": 0.09,
+        "p95_latency_s": 1.094,
+        "p99_latency_s": 2.098
+      },
+      "val_meets_floor": false,
+      "val_model_mix": {
+        "Llama-3.1-8B-Instruct": 0,
+        "Qwen3-8B": 0,
+        "deepseek-v3-0324": 0,
+        "gemini-2.5-flash": 281,
+        "gpt-4.1": 0,
+        "claude-sonnet-4": 0,
+        "gemini-2.5-pro": 0,
+        "gpt-5": 2
+      },
+      "notes": ""
+    },
+    "quality": {
+      "label": "Quality",
+      "description": "Predicted quality only: cost and latency are reported, not optimised; the highest-calibrated-quality eligible model wins.",
+      "lambda_cost": 0.0,
+      "lambda_latency": 0.0,
+      "quality_floor_rule": null,
+      "policy_quality_floor_pct": null,
+      "latency_budget_rule": null,
+      "latency_budget_ms": null,
+      "privacy_restricted": false,
+      "eligible_models": [
+        "Llama-3.1-8B-Instruct",
+        "Qwen3-8B",
+        "deepseek-v3-0324",
+        "gemini-2.5-flash",
+        "gpt-4.1",
+        "claude-sonnet-4",
+        "gemini-2.5-pro",
+        "gpt-5"
+      ],
+      "val": {
+        "accuracy_pct": 89.05,
+        "avg_cost_per_query": 0.051644,
+        "avg_latency_s": 1.597,
+        "p50_latency_s": 0.316,
+        "p95_latency_s": 6.018,
+        "p99_latency_s": 10.473
+      },
+      "val_meets_floor": null,
+      "val_model_mix": {
+        "Llama-3.1-8B-Instruct": 0,
+        "Qwen3-8B": 5,
+        "deepseek-v3-0324": 0,
+        "gemini-2.5-flash": 0,
+        "gpt-4.1": 79,
+        "claude-sonnet-4": 0,
+        "gemini-2.5-pro": 92,
+        "gpt-5": 107
+      },
+      "notes": ""
+    },
+    "private": {
+      "label": "Private",
+      "description": "Hard privacy constraint: only deployment-approved (locally hosted) models are eligible, then quality+cost optimised inside that set with latency as a tiebreaker.",
+      "lambda_cost": 0.5,
+      "lambda_latency": 0.1,
+      "quality_floor_rule": null,
+      "policy_quality_floor_pct": null,
+      "latency_budget_rule": null,
+      "latency_budget_ms": null,
+      "privacy_restricted": true,
+      "eligible_models": [
+        "Llama-3.1-8B-Instruct",
+        "Qwen3-8B"
+      ],
+      "val": {
+        "accuracy_pct": 73.85,
+        "avg_cost_per_query": 0.000813,
+        "avg_latency_s": 3.462,
+        "p50_latency_s": 0.004,
+        "p95_latency_s": 13.781,
+        "p99_latency_s": 23.927
+      },
+      "val_meets_floor": null,
+      "val_model_mix": {
+        "Llama-3.1-8B-Instruct": 23,
+        "Qwen3-8B": 260,
+        "deepseek-v3-0324": 0,
+        "gemini-2.5-flash": 0,
+        "gpt-4.1": 0,
+        "claude-sonnet-4": 0,
+        "gemini-2.5-pro": 0,
+        "gpt-5": 0
+      },
+      "notes": "No policy floor: the approved set is fixed by the deployment, so quality is reported honestly even when it is lower."
+    }
+  },
+  "mode_order": [
+    "economy",
+    "balanced",
+    "speed",
+    "quality",
+    "private"
+  ],
+  "legacy_val": {
+    "accuracy_pct": 83.75,
+    "avg_cost_per_query": 0.008142,
+    "avg_latency_s": 3.042,
+    "p50_latency_s": 0.628,
+    "p95_latency_s": 12.266,
+    "p99_latency_s": 18.402,
+    "val_model_mix": {
+      "Llama-3.1-8B-Instruct": 0,
+      "Qwen3-8B": 134,
+      "deepseek-v3-0324": 0,
+      "gemini-2.5-flash": 0,
+      "gpt-4.1": 0,
+      "claude-sonnet-4": 0,
+      "gemini-2.5-pro": 0,
+      "gpt-5": 149
+    },
+    "t_star": 0.9500000000000004
+  },
+  "default_router": "legacy"
+}

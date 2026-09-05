@@ -1,0 +1,9 @@
+policy,accuracy_pct,quality_vs_strongest_pct,avg_cost_per_query,avg_latency_s,cost_reduction_vs_strongest_pct,meets_quality_floor,oracle_gap_pts
+always-strongest,88.65,100.0,0.019061,0.763,0.0,True,6.03
+always-cheapest,42.2,47.6,1.3e-05,0.311,99.9,False,52.48
+random,74.11,83.6,0.015865,1.369,16.8,False,20.57
+class-based,81.91,92.4,0.009377,3.654,50.8,True,12.77
+prior-cascade (t=0.80),83.69,94.4,0.009979,2.799,47.6,True,10.99
+knn-cascade (t=0.60),87.94,99.2,0.018711,0.819,1.8,True,6.74
+learned-cascade (t=0.95),84.04,94.8,0.006023,3.49,68.4,True,10.64
+oracle,94.68,106.8,0.003659,0.602,80.8,True,0.0

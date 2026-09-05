@@ -1,0 +1,49 @@
+# Vercel deployment upload excludes. Keeps the CLI upload small and guarantees
+# heavy, regenerable, or private-by-convention files never ship. The tiny frozen
+# runtime artifacts the server reads ARE uploaded (not listed here):
+#   routing/models/router_weights.npz, routing/models/mo_objectives.json,
+#   routing/results/*.csv, routing/data/{query_meta,splits}.csv,
+#   routing/data/splits_manifest.json, webapp/privacy_policy.json,
+#   models_registry.json, and webapp/frontend/dist.
+
+# VCS / editor / tooling caches
+.git
+.vercel
+.qoder
+.vscode
+.idea
+**/__pycache__
+*.pyc
+.pytest_cache
+.coverage
+htmlcov
+
+# Virtualenvs and Node deps (never needed at runtime; dist is prebuilt)
+.venv
+venv
+node_modules
+**/node_modules
+.vite
+
+# Large or regenerable data not read at serving time
+cleaned
+routing/data/routing_matrix.csv
+routing/data/aligned7_dedup_report.json
+
+# Research papers, notebooks, archives
+Research Papers (AetherFlow)
+*.pdf
+*.ipynb
+*.rar
+
+# Image assets (slides/reports only; not served by the app)
+figures
+graphs_output
+screenshots
+_shots
+
+# Root-level raw per-model evaluation CSVs (server reads routing/results/*.csv)
+/*.csv
+
+# Tests (not needed at runtime)
+tests

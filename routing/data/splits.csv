@@ -1,0 +1,1888 @@
+query_id,dataset_name,tier,split
+002a402e485b,General Knowledge,easy,train
+005556540a4d,Coding,easy,train
+005f27551ea0,Mathematical Reasoning,medium,train
+006ffb54989a,General Knowledge,easy,train
+00c7a0bc91ec,Scientific Questionnaire,medium,train
+00ca98af0709,General Knowledge,hard,train
+00e680ae81ec,Coding,medium,val
+01b7cbf592f6,Competitive Math,easy,train
+01c209520662,Coding,easy,test
+01f3444ebc2a,Coding,easy,train
+0202cb2c9d2b,Coding,easy,train
+021ecb83b40d,Coding,easy,train
+024b5e73ad03,General Knowledge,easy,train
+0263febc65c7,Coding,hard,train
+02a6b2b98e06,General Knowledge,easy,test
+02c2ee4236ee,Coding,easy,val
+02ca58a8746e,Coding,hard,train
+032674f75388,General Knowledge,easy,train
+036cf4a72b70,Coding,medium,train
+03aa807c9b23,General Knowledge,easy,train
+03b51eb5d026,Scientific Questionnaire,medium,train
+03c8ac30078f,Coding,easy,train
+040366b83bb2,Coding,easy,train
+040f6c2e608d,Coding,easy,train
+042dadf69850,Coding,medium,train
+0458d97e38c9,General Knowledge,medium,test
+045efc26b97a,Coding,hard,train
+04aac2d7c42f,General Knowledge,easy,val
+058ee0ea52a0,General Knowledge,easy,test
+05ae6ea972b5,Mathematical Reasoning,easy,train
+066ccc729be6,General Knowledge,easy,train
+0675b48d4002,Mathematical Reasoning,medium,train
+068ba1a52824,Competitive Math,medium,train
+06aac8fadbcc,General Knowledge,easy,train
+06f2e6596d33,General Knowledge,easy,train
+06f4ec2d0341,General Knowledge,easy,train
+070614478c93,General Knowledge,easy,train
+0718cac0c2da,General Knowledge,easy,test
+072b683a2ec7,Scientific Questionnaire,easy,val
+073179095bd7,General Knowledge,easy,train
+075670909f98,Mathematical Reasoning,easy,train
+077ef96505df,Mathematical Reasoning,easy,train
+07cb9949b7a5,Coding,medium,val
+07cea04426df,Coding,hard,train
+080d939dc18b,General Knowledge,easy,test
+08176ae78a40,Coding,medium,val
+081de0d48925,Scientific Questionnaire,easy,train
+082b44382139,General Knowledge,easy,train
+0843a19bf7e2,General Knowledge,hard,train
+0881fd0052a6,General Knowledge,easy,val
+08a2e71e28b6,Coding,easy,train
+08b37f19130b,General Knowledge,easy,train
+08e30c40c43e,Coding,easy,test
+08e9ffa02962,General Knowledge,easy,train
+092e5225aa02,General Knowledge,easy,train
+096288fb5747,General Knowledge,easy,train
+098e38daffa0,General Knowledge,easy,test
+09c16841d603,Scientific Questionnaire,easy,train
+09f8e145e1ab,Mathematical Reasoning,easy,test
+09fc61cb5911,General Knowledge,easy,train
+0a0f19e51d59,General Knowledge,hard,train
+0a19a36dd600,Coding,easy,train
+0a1f36d85669,General Knowledge,easy,test
+0a2c7b8010c0,Coding,easy,train
+0a7962773dc3,Mathematical Reasoning,easy,train
+0a99d9ef3249,General Knowledge,easy,train
+0aa2fba84be7,General Knowledge,easy,train
+0ab5e6f3fa68,Coding,easy,val
+0ae4e07dd148,General Knowledge,easy,test
+0b01f98dfc7b,General Knowledge,easy,val
+0b29b09e1c21,Coding,easy,val
+0b3ece9b7a8b,General Knowledge,medium,test
+0b3fb614506d,Coding,easy,test
+0b4f0c2296b6,Coding,easy,test
+0b863528c52f,General Knowledge,medium,train
+0ba4ba222356,General Knowledge,easy,train
+0bce55287ad9,General Knowledge,easy,train
+0c2f8302ef30,Coding,medium,train
+0c34835a67a5,Scientific Questionnaire,easy,val
+0c41c78ed7e9,Scientific Questionnaire,easy,test
+0c4e0d988143,Coding,easy,test
+0c87c8d96051,General Knowledge,easy,train
+0caa3a8065f1,Coding,hard,val
+0ce6c7ba13ba,Scientific Questionnaire,medium,train
+0d156276b7ce,General Knowledge,easy,train
+0d15a25662e3,Coding,medium,train
+0d28f789cfec,Coding,easy,train
+0d67079b28bd,Competitive Math,easy,train
+0d7107a8972b,General Knowledge,easy,train
+0d75395ccb99,General Knowledge,hard,train
+0d9859c1037e,Competitive Math,easy,val
+0decd80191ef,Coding,hard,train
+0df714b39973,Coding,easy,train
+0df82f0340bd,Coding,easy,train
+0e02b03936fb,Scientific Questionnaire,easy,train
+0e43239f31fe,Mathematical Reasoning,easy,val
+0e500a07cf3e,Scientific Questionnaire,easy,train
+0e566564c3e7,Coding,hard,train
+0e66066a86a9,General Knowledge,easy,test
+0e7dcdccb34c,General Knowledge,easy,test
+0e93dcda3707,Mathematical Reasoning,easy,train
+0ea031b192a7,General Knowledge,easy,train
+0eb5ef2e6ab8,General Knowledge,hard,val
+0ee619524934,General Knowledge,easy,train
+0f7736ff1fc9,Scientific Questionnaire,medium,train
+0f8f81ccab13,General Knowledge,medium,train
+0fcf71cbdc87,Coding,easy,val
+0fde67939f4e,General Knowledge,easy,train
+10013fb3802b,Mathematical Reasoning,hard,train
+101cf8334c69,Coding,easy,test
+105a5518e4d8,General Knowledge,easy,train
+1064b43dfd4f,General Knowledge,easy,train
+1077cec39026,General Knowledge,easy,train
+10982e7828e1,Coding,medium,train
+109e314a6106,General Knowledge,easy,train
+10b3798cbe3e,Coding,easy,test
+10df5cbb9f9f,Coding,easy,train
+10e286ef5fc1,General Knowledge,medium,test
+10fc080c9495,Scientific Questionnaire,easy,train
+1111c6371dd1,Coding,easy,train
+114a6e2944d1,General Knowledge,easy,train
+11596a8001cb,Coding,easy,train
+115cff8238d9,Scientific Questionnaire,medium,train
+11856d4c6d31,General Knowledge,easy,train
+11af821174d9,Competitive Math,easy,train
+11b56de16a22,Coding,easy,train
+11f3914f415f,General Knowledge,easy,train
+120e23f646b3,Coding,easy,val
+1218e1ddfcdc,Coding,easy,train
+122018cd0699,Competitive Math,easy,train
+127bfc03fbe0,General Knowledge,easy,train
+129a9d96f806,Coding,easy,train
+12e96ed6f5f6,Coding,easy,test
+130b0e006c8b,General Knowledge,hard,train
+1316484ad8ee,Coding,easy,train
+135f63e4587d,General Knowledge,easy,train
+137846dd0794,Coding,easy,train
+13a267b2a587,General Knowledge,hard,val
+13c8ae5084a3,Coding,hard,val
+13e89c59bd4d,Coding,easy,test
+146087836757,Coding,easy,train
+1477f05aadf6,Coding,easy,train
+148c9137ba18,General Knowledge,medium,train
+14b603c4d0d9,General Knowledge,easy,train
+14bdbb4f417b,Coding,medium,train
+14cb240f1aa0,Competitive Math,easy,train
+14f22dd10359,Coding,hard,train
+151313c01995,General Knowledge,easy,train
+1521c6b87a9a,General Knowledge,easy,train
+1562059937b3,General Knowledge,easy,train
+159b0012a717,Coding,easy,train
+15aa593e0749,Coding,easy,train
+15f6401f1d0e,Mathematical Reasoning,medium,train
+160b45222b9d,General Knowledge,easy,train
+16381cf064ed,Coding,easy,val
+1640d093d935,Coding,easy,train
+167454edac1d,General Knowledge,medium,train
+168d138b7854,Coding,medium,train
+16a059ed5829,General Knowledge,easy,train
+16c6a92e47e8,Coding,easy,test
+16cbdc62595e,General Knowledge,medium,val
+16ec9feb2050,General Knowledge,easy,train
+1772b01dbe27,General Knowledge,medium,train
+179b56dcbb4f,General Knowledge,hard,train
+17b5eef08379,Coding,easy,test
+17c125e35efb,Coding,easy,test
+17cfb835d45a,Mathematical Reasoning,medium,val
+1810bb2c3870,General Knowledge,easy,train
+1829f05dcfb9,Mathematical Reasoning,easy,train
+18852c63014b,Coding,easy,train
+189cbaacc860,Coding,easy,train
+18c4faf39f23,General Knowledge,easy,train
+18c653d2053c,Coding,easy,train
+18cd47780902,Coding,hard,train
+1939161d2c9f,Coding,easy,train
+194e00bea335,Coding,medium,train
+197195a76585,General Knowledge,medium,train
+19ca9b68c730,General Knowledge,easy,train
+19d4cd7a0777,General Knowledge,easy,train
+1a13d9bb8770,Coding,easy,train
+1a2150f779d2,General Knowledge,easy,train
+1a367b8ff25d,General Knowledge,easy,train
+1a6beccfed0e,Coding,medium,train
+1ad490a8af75,General Knowledge,easy,train
+1aeb97924e37,Coding,easy,test
+1b5553de3af1,Coding,easy,train
+1b5abc31a095,Coding,easy,train
+1b7ef6445000,General Knowledge,easy,val
+1b8c3958c8ff,General Knowledge,easy,train
+1bebf21defad,General Knowledge,easy,train
+1c42f50ea537,Coding,medium,test
+1c658583689f,Scientific Questionnaire,medium,val
+1c66804d44d0,Coding,easy,val
+1c850cd6b1b9,Coding,easy,train
+1cdd15ef3a00,General Knowledge,easy,train
+1ce07985682f,Coding,easy,train
+1d054f564618,General Knowledge,easy,train
+1d211958e920,General Knowledge,easy,train
+1d5fb7b0a88a,Scientific Questionnaire,easy,val
+1d6b8b27600c,Coding,easy,train
+1d973063e87d,Coding,easy,train
+1d97ca685dd5,Coding,easy,test
+1dac2b240830,General Knowledge,easy,train
+1dbf5de6b61b,General Knowledge,easy,train
+1dc5fa5e439b,Coding,medium,train
+1dd95b090b19,General Knowledge,hard,val
+1df235bf67b0,General Knowledge,easy,train
+1e000113526f,Coding,easy,train
+1e311b447650,General Knowledge,easy,val
+1ec80056dad8,Coding,easy,train
+1ec90ce1740e,General Knowledge,easy,val
+1ed5de22c274,General Knowledge,medium,train
+1eedf5d071f9,General Knowledge,hard,train
+1ef6a71b1257,General Knowledge,easy,val
+1ef86ab64fab,General Knowledge,medium,train
+1efff44e94e2,General Knowledge,easy,train
+1f34d1c35834,General Knowledge,easy,train
+1f40b2375fb2,General Knowledge,easy,test
+1f6061b1d173,General Knowledge,hard,val
+1f853990a273,Coding,medium,test
+1f95441f84b4,General Knowledge,medium,train
+1f9df4d59896,Coding,hard,val
+1fac77381739,Coding,easy,train
+204df0ba7ba6,Competitive Math,hard,train
+205fe3ea96be,Coding,easy,train
+206e5413325c,Coding,easy,train
+2073b3dcb8fd,Mathematical Reasoning,easy,train
+20d2fa057c90,Coding,medium,train
+2133a38e8dc7,General Knowledge,easy,train
+2155149e8373,General Knowledge,hard,val
+216f0271d487,General Knowledge,easy,val
+217662f61c64,General Knowledge,easy,train
+217c20bada34,Coding,medium,train
+219464db3f22,Mathematical Reasoning,hard,train
+21ad0c4a2baf,Coding,easy,test
+21cabfe4baef,General Knowledge,easy,train
+21cd34c5b553,General Knowledge,easy,train
+220280e41389,General Knowledge,medium,train
+223309363533,Coding,medium,train
+228ac588a305,General Knowledge,medium,train
+2294e1252c51,General Knowledge,hard,test
+2299c6dee23b,Coding,easy,train
+229e165c1aa3,General Knowledge,easy,train
+22a07c2fc436,Mathematical Reasoning,easy,val
+22a10789ba95,General Knowledge,easy,train
+22f2200d0082,General Knowledge,easy,train
+233404bde32c,Scientific Questionnaire,easy,train
+233a2eb2b974,Coding,medium,val
+233bddb2427a,General Knowledge,easy,train
+2340bd305dbb,General Knowledge,easy,train
+23531ac0fe51,Coding,medium,train
+2361d6017a1f,Coding,medium,train
+23765b99c24c,General Knowledge,medium,train
+237b209a5ce8,Scientific Questionnaire,easy,train
+237b99263f9d,Mathematical Reasoning,easy,train
+239c6ed86c5a,General Knowledge,easy,val
+23e8e51eb4bc,Mathematical Reasoning,easy,train
+23f563ab8be7,General Knowledge,medium,train
+2402f3164dcf,General Knowledge,easy,val
+242cac1a3a1e,Coding,easy,val
+244094abdf5a,Coding,hard,train
+2452def5242b,Coding,hard,train
+2455081bab99,Coding,easy,train
+2491f59c887c,General Knowledge,easy,val
+24a8a3e28f79,General Knowledge,easy,train
+24bee32a2a63,General Knowledge,hard,train
+24c622cebd77,Mathematical Reasoning,easy,train
+24e2ba1f3389,Coding,easy,train
+24fcaa683313,Coding,hard,val
+250fbdc38e2b,Coding,easy,train
+255a5313069e,Coding,medium,train
+257dba0fd2dc,Coding,easy,test
+259e00344ce8,Scientific Questionnaire,easy,train
+25b912fb180d,Coding,easy,train
+25e09983e5f1,Coding,easy,val
+25ef205212a0,Coding,medium,val
+260ec1d46097,General Knowledge,easy,train
+26645286552f,Coding,medium,train
+26a43291c379,General Knowledge,hard,train
+26afa5aeff3b,Coding,hard,train
+26be6ed51836,Coding,easy,train
+26f86d499898,General Knowledge,easy,train
+271edbaa1443,General Knowledge,medium,train
+272f742eabdb,Scientific Questionnaire,easy,train
+27651c1bf056,Coding,easy,train
+2769df9758ca,Coding,easy,test
+27ae67bb4450,Coding,medium,train
+27c2cbf64af3,General Knowledge,hard,train
+27f6b491cad7,Scientific Questionnaire,easy,train
+280166bd19af,General Knowledge,easy,train
+280d38b8f054,Scientific Questionnaire,medium,train
+2844109fed5e,General Knowledge,easy,val
+286a0f13cde7,Coding,easy,train
+28a385249131,Coding,medium,train
+28b41fa8e026,Coding,easy,test
+28c8928ef8b5,Coding,medium,train
+28d308ec4aec,General Knowledge,medium,test
+28dfeb6acbd6,General Knowledge,easy,train
+28eccf4b341a,General Knowledge,easy,test
+2906c8749a7d,Coding,medium,train
+2945a63276cc,General Knowledge,easy,train
+29479ad10904,Coding,hard,train
+298070a9ffbd,General Knowledge,hard,train
+29847815f909,General Knowledge,easy,train
+29a7be74659f,General Knowledge,hard,test
+29ad4d2697d7,Coding,easy,train
+29dfaf9dbbe4,Coding,medium,train
+2a03dad9afe2,General Knowledge,easy,test
+2a172c97a806,General Knowledge,hard,train
+2a28c6ab6bf5,General Knowledge,easy,train
+2a3ed72ca14c,Mathematical Reasoning,medium,train
+2a4d2bf4512c,Coding,medium,train
+2a6af50ee7fb,Coding,easy,val
+2a789c4a42ac,General Knowledge,easy,test
+2a8578427d2f,Coding,medium,train
+2acc89d3cc19,General Knowledge,medium,val
+2ada3b5ae6f8,Mathematical Reasoning,medium,train
+2ae94fb6bf1f,General Knowledge,easy,train
+2ae95c0b9f63,Coding,easy,train
+2b1c526ac7f5,Coding,easy,train
+2b231a3d39a6,Coding,easy,val
+2bc5abc8bb65,General Knowledge,medium,train
+2bef8724bc9b,General Knowledge,easy,train
+2bf6208c093e,General Knowledge,hard,train
+2bff78bb6d1e,General Knowledge,easy,train
+2c20389d5a2e,General Knowledge,easy,train
+2c29f30aa7d9,Mathematical Reasoning,easy,train
+2c2c6d1523f4,Coding,hard,train
+2c46a6d29fa1,Scientific Questionnaire,easy,test
+2c4dd1fa7f01,Coding,medium,train
+2c6d83f29ad1,General Knowledge,easy,train
+2c85894b0e0f,Scientific Questionnaire,easy,test
+2c8c764ae721,General Knowledge,easy,train
+2cc3c20bebfe,General Knowledge,easy,train
+2d0c53dd660b,General Knowledge,easy,train
+2d18ca407100,Coding,easy,train
+2d29cfeff11a,General Knowledge,easy,train
+2d2a6e152fa6,General Knowledge,easy,train
+2d2b25a87655,Coding,easy,train
+2d2ead7b93e2,Coding,easy,train
+2d57401e5a38,General Knowledge,easy,train
+2d9510ac7bfa,General Knowledge,easy,train
+2d9862052fbb,General Knowledge,easy,train
+2daa0ac616c5,Coding,hard,train
+2db020780397,Coding,easy,val
+2dc25ac87256,Scientific Questionnaire,medium,val
+2dc29ab51ce0,Coding,easy,train
+2dee042dc07a,Coding,easy,val
+2df1b105c75f,General Knowledge,easy,val
+2e3a98286b34,Coding,easy,train
+2e59d30e8380,Coding,easy,train
+2e67c937469e,Coding,easy,val
+2e7be0d7eeee,Coding,easy,train
+2ebe1c86d76f,Coding,easy,train
+2ed00708186f,Coding,easy,train
+2f329ffcf00e,General Knowledge,easy,train
+2f6c8d4c44c8,Coding,hard,train
+2fdbe724d77f,General Knowledge,easy,train
+300cc04d1ba6,Coding,medium,test
+304dc500a593,General Knowledge,medium,val
+308378ac70e1,Coding,easy,train
+30aabf7e19fc,General Knowledge,hard,train
+310dadcabbd3,General Knowledge,easy,train
+312bd56083ea,General Knowledge,easy,train
+312d2d85b610,Coding,easy,train
+313c5729f818,General Knowledge,medium,train
+3159b78c622c,Coding,easy,train
+31a77efbd4a3,Coding,easy,train
+31c9d5642f97,General Knowledge,hard,train
+322d76dd6213,Coding,easy,train
+329ba1efec66,Mathematical Reasoning,easy,val
+32f9481d8918,Coding,hard,train
+33258efdc365,Scientific Questionnaire,medium,train
+336bd8d61fd1,Coding,easy,val
+33762c8e6716,General Knowledge,easy,val
+339818b9beb1,General Knowledge,easy,test
+339f2850490a,Coding,easy,train
+33c8237b64bc,General Knowledge,easy,train
+33cd439f34e1,General Knowledge,easy,train
+33d58d734d54,Scientific Questionnaire,easy,train
+33de0934ef55,General Knowledge,hard,train
+33e24bb04092,General Knowledge,easy,train
+346a010e8866,General Knowledge,easy,train
+349ccb11870b,Coding,easy,train
+35070811a880,General Knowledge,easy,test
+350d0cf5f859,General Knowledge,hard,test
+3516989d16a5,General Knowledge,easy,train
+352656fe95dc,General Knowledge,easy,train
+3528db11c435,General Knowledge,hard,train
+35489c72b7fd,General Knowledge,easy,train
+356026d77698,General Knowledge,medium,train
+357918ec5829,Coding,easy,test
+3584f80f6365,General Knowledge,easy,train
+35b611b735d5,General Knowledge,hard,train
+35c1a5234162,Scientific Questionnaire,easy,train
+360c9b4c3f72,Coding,medium,val
+361936ab97a2,Coding,easy,val
+363a12b0ddf5,Coding,medium,val
+36433a436443,Coding,easy,train
+36c2dedb9679,General Knowledge,easy,train
+36cd3834b8be,General Knowledge,easy,val
+36eca5ed8864,Competitive Math,medium,val
+36ed8965ddac,Coding,easy,test
+36ef7d66fb11,Coding,easy,val
+36f8637bdffd,General Knowledge,easy,train
+372321b311ef,Scientific Questionnaire,easy,train
+3732a1dce229,Coding,medium,train
+37407e428207,Coding,easy,train
+374e27f9ce1e,Coding,easy,train
+375e200a61b5,Scientific Questionnaire,easy,train
+37654bab5877,General Knowledge,medium,train
+376de3898ccf,Coding,medium,train
+37aa37326fb4,Coding,easy,test
+37ac8b2b0039,General Knowledge,easy,train
+37b54a27e3c7,General Knowledge,easy,train
+37d930616810,General Knowledge,easy,train
+37e6a0a5f013,General Knowledge,easy,train
+37ff8ab3ff3b,General Knowledge,hard,val
+3815b78a6dde,General Knowledge,easy,train
+381ba7377c17,General Knowledge,easy,val
+382fea173096,General Knowledge,easy,train
+38359c449733,Coding,easy,test
+387305239743,Scientific Questionnaire,easy,train
+387f02f105d6,Coding,easy,val
+3889faae16b2,Competitive Math,medium,train
+389f2431c871,General Knowledge,easy,train
+38e19d1a02ef,Coding,easy,train
+38ecb7ef9051,Competitive Math,medium,test
+391b02a0bbd2,General Knowledge,easy,train
+396fdbdff40c,Scientific Questionnaire,medium,train
+397f8a333a51,General Knowledge,easy,train
+39904efcc2af,Coding,hard,val
+39a76559408e,Coding,easy,test
+39c08026c951,Coding,easy,val
+39deb0ff4c29,Coding,easy,train
+3a1757e5edb9,General Knowledge,hard,train
+3a1aba3d0c1b,Coding,easy,test
+3a2d1095fe00,General Knowledge,easy,train
+3a5a1397b506,Coding,medium,train
+3a649c970341,Coding,easy,test
+3a6e92d5cde6,General Knowledge,easy,train
+3a972e0a5790,General Knowledge,easy,train
+3ac03dfcf03c,General Knowledge,easy,val
+3ac266ac71ea,Coding,medium,train
+3aceb9c4eddd,Coding,medium,train
+3ae1bf95e01e,Coding,easy,train
+3af72098409b,Coding,easy,train
+3c0300b7d77d,Scientific Questionnaire,easy,train
+3c067e809137,Coding,easy,train
+3c0e112c9fe6,Coding,easy,val
+3c17b6b60a57,General Knowledge,medium,test
+3c379e1d34ee,General Knowledge,easy,train
+3cafc0dc80f7,General Knowledge,easy,val
+3d02095299c2,Scientific Questionnaire,medium,test
+3d176ecd475d,Coding,easy,test
+3d5a9d588599,Scientific Questionnaire,easy,val
+3d6d3e6d4a6a,Coding,easy,val
+3d75313db238,Coding,medium,test
+3d8b39d00e9e,General Knowledge,easy,train
+3d937b9eab1b,Coding,easy,train
+3d9d191fae5a,Coding,medium,train
+3db6e4af14b7,General Knowledge,easy,val
+3dec61dfeb35,General Knowledge,easy,train
+3e05a2ebad64,Coding,easy,test
+3e14991b4042,Coding,easy,train
+3e1f59c13acf,Scientific Questionnaire,easy,train
+3e58a19258be,Scientific Questionnaire,hard,train
+3ece8856da03,Coding,hard,test
+3f39ed155b04,Coding,easy,train
+3f5d539d5cde,Coding,medium,train
+3f8e5f56eba0,General Knowledge,easy,train
+3f9028d9c30a,General Knowledge,easy,test
+3fa16f4d28fa,General Knowledge,easy,train
+3fa6340054a8,Scientific Questionnaire,easy,train
+3fcb7d556851,General Knowledge,easy,val
+3fcc8ee98fcf,Coding,easy,val
+3fe70b05cd5b,Coding,medium,test
+4007414673fa,General Knowledge,easy,train
+402af1e13c6a,Coding,easy,test
+405cc18c6078,General Knowledge,medium,train
+407c1ef81710,Coding,easy,val
+410b06c86e37,General Knowledge,easy,train
+415793af2772,Scientific Questionnaire,easy,train
+416309b149c3,Coding,hard,train
+4174aea31062,General Knowledge,easy,test
+417f319c73cc,Scientific Questionnaire,easy,val
+418611361a89,Coding,medium,val
+419a46c4f461,Coding,hard,train
+419a5d8e7586,Coding,easy,train
+41a41e32a56b,Coding,easy,train
+41aa69aa7520,General Knowledge,medium,train
+41b16128cdca,Coding,easy,train
+41f4a43b8472,General Knowledge,easy,train
+41f7b87f95e5,General Knowledge,easy,val
+421b0b13e3d6,Coding,medium,train
+427155b04acd,Coding,medium,val
+42c18bbadd65,Coding,easy,train
+42d9d1a6883a,Coding,easy,train
+4374175fed2d,Coding,hard,train
+43a2cd194759,Competitive Math,medium,train
+43a83c274100,General Knowledge,easy,train
+43d84a714c5d,Coding,easy,train
+43faffa2ad68,Coding,easy,test
+441ada4c2112,Coding,medium,train
+441d7a004224,General Knowledge,easy,train
+44343dcc9ae6,General Knowledge,easy,train
+44457ce0201e,Coding,hard,train
+444e99d0f1d8,General Knowledge,easy,train
+4460f2ffb36f,Coding,medium,val
+4468ef10bb43,Coding,easy,train
+447a265a0ad5,Mathematical Reasoning,easy,train
+4488da89daa2,Coding,easy,train
+44a59cdb67c2,General Knowledge,easy,test
+44b42b5b22f6,General Knowledge,easy,train
+44bcc6538c7f,Coding,easy,train
+44e1ea1e3eb3,General Knowledge,medium,train
+4517474d22e4,Coding,medium,test
+45205f454aed,Scientific Questionnaire,hard,val
+45b22ec351f7,General Knowledge,easy,train
+45b72a9c95fc,Coding,easy,test
+460765645920,Coding,easy,val
+463a9f2fd32b,Coding,easy,train
+46661240b7d2,Scientific Questionnaire,easy,train
+4667c43beb39,Coding,easy,train
+46b6cc30cad4,General Knowledge,easy,train
+46d0fc7ccd57,General Knowledge,easy,train
+46e5e08627ae,General Knowledge,easy,train
+46eb25619b16,General Knowledge,easy,train
+46fe826574d1,General Knowledge,easy,train
+470269d5f6f8,Coding,easy,train
+471b8a892225,General Knowledge,easy,train
+473c9a40dedc,Coding,easy,train
+47d039d0c4ab,Coding,easy,train
+480d8d199969,Coding,medium,train
+482729895626,General Knowledge,hard,train
+484d77100665,Coding,easy,train
+4853d423ce20,Coding,hard,test
+486a70e231ff,Coding,easy,train
+4876ce6c606c,General Knowledge,easy,train
+4887ec4d64bc,General Knowledge,easy,val
+4897b757ee96,Coding,easy,train
+48f7a5377fbf,Coding,easy,train
+49151184a1ec,General Knowledge,easy,val
+4960a21417f3,Coding,easy,train
+498175bd87db,Coding,easy,train
+49b907a11799,General Knowledge,medium,train
+49c0a3b4a5d6,General Knowledge,medium,train
+49c5fddc4dfd,General Knowledge,easy,val
+49cb6c82f904,Coding,easy,train
+4a0f9b4d314d,General Knowledge,hard,val
+4a235be6e398,Coding,medium,train
+4a2514b9959c,General Knowledge,hard,train
+4a36bbd49bf0,General Knowledge,easy,train
+4a43b63a3775,Coding,easy,val
+4ae09776fb96,Scientific Questionnaire,medium,train
+4b1d2617b825,General Knowledge,easy,train
+4b2584e4894b,Coding,hard,train
+4b25c6ab8b10,General Knowledge,easy,train
+4b4bb309c15a,General Knowledge,easy,train
+4bab54faa7b7,Coding,easy,train
+4bf9f95f3be8,Mathematical Reasoning,medium,train
+4c115c751687,General Knowledge,easy,val
+4c54f076cb5d,Coding,medium,train
+4c676db961bb,Mathematical Reasoning,hard,test
+4cee99837784,General Knowledge,easy,train
+4cf23ea83aee,General Knowledge,hard,test
+4d0214cebd9d,General Knowledge,easy,train
+4d0498a1dc2b,Scientific Questionnaire,easy,train
+4d182f4b4b35,General Knowledge,easy,train
+4d1875783c8c,Competitive Math,medium,train
+4d66bef8346b,General Knowledge,medium,train
+4dded359bb2b,General Knowledge,easy,train
+4e05ff75d486,Coding,hard,train
+4e17b048551f,Coding,easy,test
+4e500a914e04,General Knowledge,easy,train
+4e6040dabff9,General Knowledge,easy,train
+4eb5b771fa91,Coding,medium,train
+4eb726f08ce6,General Knowledge,easy,train
+4eeea385993d,General Knowledge,hard,train
+4eeeb9c9cd12,Coding,hard,train
+4f3da53d7f08,Coding,easy,train
+4f40c9466c23,General Knowledge,easy,test
+4f46aa0e7a4e,Coding,hard,test
+4f5cdbbf3d5e,Scientific Questionnaire,medium,train
+4f95f0b08630,Scientific Questionnaire,easy,train
+4f9ac6094bdd,General Knowledge,easy,train
+4faaf4d299a3,General Knowledge,easy,train
+4ff2b632abb5,General Knowledge,easy,train
+501a017108cd,General Knowledge,medium,val
+5060d0e8c6b0,Coding,easy,train
+506433696f24,General Knowledge,hard,val
+509e9420a57b,General Knowledge,easy,train
+50a89f8d99f8,General Knowledge,easy,train
+50b4f2d690cd,General Knowledge,easy,train
+50d31797c93e,Coding,hard,test
+50e83de63b5b,Coding,easy,test
+50f5e85223bb,Coding,easy,train
+510f5168fce5,General Knowledge,easy,train
+511b20b4a864,Coding,hard,train
+511b489d9250,Mathematical Reasoning,hard,train
+51425c8376db,Coding,hard,test
+517e1b88179b,Mathematical Reasoning,easy,train
+518eddec9901,Coding,easy,train
+51a3a00646c7,Coding,easy,train
+51bc93139fde,Mathematical Reasoning,easy,train
+51cd0ca1914b,Coding,medium,train
+51d521f86c35,General Knowledge,hard,train
+51f3e03708b4,General Knowledge,medium,test
+521aa2331254,General Knowledge,easy,test
+527784b499c5,Coding,easy,train
+52962e112ef5,General Knowledge,easy,train
+52bab0d61ba0,Coding,medium,train
+52bd35cc5f80,General Knowledge,easy,test
+52d1ee1164f3,Coding,medium,test
+52d83d8147a5,General Knowledge,easy,test
+52f6565a7d2c,Coding,easy,train
+5324f363a8a1,General Knowledge,easy,train
+53522f4a84d1,Coding,easy,train
+536c4d5fed86,Coding,hard,train
+53898196091b,Coding,easy,test
+53b094a10c02,General Knowledge,easy,train
+53d829f9755b,General Knowledge,easy,val
+54006c6f3db3,Coding,easy,train
+5410f9f11d33,Coding,easy,train
+54936fb020a7,Coding,easy,val
+54b38ef2a1d3,Mathematical Reasoning,easy,val
+54e289cf4296,General Knowledge,easy,val
+54e7db9f5ef1,Coding,easy,train
+54ef629b45c3,Mathematical Reasoning,easy,val
+54f2b8767907,Scientific Questionnaire,easy,train
+54f7b43063f2,Coding,easy,train
+55034fb5bdc8,General Knowledge,easy,train
+5514cc43d27c,Competitive Math,medium,train
+5534c4aa04ab,General Knowledge,medium,train
+555f59863754,Coding,medium,train
+55689140b6ea,General Knowledge,easy,train
+55827cca4580,General Knowledge,easy,train
+558d9bc57082,Coding,easy,train
+55c2b86e7844,General Knowledge,hard,val
+55e96828d9ec,Coding,easy,train
+5603dfd0a90b,Coding,easy,train
+561856f35cf4,Scientific Questionnaire,medium,train
+561c63b49b5d,Coding,easy,train
+5651dd29deb1,Mathematical Reasoning,hard,train
+56637150980f,Scientific Questionnaire,easy,train
+566b694e814b,General Knowledge,easy,val
+56724fb10c85,Coding,easy,test
+569bd8f9ba7e,General Knowledge,medium,train
+56a5010d2b1e,Coding,easy,train
+56a6360c85a2,Coding,medium,train
+56b7b67c47c6,Coding,easy,train
+56eaffd540cb,General Knowledge,easy,val
+570899fc92a8,Coding,easy,train
+5721e663534a,Coding,easy,train
+5776b11f2039,Coding,easy,test
+57a0ed89afef,General Knowledge,easy,train
+57d79945ff6b,Scientific Questionnaire,hard,test
+57e473102fe3,General Knowledge,easy,train
+57ec9429e57f,Scientific Questionnaire,easy,train
+5843ef965220,Coding,easy,train
+585b7aea5159,Coding,easy,train
+58a50973aa4a,Coding,easy,train
+58a98bf651dd,Coding,hard,train
+58bf2f59d015,General Knowledge,medium,train
+5907e3b4d542,General Knowledge,easy,train
+59158d815b8e,General Knowledge,easy,train
+591f4fdfb759,Scientific Questionnaire,medium,train
+59353b859679,General Knowledge,easy,train
+5941b88a1c0e,Coding,easy,train
+594a057bd31c,Coding,easy,val
+59aa1c6b6a3b,Competitive Math,medium,train
+59d27e905502,General Knowledge,hard,test
+59da461cc3de,General Knowledge,easy,test
+59e2634ac2d6,Coding,easy,val
+5a05087128ad,Coding,easy,val
+5a24fbccfbda,General Knowledge,medium,val
+5a45032c2e7b,General Knowledge,easy,val
+5a84fa8dc1c9,General Knowledge,easy,train
+5a88b3d999bd,General Knowledge,easy,train
+5add12fa5e00,General Knowledge,easy,test
+5b419b412200,Coding,medium,val
+5b6cdd95377f,General Knowledge,easy,train
+5b777ffc4696,General Knowledge,easy,train
+5b9bb6fce8a8,General Knowledge,easy,test
+5ba9880743d7,Coding,medium,val
+5baa170f69d3,Mathematical Reasoning,easy,train
+5bafeb078326,Coding,easy,test
+5bf59ed14594,General Knowledge,easy,test
+5c04619ae29e,Scientific Questionnaire,easy,train
+5c31fed3e6ec,Scientific Questionnaire,hard,train
+5c412c1fb6c8,Scientific Questionnaire,easy,train
+5c620e2f4efa,General Knowledge,easy,train
+5c6c03302112,Coding,easy,train
+5c7000a20ef8,Coding,hard,train
+5cd5d501b3a6,Mathematical Reasoning,easy,train
+5cd8379b75b7,Coding,easy,train
+5ce3c40f3491,General Knowledge,easy,train
+5d7ff4f006bb,Coding,easy,train
+5ddc9a1ea0df,General Knowledge,easy,val
+5df7b846dff9,General Knowledge,easy,val
+5e0a4f5a243a,Coding,medium,train
+5e1376a36319,General Knowledge,easy,train
+5e2d605fa55b,General Knowledge,medium,train
+5e3a7501dcc5,Coding,hard,train
+5e5c209cc6a3,Coding,easy,train
+5e5d99b6ca4f,Coding,easy,test
+5e97212f9f17,General Knowledge,easy,train
+5ed68e1e866e,General Knowledge,easy,train
+5efbfa323c82,Coding,medium,val
+5efe2add716f,Coding,easy,train
+5f01d55bfa9b,General Knowledge,easy,train
+5f39ab23d423,Coding,easy,train
+5f541b5c6545,General Knowledge,easy,test
+5f5bac59462f,Coding,hard,train
+5fb71fc74bc7,General Knowledge,easy,train
+5fc2141d1152,General Knowledge,easy,train
+5fef1be61c3a,General Knowledge,easy,train
+602a477496e5,Coding,easy,train
+6040408a33d8,General Knowledge,easy,train
+60458c43a29e,General Knowledge,easy,train
+6071251f1817,General Knowledge,easy,train
+607455cbf908,Mathematical Reasoning,hard,train
+609b33f710ec,Coding,easy,val
+60bcfa0b50bc,Coding,easy,train
+60bffbcadf65,General Knowledge,easy,train
+60cc93bcf339,Coding,hard,train
+60ed7bedd827,Coding,easy,train
+610fe15d4b00,Scientific Questionnaire,medium,train
+6116d31a4b03,Coding,easy,train
+6116d8dcc7e1,General Knowledge,easy,train
+61548a05fdf7,General Knowledge,medium,train
+61f94f3213c5,Coding,easy,train
+61fc23db11e5,Mathematical Reasoning,hard,val
+6216aa4b9d69,General Knowledge,easy,val
+6223ff72366c,Coding,easy,train
+6286bf354701,Coding,easy,train
+628be95a64f6,Coding,hard,val
+62ba127ba27c,Coding,easy,val
+630d0a3fa115,General Knowledge,easy,test
+6315eb46c5bc,Coding,hard,train
+6322302046b7,Scientific Questionnaire,medium,train
+6341e7e3f4d4,General Knowledge,medium,train
+63531898f0a3,Coding,easy,train
+6363b445e979,Coding,easy,test
+63a040cec1f7,Coding,medium,train
+63cc2f43a072,Coding,easy,val
+63d9ffb94908,General Knowledge,easy,val
+6420e124e24c,General Knowledge,medium,val
+64273a23a92c,Mathematical Reasoning,easy,val
+642ce853a23c,Coding,easy,train
+643a0dfaf526,Coding,easy,train
+645550ee8cd0,Coding,easy,test
+6473a6e65ae3,Scientific Questionnaire,medium,train
+64a8822a3146,Coding,medium,train
+64af2df6379b,General Knowledge,easy,train
+64c9b82f3b5f,Scientific Questionnaire,easy,train
+64d30bb8c594,General Knowledge,easy,train
+64e7967aa050,Coding,hard,train
+653d54a0ffc5,Coding,medium,train
+65510db6f79e,Coding,easy,train
+65f53178b958,Coding,medium,train
+65f80396c53f,General Knowledge,medium,train
+660255db964d,General Knowledge,easy,train
+6621b6263234,Mathematical Reasoning,easy,train
+6647bb0292f4,General Knowledge,hard,train
+668dbb55fd5f,Scientific Questionnaire,easy,train
+669b030f000a,General Knowledge,easy,train
+66d3aa9994f5,Coding,medium,test
+670db3849fdf,Coding,medium,train
+6755348ca6dc,Mathematical Reasoning,easy,train
+67573bf90e28,General Knowledge,easy,train
+675aeac9d9ec,General Knowledge,easy,val
+6776f7c966f9,General Knowledge,easy,train
+6789e0d13046,Coding,easy,train
+67bb5d327242,Coding,easy,train
+6809259015c8,General Knowledge,easy,val
+6812b9336a84,General Knowledge,easy,test
+68577e223b0f,Coding,medium,train
+687113ba6a65,Coding,easy,train
+6899f8066df1,Coding,easy,train
+69717b0ac243,Coding,easy,val
+699489c568c3,Coding,easy,train
+69a9924bbb3f,General Knowledge,easy,train
+69b14d1af6a1,Competitive Math,medium,val
+69ce6a81f30d,Coding,easy,val
+69e2aea29d8b,General Knowledge,easy,test
+69e52c85e7a7,General Knowledge,easy,test
+6a0c3041639d,General Knowledge,easy,train
+6a0ce8338b99,General Knowledge,easy,val
+6a38a3286c48,Mathematical Reasoning,medium,train
+6a53a55cafd0,General Knowledge,hard,train
+6a8ef11a6a89,Coding,medium,test
+6aa1836f5aa1,General Knowledge,easy,train
+6aa375840cd7,Coding,easy,val
+6aa7ca2ae1ab,General Knowledge,easy,train
+6ab4ac19992d,General Knowledge,easy,test
+6ad8c1f61757,Coding,medium,val
+6ae47bec82ba,General Knowledge,easy,train
+6b1a933eafb0,Coding,medium,train
+6b5e0b9a696b,Coding,medium,train
+6b75d49bae00,Coding,hard,train
+6b990d614e6e,Scientific Questionnaire,easy,val
+6bce7e012f25,General Knowledge,easy,val
+6bd89f2ced8e,Coding,easy,train
+6bf5eeb07579,Competitive Math,medium,train
+6c2431ce1445,Coding,easy,test
+6c55230ea064,Coding,medium,train
+6c7d70d65cf7,General Knowledge,easy,train
+6c9efc223dab,Coding,easy,test
+6cc6aa997941,General Knowledge,hard,train
+6cd80234ac56,General Knowledge,easy,train
+6cd980be63bd,General Knowledge,hard,val
+6cf0590d7610,Scientific Questionnaire,easy,train
+6cfa139b716c,General Knowledge,easy,test
+6d3b3b77f6d9,General Knowledge,hard,val
+6d45aca51d5e,General Knowledge,easy,test
+6d74d0a5e034,Coding,medium,train
+6d8f44aeea6a,General Knowledge,easy,train
+6d90f2fdea43,General Knowledge,medium,train
+6d9166ddb605,General Knowledge,medium,val
+6defe20c2a43,Coding,easy,train
+6df3684c7c20,General Knowledge,easy,val
+6df41f1b2b1f,General Knowledge,easy,val
+6e1385332dd9,Coding,easy,train
+6e8afb51620f,Coding,hard,val
+6eb1d43ebe1c,Coding,hard,train
+6eca0353b009,Coding,medium,test
+6efa3aba87a5,Coding,easy,val
+6f03f46f8c61,Coding,medium,val
+6f265ed8bda2,General Knowledge,easy,train
+6f678ba96a00,Coding,easy,train
+6f85a840b36f,Coding,medium,train
+6f977faf32a4,Coding,easy,train
+6fa5d94d6ff9,Coding,easy,train
+6fb5d0404e7d,Coding,easy,train
+6fba6acfbe26,Coding,easy,train
+7042e11329a5,Coding,easy,train
+7047382f4578,Coding,easy,train
+707f27ffab2e,General Knowledge,easy,test
+709137d857c8,General Knowledge,easy,train
+70fa3c88515f,General Knowledge,easy,train
+710e520217af,Coding,easy,train
+71162bedafac,General Knowledge,easy,train
+711aa39d7cc7,Coding,easy,train
+717443fc683d,Coding,easy,train
+71e5110629bc,General Knowledge,easy,test
+71e882ee8bc2,Scientific Questionnaire,easy,test
+72250dd494ed,Coding,easy,train
+722d31ba5c86,Scientific Questionnaire,easy,train
+723062148ab7,Coding,easy,train
+727c0b673459,General Knowledge,medium,train
+727ca4260ca7,General Knowledge,easy,train
+727f06c24c76,General Knowledge,easy,test
+728fac2746c9,General Knowledge,easy,train
+72996deaf29e,Coding,easy,test
+729ac679b813,Scientific Questionnaire,easy,train
+729f7b746d90,General Knowledge,easy,val
+72a771892aed,Coding,medium,train
+72e02188a950,Coding,easy,train
+72ef84c7543c,Coding,medium,train
+7349b332389c,General Knowledge,easy,train
+7353af9e4205,Coding,hard,val
+7382ea1ad0ab,Scientific Questionnaire,easy,val
+7414d5358e13,General Knowledge,easy,train
+742e8632f0f0,Coding,medium,train
+74527d112b44,General Knowledge,easy,train
+745285b9d99c,Coding,easy,train
+746533ada8b4,Coding,easy,train
+7481120fda6c,Coding,easy,train
+748c37ab4ac9,General Knowledge,easy,train
+74cda5a3da0c,Coding,medium,train
+74dfdef263e7,Coding,easy,train
+74ef561a70ae,General Knowledge,easy,train
+74f02dbc9292,Coding,medium,train
+74f8b0561508,Coding,medium,train
+74fb7aed708e,Coding,easy,train
+753dafc5b638,Coding,medium,train
+756733f13568,Coding,hard,test
+7599a6385d44,Coding,easy,train
+762e19a26bbc,Coding,easy,train
+765c183f02b5,General Knowledge,easy,val
+76981bc70fe8,Coding,easy,train
+76b5aae0a617,General Knowledge,easy,train
+76ca79715e2c,General Knowledge,easy,train
+76d4515e9524,General Knowledge,easy,train
+76fa41520434,Coding,easy,train
+770bc9f9ff1b,Mathematical Reasoning,hard,val
+77492555af58,General Knowledge,easy,train
+77981c248acc,General Knowledge,easy,train
+77bb858c48b5,Mathematical Reasoning,easy,train
+77f5a9e44c79,General Knowledge,easy,train
+781023847ae0,Coding,easy,train
+78216cb32441,Coding,hard,train
+78454c8a8faa,Coding,easy,train
+786f768c14ef,General Knowledge,medium,train
+78922094c39f,General Knowledge,easy,train
+78988d901998,Coding,easy,train
+78b301d62b26,Mathematical Reasoning,easy,train
+78dcfda21e2e,General Knowledge,easy,test
+78fa3bd9b15f,General Knowledge,hard,test
+795426ebf819,Coding,easy,train
+796a28b9aa43,General Knowledge,easy,test
+799270db15f5,General Knowledge,medium,train
+79b08d98531c,Coding,medium,train
+7a2bb5f5ddc9,Coding,easy,train
+7a37a55d1115,Coding,easy,train
+7a7c7541f76e,Mathematical Reasoning,medium,test
+7aa714581ff4,Coding,easy,train
+7aa8eea2bb54,General Knowledge,easy,test
+7ad5b9b90a0d,General Knowledge,easy,train
+7aec2042297d,General Knowledge,easy,train
+7b4eb5d2c7a2,Coding,easy,train
+7b9fd32d6a69,General Knowledge,easy,train
+7baf57f60983,General Knowledge,easy,train
+7bb37e04a74f,General Knowledge,hard,train
+7c110ac18ea2,Coding,easy,train
+7c8b44fc6e3a,Coding,hard,train
+7ca167aac5ff,General Knowledge,hard,train
+7cec0606f16c,General Knowledge,hard,train
+7cf47f6860f4,Coding,easy,train
+7d0a34176a27,General Knowledge,medium,train
+7d6d72255d39,General Knowledge,easy,train
+7d83ede9d21e,Coding,medium,train
+7d89d4ac993f,General Knowledge,easy,train
+7de747b924b7,Coding,easy,train
+7df32b0e36c9,General Knowledge,easy,train
+7dfbcafde880,General Knowledge,easy,val
+7e02694526ca,Coding,easy,train
+7e37f988b96a,Coding,medium,train
+7e5aa21ce2dc,Coding,medium,test
+7e8ad0f74cfb,General Knowledge,easy,train
+7e92b7826026,Coding,medium,test
+7e9520477456,General Knowledge,medium,train
+7ea1f76ba86d,General Knowledge,hard,train
+7eb000d67cbd,Coding,easy,train
+7ec9f259ac2d,Coding,easy,train
+7edd25ed8dbd,Coding,easy,train
+7ef9166ae6e1,Coding,easy,val
+7effc3296996,Coding,easy,test
+7f4fc3c42091,General Knowledge,easy,val
+7f9c6b45d705,Coding,easy,train
+7f9d0ca95732,Coding,medium,train
+7fe027ef5827,Competitive Math,medium,train
+802d6bd9f0b3,Coding,easy,train
+8090617c134b,General Knowledge,medium,train
+80aa840f7319,General Knowledge,easy,val
+80bffb76d885,Competitive Math,medium,test
+80ce6986f8c0,Coding,easy,train
+80fad7559cc1,Coding,medium,val
+81075f150d1a,General Knowledge,easy,train
+8119ba6ec445,General Knowledge,easy,test
+8150310fbed4,General Knowledge,easy,val
+818dfafaba58,General Knowledge,easy,test
+8229a20d6785,Scientific Questionnaire,easy,train
+828d51a6c168,General Knowledge,easy,train
+82ba69ff300e,General Knowledge,easy,train
+82f9e759a4f0,General Knowledge,easy,train
+830c300aba2c,General Knowledge,easy,train
+83335cb23239,Mathematical Reasoning,easy,test
+833e1906f593,Coding,medium,train
+8348e1c428ef,Scientific Questionnaire,easy,train
+83593de09c62,Coding,easy,train
+8386595d23d4,Scientific Questionnaire,easy,train
+838bb0c1f8fc,General Knowledge,easy,train
+8392f23f78c1,General Knowledge,easy,train
+83e1d7e1ab64,Coding,easy,test
+842bd725725a,General Knowledge,easy,test
+84361a08f12d,Coding,easy,train
+8441e667b89a,Mathematical Reasoning,easy,train
+84421985ad93,General Knowledge,easy,train
+84b120e2c28f,General Knowledge,easy,test
+850a84638f9a,General Knowledge,easy,train
+851fb78c01dc,Scientific Questionnaire,medium,test
+8540d61c70cd,Mathematical Reasoning,easy,train
+854dd5ba3ac4,Coding,medium,train
+855d227064cb,General Knowledge,easy,test
+856f620f6b1e,General Knowledge,easy,train
+8585911bb215,General Knowledge,easy,train
+859059e70bb1,Coding,hard,train
+8598d06e0fcc,Coding,easy,val
+859d2de10dc1,General Knowledge,medium,train
+85b40d5c69e0,General Knowledge,easy,test
+85b5bd031faa,Coding,easy,test
+85bb71d4a49a,Mathematical Reasoning,medium,train
+85c1e3c920a2,General Knowledge,easy,test
+85ede5b8555f,General Knowledge,medium,train
+85f0f877ae9c,Coding,medium,train
+85fbbc572d26,General Knowledge,easy,test
+866072d88dc6,Coding,easy,train
+8664847a92cc,General Knowledge,easy,val
+86927890c846,Coding,easy,val
+86b26941c196,General Knowledge,easy,train
+86b6e63c3738,Coding,easy,val
+86caba87e57c,General Knowledge,hard,train
+86e6e48be2b5,Coding,easy,test
+86e8d42966db,General Knowledge,easy,val
+86ec7daaa0ee,Coding,easy,train
+86fdb69518f5,General Knowledge,easy,test
+8741cfecf069,General Knowledge,medium,train
+87828233405a,Coding,easy,train
+8797a7ca4159,General Knowledge,hard,train
+87ec69fd4c35,Coding,easy,train
+87f241cbe654,General Knowledge,easy,train
+881362c4c5f9,General Knowledge,easy,train
+883aaabeeef9,General Knowledge,easy,train
+8853593bc4bc,General Knowledge,medium,val
+88aaf070b59f,General Knowledge,easy,test
+88afcdda6eee,Coding,easy,train
+891419b59ec9,Coding,medium,train
+894fbfd71b11,Coding,medium,val
+894fe08e2751,General Knowledge,easy,train
+897c128d9472,General Knowledge,easy,val
+8a050dec2b65,Coding,hard,train
+8a555d7eabfa,Coding,easy,train
+8a69edbef842,Scientific Questionnaire,hard,train
+8a7ff97cdb61,General Knowledge,easy,train
+8a907899bf6a,Coding,easy,train
+8aa4c8f354e9,Coding,medium,train
+8ab2d85a88ec,Scientific Questionnaire,hard,train
+8abd6b3eab85,Coding,easy,test
+8ad1d6ea3d51,Coding,medium,train
+8b05bae96106,General Knowledge,easy,train
+8b6115d8b26b,Coding,easy,test
+8bc6d3909940,Coding,hard,train
+8bcaeb0d0df0,Coding,hard,test
+8bf5b94606b9,Coding,medium,train
+8c010f661157,General Knowledge,easy,train
+8c0f8ad48600,General Knowledge,hard,train
+8c349741e29b,General Knowledge,easy,train
+8c8ca4688651,Coding,easy,train
+8ca1c4ece77e,General Knowledge,hard,test
+8cdb54b67635,Coding,medium,val
+8d0421e595c7,Competitive Math,medium,train
+8d1bbc982a2e,Coding,easy,train
+8d355bf7ae0d,General Knowledge,hard,train
+8d37c8bd5a5f,Coding,easy,test
+8d534f21673c,Mathematical Reasoning,medium,test
+8d7f8a18b61b,Coding,medium,test
+8dc4cc18c885,General Knowledge,easy,train
+8dc98e87b567,Coding,hard,train
+8dd061ded371,Coding,easy,train
+8de2c5064e42,Scientific Questionnaire,hard,train
+8e31767d4e85,Scientific Questionnaire,medium,test
+8e5717e2049c,Coding,easy,train
+8e6d3ddca302,Coding,easy,train
+8e9b56b89a78,Coding,hard,train
+8ec2aa6328a8,General Knowledge,easy,train
+8ed9f570efdc,General Knowledge,hard,train
+8edc93a9b099,Scientific Questionnaire,easy,train
+8ef378056bb8,Coding,easy,train
+8f30a8d58b3e,General Knowledge,easy,train
+8f4afcaf617e,General Knowledge,easy,test
+8f58a6d4e81c,General Knowledge,easy,val
+8f5a808ff306,Coding,medium,train
+8f621e6db349,Coding,easy,train
+8f84cb377d52,General Knowledge,easy,train
+8fd7ebdf8be4,Coding,easy,test
+8fe2514a2594,Coding,easy,test
+900596b7f53d,General Knowledge,easy,train
+900fbca3a71f,Coding,easy,train
+901e28787aaf,General Knowledge,easy,train
+903e7d39312d,General Knowledge,easy,val
+904fe3baa39e,General Knowledge,easy,train
+9057d70171d1,Mathematical Reasoning,easy,train
+9066027cdd05,General Knowledge,easy,val
+907941d441fe,General Knowledge,hard,test
+907cc1ec395e,Scientific Questionnaire,medium,train
+90a86c9f3263,General Knowledge,easy,train
+90aea6c434e5,General Knowledge,easy,train
+90c3d02e9d62,Coding,easy,train
+90ed595571a4,General Knowledge,easy,train
+910c96c0edc3,Coding,medium,val
+911584e7b694,Coding,easy,test
+91665fc05ec9,General Knowledge,easy,train
+916ac7272e19,Coding,medium,train
+919678aa3672,General Knowledge,hard,val
+919bb42551b1,General Knowledge,easy,test
+91ddc4b76d1b,Coding,easy,val
+91f91b3cae68,Coding,medium,train
+9238b62a45b7,Coding,easy,train
+92406c7077c8,Coding,easy,test
+925a862fe03b,Coding,medium,train
+9265bf6ee2d2,General Knowledge,easy,train
+93318e5cde01,General Knowledge,easy,test
+938fddb20ff8,General Knowledge,easy,train
+939dc3c5ee3e,Coding,hard,test
+93a5c6d937c5,General Knowledge,easy,test
+93ae9ebe7c30,General Knowledge,easy,train
+93d77e9f23e3,General Knowledge,easy,test
+93deae8ed9eb,Coding,easy,train
+9400253d1c61,Coding,easy,train
+941fc9b2bf8e,General Knowledge,easy,train
+9469e729d700,Coding,easy,train
+94a4de25fd36,Coding,easy,train
+94fa0e1df476,General Knowledge,easy,val
+95033b01d44e,General Knowledge,easy,train
+950c8d3c6be3,Coding,medium,test
+956247a45921,General Knowledge,easy,val
+9587831f6760,General Knowledge,easy,test
+95a69a42117b,Coding,easy,val
+95bccff6d97a,General Knowledge,easy,test
+95cdbf6ff165,Coding,easy,test
+95eee5cf1f4b,Coding,easy,train
+9605625c16aa,General Knowledge,easy,val
+961ef16de077,Coding,hard,train
+962dfed2363f,Coding,easy,val
+966b99236ec9,Coding,medium,train
+9678de58ab84,Coding,hard,test
+9679a53ee49e,Mathematical Reasoning,easy,val
+96846e5dbdb5,Coding,easy,train
+96905e2b41e7,Coding,medium,test
+96c367fcbad2,General Knowledge,easy,train
+96f828494eee,Competitive Math,easy,train
+970816ea4305,General Knowledge,easy,train
+9736bdb45f01,General Knowledge,hard,test
+9784283d4b1c,Coding,easy,test
+9788dceec818,Coding,hard,train
+97eb99dbde1b,Coding,easy,test
+9807a87671f5,General Knowledge,medium,train
+981883b8426a,General Knowledge,easy,test
+9825e075b77d,General Knowledge,easy,val
+9831a4fb106e,Coding,medium,val
+98351f25e8b0,Coding,easy,train
+983be5408e8f,General Knowledge,easy,train
+9849e460c1a0,General Knowledge,medium,test
+9850e8d42b1f,Coding,medium,train
+98ad3ee26b97,General Knowledge,easy,train
+993e77326862,General Knowledge,easy,train
+9959f73ee097,General Knowledge,easy,val
+996002b80641,General Knowledge,easy,train
+99677b59eb29,Scientific Questionnaire,easy,test
+9995a6d7de38,Coding,medium,train
+99e0d70914f2,General Knowledge,medium,train
+99e89632101b,Coding,hard,train
+9a026d637136,Coding,easy,test
+9a04f849bab9,Coding,easy,test
+9a0b3c98bd34,General Knowledge,easy,train
+9a4a5d26adc1,Competitive Math,easy,train
+9a511c4a3fd8,General Knowledge,easy,val
+9a6e952b9138,Coding,medium,test
+9a7b9962a70e,Coding,easy,train
+9a92a51650b2,Coding,medium,train
+9ab04951bb45,Scientific Questionnaire,easy,test
+9ac4a21daf4f,General Knowledge,easy,train
+9ac74d3d164a,General Knowledge,easy,train
+9ae3a11cd71b,General Knowledge,medium,train
+9b08f388b313,Coding,easy,train
+9b0b3c092888,Coding,easy,train
+9b1614533f73,General Knowledge,easy,train
+9b8d959d86e1,General Knowledge,hard,test
+9bcdc74d31cb,Scientific Questionnaire,easy,train
+9bf57c9df7c1,Coding,easy,train
+9bfda8d00fb7,Coding,easy,train
+9c01a36875a1,Scientific Questionnaire,medium,train
+9c0e58f14d6f,Coding,easy,train
+9c11c50d27cc,General Knowledge,easy,train
+9c1f8d9db90c,General Knowledge,easy,train
+9c39d40f59f2,General Knowledge,medium,train
+9c683c9bfcce,Coding,easy,train
+9c68595daec4,General Knowledge,easy,val
+9c97eccc8ace,Coding,easy,test
+9cd447343017,Coding,hard,train
+9ce53a251640,Coding,easy,train
+9ce8b47302c3,Coding,easy,train
+9cea1aec8cc2,Coding,easy,train
+9cf966c9171b,General Knowledge,easy,train
+9d14fe65d07d,Coding,medium,train
+9d290ee57eb3,General Knowledge,easy,train
+9d58c85bcf3a,General Knowledge,easy,train
+9d7a9403fc12,Scientific Questionnaire,medium,train
+9d7d731eccbf,Coding,medium,train
+9db12aeb2e60,Scientific Questionnaire,easy,train
+9dbe0b1ec76d,General Knowledge,easy,train
+9de2a958333e,Competitive Math,hard,test
+9e1117de6264,Coding,easy,val
+9e204faa07ae,Scientific Questionnaire,easy,test
+9e47c88c7dfb,Coding,easy,train
+9e5d3fadeab4,Mathematical Reasoning,easy,test
+9e671b6d7e3e,Scientific Questionnaire,hard,val
+9e67ee3dc818,Coding,medium,train
+9e835bfcbbb3,Mathematical Reasoning,easy,train
+9e8773f0c73b,General Knowledge,easy,train
+9e984aee2614,Coding,medium,train
+9eac58c6f258,Coding,easy,train
+9ebcd3882e23,Scientific Questionnaire,easy,test
+9ec1eca4f51e,General Knowledge,medium,val
+9efff87360d4,General Knowledge,easy,train
+9f077f3c0f52,General Knowledge,easy,train
+9f19c268556d,General Knowledge,easy,val
+9f3a61605ce5,General Knowledge,easy,train
+9f40a2f9dd10,General Knowledge,hard,train
+9f9923183f7a,Mathematical Reasoning,easy,test
+9fe9debcd80b,Scientific Questionnaire,easy,train
+a021aa01d51e,General Knowledge,easy,test
+a02a32d2d0d2,General Knowledge,easy,train
+a04ee7d4052e,Coding,easy,val
+a056fba2f435,Scientific Questionnaire,medium,train
+a0708d1ea626,General Knowledge,easy,train
+a085e4099fcc,Coding,medium,train
+a0b07c68ad67,Coding,medium,train
+a0b43b09335f,General Knowledge,hard,train
+a0b60f176548,Mathematical Reasoning,medium,train
+a0b89181984a,Coding,easy,test
+a0bab9d633b4,Mathematical Reasoning,hard,test
+a0c528bb514d,Coding,medium,train
+a0e1678c1690,General Knowledge,medium,test
+a1497eb3940d,General Knowledge,easy,test
+a1637bfd0599,General Knowledge,easy,train
+a18269b9ece0,General Knowledge,medium,train
+a1cc8502a748,General Knowledge,easy,test
+a1d385536574,Scientific Questionnaire,medium,val
+a219c62658ff,General Knowledge,easy,train
+a273ec99018e,Coding,easy,train
+a29b03b1405f,Coding,medium,val
+a2a0c7dada7b,General Knowledge,easy,val
+a2c654d2ffee,Scientific Questionnaire,hard,train
+a2cb6e63a042,General Knowledge,medium,train
+a2e8030170f3,Coding,easy,train
+a30154acfb2c,General Knowledge,medium,train
+a303c322eda1,General Knowledge,easy,train
+a30b5f612608,Coding,easy,train
+a321473e6858,General Knowledge,hard,train
+a3b1a1e4db05,General Knowledge,easy,test
+a3c32f3ab117,Coding,easy,train
+a3cbede2ee7a,General Knowledge,easy,train
+a42200a9688e,Scientific Questionnaire,easy,val
+a43dfd8d4fa9,Scientific Questionnaire,easy,train
+a4458e521f23,General Knowledge,easy,train
+a44e9ac9adfb,General Knowledge,medium,train
+a477bf287a08,General Knowledge,easy,train
+a4af0bff47ec,General Knowledge,medium,train
+a4cb6302cc48,General Knowledge,easy,train
+a5191177815a,Coding,easy,train
+a52aa6a1bdd4,Coding,easy,val
+a56585f8fbf8,Coding,medium,train
+a579f939ff37,Coding,medium,train
+a585dc11b08d,Coding,easy,train
+a59d4ba9d766,Scientific Questionnaire,medium,train
+a5a3cf084920,General Knowledge,hard,train
+a5ad382c19f3,General Knowledge,hard,train
+a5beae9befb6,General Knowledge,easy,train
+a5c1ed31ee57,General Knowledge,hard,train
+a62e1a0b8935,Coding,easy,train
+a65a69b65cc3,Coding,easy,val
+a661b95e77d1,General Knowledge,medium,test
+a697e06cc4af,General Knowledge,easy,train
+a6b8a6947524,General Knowledge,easy,train
+a6daadaa62a1,Coding,hard,train
+a6e3f5967848,General Knowledge,easy,train
+a74e402a143c,General Knowledge,hard,val
+a757e415bb68,General Knowledge,medium,test
+a76df8c1983c,Coding,easy,train
+a79ce21d979b,Coding,easy,train
+a7b0e3d6a8ee,Coding,medium,val
+a7c20c3d3aa3,General Knowledge,easy,train
+a7c6a3bcf9db,General Knowledge,hard,train
+a7d058f38dd8,General Knowledge,easy,test
+a7f9df0d3636,Scientific Questionnaire,easy,train
+a7fccec1a1e3,General Knowledge,easy,train
+a80d16f94a7a,Coding,medium,train
+a81da53896b1,General Knowledge,easy,val
+a8281ee20ad3,General Knowledge,easy,train
+a85e88f66003,General Knowledge,easy,train
+a873cbfab176,Coding,easy,train
+a87865c9cf1e,Coding,easy,train
+a8955c0bebae,Coding,easy,val
+a895cf61c575,Coding,easy,train
+a89c76e36f14,Coding,easy,val
+a8beb4e1d20f,General Knowledge,easy,val
+a8db2fae36ba,General Knowledge,easy,train
+a90766fb5293,General Knowledge,easy,train
+a90bf08d27c3,Coding,easy,train
+a920ba95697e,Coding,easy,train
+a94827a086a4,Coding,easy,train
+a94cfa56feca,Coding,easy,train
+a985c52c215d,Coding,medium,train
+a9ac44fbdb8e,Coding,easy,train
+a9bc55d8fad0,Coding,easy,train
+a9d829e8b868,Coding,easy,train
+a9ef80d150de,General Knowledge,medium,train
+aa01835b15eb,Competitive Math,easy,test
+aa243210c025,Coding,easy,train
+aa320d266c22,General Knowledge,easy,test
+aa5b418e2920,General Knowledge,easy,val
+aab1b5d7eba9,Coding,easy,train
+aaf3cf6e2581,General Knowledge,easy,train
+ab035eb6a86f,General Knowledge,easy,train
+ab2ec1badbcb,General Knowledge,easy,train
+ab348b8f9e81,General Knowledge,easy,train
+ab6228767a01,Coding,easy,val
+ab6cb22c876f,Coding,easy,train
+ab8627fc70d0,General Knowledge,hard,train
+ab8e18a8d66b,General Knowledge,hard,val
+aba7c36a0519,General Knowledge,easy,train
+ababff7ff1ea,General Knowledge,easy,train
+abd92b38b755,Scientific Questionnaire,easy,val
+abeff4ca2564,Coding,easy,val
+ac03ee5b94c4,Coding,easy,train
+ac0561549dd6,General Knowledge,medium,train
+ac1427ed3a31,Coding,easy,train
+ac19044687ec,Coding,easy,val
+ac1e2a887a12,Coding,hard,test
+ac33a4fdb601,Mathematical Reasoning,easy,test
+ac5dc9a7a1bc,General Knowledge,easy,test
+ac8b97c8fb9e,Coding,easy,train
+acacd573a729,General Knowledge,easy,test
+acd424f9f715,Coding,medium,train
+ace9c6db9763,Coding,easy,test
+acf1052861d5,Mathematical Reasoning,hard,train
+ad075d0abfd9,Coding,easy,train
+ad4ccebb2d72,Coding,medium,test
+ad79b67e7fa1,Coding,easy,train
+ad96be567f7f,Coding,medium,train
+ada841d6d409,Coding,easy,val
+add36998773d,General Knowledge,easy,train
+ae2944c1d432,General Knowledge,easy,train
+ae5e260a7fa1,General Knowledge,easy,train
+ae8205fe2af1,Coding,easy,val
+ae8fabe7319a,General Knowledge,easy,test
+aeb406bde090,Mathematical Reasoning,easy,test
+aec41a5c1e06,General Knowledge,easy,train
+aec691abc5fc,Coding,easy,train
+aee564b177bd,General Knowledge,medium,val
+aeed93a8a844,Coding,easy,test
+aeef00301cf9,Coding,hard,val
+af2a20052a8c,General Knowledge,easy,train
+af2b0c4ff51d,Coding,easy,train
+af352475ccbb,Coding,medium,train
+af51a4716afd,Coding,easy,train
+af7ac11ace5a,Coding,easy,val
+af8390d21870,General Knowledge,easy,train
+af87ea665e85,General Knowledge,easy,train
+afcd10e26502,Coding,easy,val
+afd5d7088948,Coding,medium,test
+afdd82c771d8,General Knowledge,easy,val
+b01cabf77344,Coding,easy,train
+b0284ce1591f,Coding,easy,train
+b02856875f6d,General Knowledge,easy,train
+b0928d8f514a,General Knowledge,easy,train
+b09363dcd70c,General Knowledge,easy,train
+b0952f434dee,Coding,easy,train
+b0a294731c10,Coding,medium,val
+b0b6e7d883a5,General Knowledge,easy,test
+b0e820a80b0c,Coding,easy,train
+b0f4510e84a2,Coding,easy,train
+b1053aefc1b1,Mathematical Reasoning,hard,train
+b133d5fb749d,Mathematical Reasoning,easy,train
+b165b789cc0a,General Knowledge,easy,train
+b16d40fb7e8a,General Knowledge,hard,test
+b1930d60dc72,Coding,hard,train
+b19b55a7067e,General Knowledge,easy,train
+b1cfe1122231,Scientific Questionnaire,easy,val
+b1dea8455281,Coding,easy,train
+b1e473fcb32e,General Knowledge,easy,train
+b2263fb8bbfe,Coding,easy,train
+b2479fc324c0,General Knowledge,easy,val
+b2486bc27650,Coding,easy,val
+b24fa3bf0857,General Knowledge,medium,train
+b254353fc3b7,General Knowledge,easy,train
+b279f6ea27d6,Coding,easy,val
+b2901854ea87,Coding,medium,train
+b2a5d5155244,General Knowledge,easy,train
+b2fc88dfb51b,General Knowledge,easy,train
+b32cd8a8df5f,Coding,easy,train
+b34caad260ca,Coding,easy,train
+b45175d8e45f,Coding,easy,train
+b454d2d08d98,Coding,hard,train
+b459a7d8783c,Coding,hard,test
+b46d4ea38714,General Knowledge,easy,test
+b52404af2cda,Scientific Questionnaire,medium,test
+b5935c3061ea,General Knowledge,easy,train
+b5998e52c456,General Knowledge,easy,val
+b617edb610ff,General Knowledge,easy,train
+b6193f06c587,Coding,medium,train
+b61d9c241cd4,Coding,easy,train
+b63d2fddada4,General Knowledge,easy,train
+b6485885342f,Coding,easy,train
+b64d902e0fab,General Knowledge,easy,train
+b66035777ebc,General Knowledge,easy,val
+b66c89a072d0,General Knowledge,hard,train
+b67d88272fdf,Coding,easy,train
+b6c04dfcb13e,Coding,easy,train
+b6c68c51655b,Coding,medium,train
+b6d825cfc394,Coding,easy,train
+b70543824c08,General Knowledge,easy,train
+b723a4de397c,General Knowledge,easy,train
+b72b0f833564,Coding,medium,train
+b7341b1e5195,General Knowledge,hard,val
+b73a47f97880,Competitive Math,easy,test
+b73a555554ee,General Knowledge,medium,train
+b75ca2af614d,General Knowledge,hard,train
+b768ac62530e,General Knowledge,easy,train
+b7f1e4453db9,Coding,easy,train
+b8189f70c2b7,General Knowledge,easy,train
+b830a42b6a7a,Coding,easy,train
+b86dda327d9c,Coding,medium,train
+b87da186fa84,Mathematical Reasoning,easy,train
+b9458abea019,Coding,easy,train
+b94f41414047,General Knowledge,easy,test
+b94fad24c534,Coding,medium,train
+b96a00dc8bba,General Knowledge,easy,train
+b987252aa048,General Knowledge,easy,train
+b99c781ac69d,Coding,easy,train
+b9a21adfed66,Mathematical Reasoning,hard,train
+b9ac50f85396,Competitive Math,easy,train
+b9d097bd9614,General Knowledge,easy,val
+b9d46b34a79a,Coding,easy,test
+b9e03b452b67,General Knowledge,easy,train
+ba102a121a09,General Knowledge,easy,train
+ba67194437ad,Scientific Questionnaire,medium,val
+ba786ffaa4fe,General Knowledge,easy,train
+ba7a4404d63b,Coding,medium,train
+ba9cb56c8d3c,General Knowledge,easy,val
+bace0776874f,Coding,easy,val
+bad3273056d7,Scientific Questionnaire,easy,train
+bb235374942a,Scientific Questionnaire,medium,test
+bb612b506df8,General Knowledge,easy,train
+bb9a5a42ce26,General Knowledge,easy,test
+bbcab1c76606,Coding,easy,train
+bbd43cb491cc,Coding,hard,val
+bc2abec665ae,Coding,medium,test
+bc6b1b6fd60e,Coding,easy,train
+bc72769867ff,General Knowledge,medium,test
+bcb3485e0b70,General Knowledge,easy,train
+bccc46eb0b8f,Coding,medium,train
+bd02f22e56c3,General Knowledge,easy,train
+bd0e55769fb9,General Knowledge,medium,val
+bd1199f71baa,Coding,medium,train
+bd58d2b4f83d,General Knowledge,easy,val
+bd8cb1b77fec,Coding,hard,train
+bd971a902715,General Knowledge,easy,val
+bdea1bc8c8b1,General Knowledge,hard,train
+bdeb921833a3,General Knowledge,easy,test
+bdeda62d633c,General Knowledge,easy,train
+bdf87efd3d38,Scientific Questionnaire,easy,test
+be077be3b455,Mathematical Reasoning,medium,val
+be1d15b98638,Coding,easy,train
+be2c9f2ba883,Coding,easy,train
+be5ba947f49d,Coding,easy,train
+be5e9b2dbec4,General Knowledge,easy,train
+be6b814a54af,Coding,easy,train
+be7ac55e418a,General Knowledge,hard,train
+be83a76bb8ec,Scientific Questionnaire,easy,train
+be931dcb394d,Coding,easy,train
+bea7460eb8f5,General Knowledge,easy,train
+beb37e63e53f,Coding,easy,val
+bec6d4473f24,Coding,hard,train
+bedde6ebd0d5,General Knowledge,easy,train
+bee954aae67c,General Knowledge,easy,train
+bf0c8cf5d743,Coding,medium,train
+bf15b2f398ac,General Knowledge,easy,train
+bf221cb9b631,General Knowledge,easy,train
+bf32724e737e,General Knowledge,easy,train
+bf32850f34f8,Coding,hard,train
+bfa85e093b51,Coding,easy,train
+bfacec03b83e,General Knowledge,easy,train
+bfdf4cf1474e,General Knowledge,easy,train
+c075526f1316,Coding,medium,train
+c0ae91bcc019,General Knowledge,hard,train
+c0d33603dcf8,Scientific Questionnaire,medium,train
+c0e5db42d96d,Coding,easy,train
+c1108284e767,General Knowledge,easy,train
+c14a3b1d263d,Coding,easy,test
+c1aa51374dd8,General Knowledge,hard,train
+c1b3f56c847b,General Knowledge,easy,train
+c1eea462d6f5,Scientific Questionnaire,easy,train
+c22aa4af6c7f,General Knowledge,easy,train
+c261a37f14fa,General Knowledge,medium,train
+c263eac739a5,Mathematical Reasoning,medium,val
+c29bd4874a14,General Knowledge,easy,train
+c2b7f04d613a,Scientific Questionnaire,medium,train
+c2c6b222e3a3,Scientific Questionnaire,medium,train
+c335942005c3,Coding,easy,train
+c34911d6b5db,Coding,easy,train
+c35f8825a188,Coding,medium,test
+c3bb79b0cb31,Coding,hard,test
+c3c6884b0002,Coding,easy,train
+c3d616e71e2b,General Knowledge,easy,test
+c3d9e96e5fcf,Coding,medium,val
+c3dceccf3568,General Knowledge,hard,test
+c3eec58ce94d,Mathematical Reasoning,easy,train
+c42988f0b9b0,General Knowledge,easy,train
+c4c368b53fcd,General Knowledge,easy,test
+c4c6e3e29c0b,General Knowledge,hard,train
+c4fd26d52561,General Knowledge,medium,train
+c50b14ddcc45,General Knowledge,hard,train
+c53732c1635a,Coding,easy,train
+c5758a8346e4,General Knowledge,easy,test
+c57f2b94cb17,Coding,hard,train
+c623f36ff663,General Knowledge,medium,train
+c62c20c30773,Coding,easy,train
+c641ce726aad,General Knowledge,hard,train
+c6425d131d65,Coding,easy,train
+c64dc3657e5f,General Knowledge,easy,train
+c699bc1d2f4a,General Knowledge,easy,train
+c6a800b31589,Coding,easy,val
+c6bc9a35ae4a,General Knowledge,easy,train
+c72e9046946b,Coding,easy,val
+c748db5c79b2,General Knowledge,easy,test
+c7701913e0e1,General Knowledge,easy,train
+c782cd20fd0c,General Knowledge,easy,test
+c79acb1d62f3,Coding,medium,train
+c7c3c7015917,Coding,easy,train
+c835768497d4,Coding,easy,test
+c85a03f057c6,General Knowledge,easy,val
+c8e2ec57e2d4,General Knowledge,easy,val
+c8e4ad07ff6d,Coding,easy,train
+c8ea21a14fff,General Knowledge,easy,test
+c915148d117c,Coding,easy,val
+c924e95c919e,Coding,easy,train
+c933af780803,Coding,easy,train
+c97a601b72ff,Coding,easy,train
+c99cc3e267ce,General Knowledge,hard,train
+c9b84a083b6c,Coding,medium,test
+c9ec4e6b42fb,Coding,medium,train
+ca4fbf913acf,Coding,easy,train
+ca6d50ee4e9c,Coding,medium,train
+ca7ced42d8e4,General Knowledge,easy,val
+cad39da297de,Coding,easy,train
+cae11cf254b8,Coding,easy,train
+cb12ce6d4239,Mathematical Reasoning,easy,train
+cb1619f37b70,General Knowledge,easy,val
+cbb10c7a31da,General Knowledge,easy,train
+cbc7d001c248,Coding,easy,train
+cbcd1a3f8749,General Knowledge,easy,val
+cbf9ee1d20e1,Coding,easy,train
+cc310fdbd25f,General Knowledge,easy,train
+cc5915c2d24e,General Knowledge,easy,val
+cc96e2625c04,Coding,medium,val
+ccc1d8140cd0,Competitive Math,medium,train
+cd1682bbf0d6,Scientific Questionnaire,hard,train
+cd2cb2b84092,General Knowledge,easy,train
+cd432aecc0ff,General Knowledge,easy,train
+cd6dc75456c1,Coding,medium,train
+cd839e43e637,Coding,medium,train
+cdbd883574d2,Coding,easy,test
+cdc8486cefbe,General Knowledge,hard,train
+cde841d33ed3,General Knowledge,easy,train
+ce57f857b5df,Coding,hard,train
+ce70640b1873,General Knowledge,medium,val
+ce935e5eeafa,Coding,medium,train
+cf1392e1d869,General Knowledge,easy,train
+cf19fc2da614,General Knowledge,easy,train
+cf1a390f4844,General Knowledge,easy,train
+cfc4b4b9a138,Coding,easy,test
+cfcf1a5b8d18,Scientific Questionnaire,hard,train
+d04b6e9703a1,General Knowledge,easy,train
+d08235edd35a,Coding,easy,train
+d089fbb9c728,General Knowledge,easy,train
+d0c58afe42b9,General Knowledge,easy,train
+d0e035ae2662,Coding,easy,train
+d10f22b4b2d9,General Knowledge,hard,train
+d1424053aae9,Coding,medium,val
+d14bd76d91c2,General Knowledge,easy,train
+d186a9c6c1be,Coding,medium,train
+d196385ac8b7,General Knowledge,easy,test
+d2238c736037,General Knowledge,easy,train
+d26068c859e4,Coding,easy,val
+d2776022cf73,Coding,easy,train
+d27e9870d3d1,Coding,easy,test
+d27f2ddff290,General Knowledge,hard,train
+d2987fabf14c,General Knowledge,hard,train
+d29e2a7e4bb4,Coding,easy,train
+d2e5b4162d6c,General Knowledge,easy,train
+d2e8059c7368,Coding,hard,train
+d2f70025dd45,Coding,easy,test
+d304381b1b95,Coding,medium,test
+d31cff6fc3c0,General Knowledge,easy,train
+d3af58073b4f,General Knowledge,easy,train
+d3b5629f8035,Coding,medium,train
+d3e400e6d9a9,General Knowledge,easy,train
+d4274a3bf5fb,General Knowledge,easy,train
+d45c8b05a1b9,Coding,medium,val
+d479a71a15e4,Scientific Questionnaire,medium,test
+d49f9f7386a8,General Knowledge,easy,train
+d4d96ab9ccfc,General Knowledge,easy,train
+d50062dccdc7,Scientific Questionnaire,easy,test
+d56950a82fc6,General Knowledge,easy,train
+d56db9da20db,Coding,easy,train
+d5dc82f43fef,General Knowledge,easy,train
+d5f6a954bb4d,Scientific Questionnaire,hard,test
+d673a71719c3,General Knowledge,easy,train
+d6b55e713632,Coding,medium,train
+d6bb64a9d1d4,Coding,hard,train
+d6fa38a0aed9,Coding,hard,val
+d6fd614ad821,Scientific Questionnaire,medium,train
+d6ffb40c24bc,General Knowledge,easy,train
+d70dc52659a9,Coding,medium,train
+d756c039c8be,Coding,easy,val
+d7a36c32b422,General Knowledge,hard,train
+d7cf34cb16de,General Knowledge,easy,train
+d7d62e5234f3,Mathematical Reasoning,easy,train
+d7f5388900b9,Coding,medium,test
+d87b8b54d0f4,Coding,easy,train
+d8bf2c8b21cb,Coding,easy,train
+d8d23e2e9563,General Knowledge,easy,test
+d933fa24be14,General Knowledge,hard,train
+d9988087b538,Scientific Questionnaire,medium,train
+d99cc79a22dd,General Knowledge,easy,val
+d9c5f32c5b93,General Knowledge,medium,train
+d9d2cda9de24,Coding,easy,train
+d9ec26033765,General Knowledge,easy,test
+da27b5f3be10,Coding,easy,train
+da31baa143b1,General Knowledge,easy,train
+dac159172bbf,General Knowledge,easy,train
+daca9c8e07df,General Knowledge,medium,train
+dae94b5b58e3,Coding,medium,train
+daec8146f876,General Knowledge,easy,test
+db25b5cae74c,General Knowledge,medium,val
+db34fa4de5a8,General Knowledge,hard,test
+db6d353ad8e7,Coding,hard,train
+db778000ed0d,General Knowledge,easy,train
+dbb1f7d6c1d0,Coding,easy,val
+dbb9c11eb78a,Coding,easy,train
+dbe08e255855,Coding,medium,test
+dbe294e892fc,Coding,easy,train
+dc124c4cf13d,General Knowledge,easy,train
+dc2ef61975ba,General Knowledge,easy,train
+dc34437ef024,Coding,easy,train
+dc9f87f24252,General Knowledge,easy,test
+dcbf79a65764,Coding,easy,train
+dce488567afc,Coding,easy,test
+dd0f021197af,General Knowledge,hard,train
+dd1a78f8cc25,General Knowledge,easy,train
+dd220e94d545,Coding,easy,train
+dd2b9f9bd64f,General Knowledge,easy,train
+dd35ba9eb844,General Knowledge,easy,val
+dd3a719e71bf,Coding,easy,train
+dd633e6e305d,Coding,easy,train
+dd91f974b73d,General Knowledge,easy,test
+dd9c9d0b7c18,General Knowledge,hard,train
+ddbab5ee5bd8,General Knowledge,easy,train
+de1784e9c8ec,General Knowledge,easy,train
+de96c93dd5d8,Scientific Questionnaire,easy,train
+dea9f7182ac9,Coding,easy,val
+ded16bcc8032,General Knowledge,easy,test
+ded42eec7904,General Knowledge,easy,train
+defd5e628cdf,Coding,medium,test
+df280b3b0be9,General Knowledge,easy,train
+df44b4519143,Scientific Questionnaire,medium,val
+df7365b23904,Competitive Math,medium,test
+dfaffef79d1f,General Knowledge,easy,train
+dfc98b63e668,General Knowledge,easy,train
+dfd197c5c63d,Coding,medium,train
+dfeb783aa7e8,Coding,easy,train
+e00efe3b1b33,General Knowledge,easy,val
+e0131e201637,Coding,easy,train
+e01f07302b86,Coding,easy,train
+e056cbda06eb,Coding,hard,val
+e070cb6213e5,Coding,easy,train
+e07166d7883d,Coding,medium,train
+e0d3862f8144,Coding,easy,train
+e0e9f703a578,Coding,easy,val
+e10a6d7d530c,General Knowledge,easy,test
+e10b4a14a2b2,General Knowledge,easy,train
+e11cd9670784,Coding,easy,train
+e1445ad49050,General Knowledge,hard,test
+e15289533680,Coding,hard,train
+e181228e6672,General Knowledge,easy,train
+e1b7253020ee,Coding,hard,train
+e1de46fc740a,Coding,easy,val
+e213deaf6af5,General Knowledge,hard,test
+e21704de8b91,Coding,medium,train
+e22aed0955a8,Scientific Questionnaire,medium,train
+e22b85654007,Coding,easy,train
+e242d3a479b6,Coding,medium,train
+e25d029c0292,Coding,easy,train
+e27cdc349c57,General Knowledge,easy,train
+e2efd57d71e4,Scientific Questionnaire,easy,val
+e313ec7c1482,General Knowledge,easy,test
+e31621b75027,Coding,easy,val
+e31dfa155a8e,Scientific Questionnaire,easy,test
+e33bfe8b8ad1,General Knowledge,easy,test
+e3f2477838ec,General Knowledge,easy,train
+e457f9a9717e,General Knowledge,easy,val
+e46cc19b4097,Coding,easy,test
+e491c04125e6,General Knowledge,easy,val
+e4a05396f005,Coding,easy,train
+e4efbbafd837,General Knowledge,easy,train
+e5031527db6d,Scientific Questionnaire,medium,test
+e5131c9427ac,General Knowledge,easy,train
+e51d0d16389c,General Knowledge,medium,train
+e52b36065f22,Coding,medium,train
+e52bed813299,Coding,easy,train
+e530ed0c1203,Coding,easy,test
+e5345ce55871,General Knowledge,easy,val
+e545130aed69,General Knowledge,hard,train
+e5619a78e1e4,Coding,medium,train
+e5903d9f6f29,General Knowledge,easy,train
+e5ce5225d0c1,Coding,easy,train
+e5f23eb597e8,Scientific Questionnaire,easy,train
+e60437722076,General Knowledge,easy,train
+e6333e907b00,General Knowledge,easy,train
+e6394b6bd394,Coding,hard,train
+e667f1b8a76d,General Knowledge,hard,train
+e672f5a549dc,General Knowledge,hard,val
+e67cddea6b08,Competitive Math,easy,val
+e69e7cb76645,Coding,easy,train
+e6ab9670723c,General Knowledge,hard,train
+e6ba5b7381a7,General Knowledge,easy,train
+e6c6ba7901ca,Coding,easy,train
+e701ebd1ff58,Coding,easy,train
+e74ad7ae8dd5,General Knowledge,easy,train
+e7539807044c,Mathematical Reasoning,easy,train
+e76ab2978cd7,Coding,easy,train
+e7b3de57ab01,General Knowledge,easy,train
+e7d57319f870,Coding,medium,train
+e7dfc352d348,Coding,easy,train
+e804091f382c,General Knowledge,easy,train
+e80abd8fd381,General Knowledge,easy,val
+e819775c77c9,General Knowledge,easy,train
+e8338317f775,General Knowledge,medium,test
+e84505bc4be0,Coding,easy,train
+e888f5d07162,General Knowledge,hard,train
+e8bff8a4e223,Mathematical Reasoning,easy,train
+e8c9994422f6,Coding,easy,train
+e8f35430f4fb,Coding,medium,test
+e94cdb857f71,Competitive Math,hard,train
+e977f72c818b,General Knowledge,easy,train
+e9a09e325646,General Knowledge,easy,train
+ea10c5efc341,Coding,easy,val
+ea2b06628b8a,General Knowledge,hard,train
+ea7fdf70bb7e,Coding,easy,test
+ea81cd0c099f,General Knowledge,easy,train
+eadf2482fb8f,Coding,easy,test
+eb162a8b84ef,Coding,hard,test
+ebcc6cda5aa0,Coding,easy,val
+ebfedae18c53,General Knowledge,easy,train
+ec08f0c1cd78,Scientific Questionnaire,hard,train
+ec1869a68ff2,General Knowledge,easy,train
+ec20edf173d8,General Knowledge,easy,test
+ec5558cfa76a,Coding,easy,test
+ec617e15ddfa,Coding,easy,train
+ec6e26aea538,General Knowledge,easy,train
+ec7797500f78,Coding,easy,train
+ec8f9ac00c58,General Knowledge,easy,train
+ec8fb077aa3a,General Knowledge,easy,train
+ec956840be7d,General Knowledge,easy,train
+ec95e81f6dde,Coding,easy,train
+ec9a6cfb34c5,General Knowledge,easy,val
+ecb0ecef7749,General Knowledge,easy,train
+ece206e5cf7e,Coding,easy,train
+ed0e71c1ca1a,General Knowledge,easy,test
+ed3cf1ca0c92,Mathematical Reasoning,easy,test
+ed3dfd68aaec,General Knowledge,easy,train
+ed8730b18c5d,Mathematical Reasoning,easy,train
+eda637b30266,General Knowledge,easy,val
+edd9740f9fea,General Knowledge,easy,train
+edda3296ed75,Scientific Questionnaire,medium,train
+ee09cfe5f8de,General Knowledge,easy,train
+ee301203fec3,General Knowledge,easy,train
+eea6f24a4a0a,Coding,easy,train
+eeb42d437440,General Knowledge,easy,test
+eecb70964c0c,Coding,easy,train
+eee97caf4c27,General Knowledge,easy,train
+ef23fb0193ef,General Knowledge,easy,train
+ef2dc5c64f10,General Knowledge,medium,val
+ef7aebf5b7c5,Coding,easy,train
+ef8521df82a1,Scientific Questionnaire,medium,train
+efa804d4f8a1,Coding,hard,train
+efb2a6b32b93,Scientific Questionnaire,easy,train
+efbb1682a683,General Knowledge,easy,train
+efbdd6663f03,Coding,easy,test
+efcbf93420ae,Coding,easy,train
+efd24e0f9774,General Knowledge,easy,train
+eff56a832f8d,Coding,easy,train
+f00361015094,Scientific Questionnaire,medium,train
+f06a28dfad2a,General Knowledge,easy,train
+f0709a140981,Coding,easy,train
+f090ea2002e4,General Knowledge,medium,train
+f09cd8303bdc,Coding,medium,train
+f0ba31459e67,Competitive Math,easy,train
+f0bb0c4e7965,Coding,easy,train
+f0c3d48588e4,General Knowledge,medium,test
+f0f1dc23fb21,General Knowledge,easy,val
+f102b7b0b85d,Coding,hard,val
+f11ecb9e20ee,Coding,easy,train
+f122fab9b1bc,Coding,hard,train
+f14cf798769a,General Knowledge,medium,train
+f164e759a502,Scientific Questionnaire,easy,train
+f182e45623a1,General Knowledge,easy,train
+f18ad1d03c55,General Knowledge,easy,train
+f192348b25e7,General Knowledge,easy,train
+f1ed4fe2a198,General Knowledge,easy,train
+f250c01f3e65,General Knowledge,hard,train
+f2bb8a1eacf1,Coding,hard,train
+f2c3a7751588,Coding,hard,train
+f2d16055c546,General Knowledge,medium,train
+f2d67e2125c5,Coding,easy,train
+f2e1fe12de73,General Knowledge,easy,val
+f330245c6de3,Coding,easy,val
+f360b2b01d74,General Knowledge,easy,val
+f3823d07d782,Coding,medium,train
+f3972067ad2f,Coding,easy,train
+f3cdf8650fbd,Scientific Questionnaire,easy,train
+f3df8df11906,General Knowledge,easy,val
+f3f15f1a6e21,Coding,hard,train
+f4176ad29a6f,General Knowledge,medium,train
+f435ab75844b,General Knowledge,hard,train
+f4a9e79092ea,General Knowledge,easy,val
+f4dbb3348c47,General Knowledge,easy,train
+f4e911d1a755,General Knowledge,easy,val
+f4ef78a55a13,Coding,easy,val
+f4f7f6171e6f,Coding,easy,test
+f506db492c25,Competitive Math,hard,train
+f50b19215adc,Coding,easy,test
+f5167d171709,Coding,easy,train
+f524ce0c8c1c,Coding,easy,train
+f52c51014cbf,Coding,easy,val
+f547b83441d7,Coding,medium,train
+f5959487d4df,Coding,medium,train
+f5b311d087de,Coding,easy,train
+f5c059e94026,Mathematical Reasoning,medium,train
+f5cbc7c1c614,Coding,easy,train
+f5f738b439cb,Mathematical Reasoning,easy,train
+f65aafc67874,General Knowledge,easy,test
+f6685302c896,Mathematical Reasoning,hard,train
+f693e1cf4b2b,Coding,medium,train
+f6c1f929d777,General Knowledge,easy,train
+f6d10f3f5652,Coding,easy,train
+f736d3523571,Coding,easy,val
+f744ba7a4b09,Coding,hard,test
+f7794bff52e0,General Knowledge,easy,test
+f784c90743c7,General Knowledge,medium,train
+f7987f6a0d98,General Knowledge,easy,train
+f803af607c27,General Knowledge,easy,val
+f845473f231b,Coding,easy,train
+f84f6913a6d6,General Knowledge,hard,train
+f854ac79abec,Coding,easy,test
+f88489ab0cc2,General Knowledge,easy,train
+f8d6958a6f61,Coding,medium,val
+f8dbb3ee3889,Coding,easy,train
+f9035c0bd1ed,General Knowledge,easy,train
+f90fe671d742,Scientific Questionnaire,easy,val
+f92f101c87f2,Coding,easy,train
+f966a134d8b6,Competitive Math,easy,train
+f975252d79bd,Scientific Questionnaire,easy,train
+f9a9550e84ae,General Knowledge,medium,test
+f9baf34d540c,Coding,easy,train
+f9efea1c86ab,Coding,easy,train
+f9f5c39b00e9,Mathematical Reasoning,medium,train
+f9fad1ba7559,General Knowledge,medium,train
+f9ff940f4549,General Knowledge,hard,train
+fa45add724f1,Scientific Questionnaire,easy,train
+fae630268a8c,Coding,hard,train
+faec59dbc949,General Knowledge,easy,train
+faecc8c63d90,General Knowledge,medium,train
+fb879c3a9fd3,Scientific Questionnaire,easy,train
+fb87f351957a,General Knowledge,easy,train
+fba3c5d23d19,Coding,easy,val
+fba79896c745,Mathematical Reasoning,hard,train
+fbbbce34244c,General Knowledge,hard,train
+fbd6e0824107,Mathematical Reasoning,easy,train
+fbde24e674bd,General Knowledge,easy,train
+fc05e8fafc23,General Knowledge,easy,train
+fc3438b9814e,General Knowledge,easy,test
+fc3e295c20df,Scientific Questionnaire,hard,train
+fc59ce5ada6e,Coding,hard,train
+fc65012f593e,General Knowledge,easy,val
+fc6ab143cebd,General Knowledge,medium,train
+fcd1284d6bc8,Coding,easy,train
+fcd7ce90aae8,Mathematical Reasoning,medium,test
+fcea3d103267,Coding,medium,test
+fcf56443b7de,Coding,easy,train
+fd0b65f27691,Coding,easy,val
+fd1d67d06313,General Knowledge,easy,train
+fd252bbdfc49,Mathematical Reasoning,medium,train
+fd70fbb275e1,General Knowledge,hard,train
+fd837300ad69,General Knowledge,medium,val
+fd8ae9db867a,Scientific Questionnaire,easy,train
+fdb9dc750790,General Knowledge,hard,train
+fdcaed0d48c8,Coding,easy,train
+fe06f06aaba8,General Knowledge,easy,test
+fe09308af9bd,Coding,easy,train
+fe2a6e0f7926,Mathematical Reasoning,medium,train
+fe2b50e128d2,Scientific Questionnaire,easy,train
+fe7f05442dda,Coding,easy,train
+feaa2ba9b0a1,Coding,easy,train
+feeb88a539e1,Coding,medium,train
+fef894ef4e84,Coding,easy,val
+ff177e8d5a0f,Coding,easy,train
+ff6a4763ec26,Scientific Questionnaire,medium,val
+ff6fd9584217,General Knowledge,easy,train
+ff7056aebd8f,General Knowledge,easy,train
+ff8d473789bf,General Knowledge,easy,train
+ffabab137cdd,Coding,hard,val
+ffae6b3e521a,General Knowledge,hard,train

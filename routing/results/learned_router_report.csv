@@ -1,0 +1,5 @@
+policy,accuracy_pct,quality_vs_strongest_pct,avg_cost_per_query,avg_latency_s,cost_reduction_vs_strongest_pct
+always-strongest,88.65,100.0,0.019061,0.763,0.0
+always-cheapest,42.2,47.6,1.3e-05,0.311,99.9
+oracle (alpha=0.002),94.68,106.8,0.003659,0.602,80.8
+learned cascade (t=0.95),84.04,94.8,0.006023,3.49,68.4

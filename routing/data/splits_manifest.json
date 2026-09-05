@@ -1,0 +1,107 @@
+{
+  "seed": 42,
+  "fracs": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "tier_rules": {
+    "easy": [
+      6,
+      8
+    ],
+    "medium": [
+      3,
+      5
+    ],
+    "hard": [
+      0,
+      2
+    ]
+  },
+  "strata": {
+    "Coding | easy": {
+      "train": 368,
+      "test": 79,
+      "val": 79
+    },
+    "Coding | hard": {
+      "train": 66,
+      "val": 14,
+      "test": 14
+    },
+    "Coding | medium": {
+      "train": 129,
+      "val": 28,
+      "test": 27
+    },
+    "Competitive Math | easy": {
+      "train": 10,
+      "val": 2,
+      "test": 2
+    },
+    "Competitive Math | hard": {
+      "train": 3,
+      "test": 1
+    },
+    "Competitive Math | medium": {
+      "train": 10,
+      "test": 3,
+      "val": 2
+    },
+    "General Knowledge | easy": {
+      "train": 444,
+      "test": 95,
+      "val": 95
+    },
+    "General Knowledge | hard": {
+      "train": 74,
+      "val": 16,
+      "test": 15
+    },
+    "General Knowledge | medium": {
+      "train": 68,
+      "val": 15,
+      "test": 14
+    },
+    "Mathematical Reasoning | easy": {
+      "train": 34,
+      "test": 7,
+      "val": 7
+    },
+    "Mathematical Reasoning | hard": {
+      "train": 10,
+      "test": 2,
+      "val": 2
+    },
+    "Mathematical Reasoning | medium": {
+      "train": 13,
+      "val": 3,
+      "test": 3
+    },
+    "Scientific Questionnaire | easy": {
+      "train": 54,
+      "val": 12,
+      "test": 11
+    },
+    "Scientific Questionnaire | hard": {
+      "train": 10,
+      "val": 2,
+      "test": 2
+    },
+    "Scientific Questionnaire | medium": {
+      "train": 29,
+      "test": 7,
+      "val": 6
+    }
+  },
+  "queries": 1887,
+  "split_counts": {
+    "train": 1322,
+    "val": 283,
+    "test": 282
+  },
+  "aligned7_duplicate_ids": 246,
+  "duplicate_ids_in_val_or_test": [],
+  "note": "routers must exclude these ids from aux training data"
+}
