@@ -5,6 +5,7 @@ const LINKS = [
   { id: "results", label: "Results" },
   { id: "models", label: "Models" },
   { id: "how", label: "How" },
+  { id: "proved", label: "Proof" },
   { id: "deepdive", label: "Deep dive" },
 ] as const;
 

@@ -210,13 +210,15 @@ export function MoEvidence({ mo, results }: Props) {
             <>
               <TradeoffTable rows={evalRows} />
               <div className="tradeoff-legend">
-                <span className="legend-item"><i className="legend-swatch is-legacy" /><span className="nm">legacy cascade (production default)</span></span>
-                <span className="legend-item"><i className="legend-swatch is-mo" /><span className="nm">multi-objective (experimental)</span></span>
+                <span className="legend-item"><i className="legend-swatch is-legacy" /><span className="nm">legacy cascade (validated baseline)</span></span>
+                <span className="legend-item"><i className="legend-swatch is-mo" /><span className="nm">multi-objective (default experience)</span></span>
               </div>
               <p className="chart-caption">
-                The legacy cascade stays binary (Qwen3-8B / GPT-5): under its ~80% quality floor
-                those are the only economically admissible models — a measured finding, not a hidden
-                limitation. The objectives spread traffic only where an objective genuinely rewards it.
+                The legacy cost-optimized cascade concentrates on Qwen3-8B and GPT-5 because the
+                measured pool has a sparse economic Pareto frontier — under its ~80% quality floor
+                those are the only economically admissible models. That is an empirical finding, not
+                an implementation bug: the multi-objective layer adds configurable objectives rather
+                than artificially forcing model diversity.
               </p>
             </>
           ) : (

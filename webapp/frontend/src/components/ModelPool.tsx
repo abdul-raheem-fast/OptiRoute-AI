@@ -1,4 +1,4 @@
-import { Section } from "./ui";
+import { Collapsible, Section } from "./ui";
 import { fmtUSD, shortClass } from "../lib/format";
 import { modelColor } from "../lib/palette";
 import type { ModelsPayload } from "../lib/types";
@@ -11,10 +11,11 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
       id="models"
       index="03"
       eyebrow="The model pool"
-      title="Eight models, ordered cheapest to strongest"
-      lead="Per-model accuracy by capability class, with registry pricing. The router walks this
-            cheapest-to-strongest order."
+      title="Eight models, benchmarked cheapest to strongest"
+      lead="The router is built from empirical benchmarking — per-model accuracy by capability
+            class, registry pricing, and measured latency across 1,887 aligned queries."
     >
+      <Collapsible title="View model benchmark details" hint="per-class accuracy · pricing · latency">
       <div className="table-wrap">
         <table className="table">
           <thead>
@@ -62,6 +63,7 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
         Two self-hosted models (Llama-3.1-8B, Qwen3-8B) have zero marginal token cost — that is
         where the savings come from when the router is confident.
       </p>
+      </Collapsible>
     </Section>
   );
 }

@@ -29,14 +29,14 @@ export function Hero({ boot }: { boot: Bootstrap }) {
         </span>
 
         <h1>
-          Route every query to the <span className="grad-text">cheapest model</span> that
-          will get it right.
+          Route every query to the <span className="grad-text">right model</span> for your
+          goals.
         </h1>
 
         <p className="hero-lead">
-          Eight production LLMs, five capability classes. A learned cascade decides{" "}
-          <em>before dispatch</em> which model each query actually needs. Cost is the
-          objective; quality is the constraint.
+          OptiRoute AI balances <em>quality, cost, latency and privacy</em> to select the model
+          that best fits each query and routing policy. Eight production LLMs, five capability
+          classes — scored locally <em>before dispatch</em>, with no extra LLM call to route.
         </p>
 
         <div className="hero-actions">
@@ -48,28 +48,33 @@ export function Hero({ boot }: { boot: Bootstrap }) {
           </a>
         </div>
 
-        <div className="stat-grid">
-          <StatTile
-            accent
-            value={learned ? learned.cost_reduction_vs_strongest_pct.toFixed(1) : "—"}
-            unit="%"
-            label="Cost cut vs always-GPT-5"
-          />
-          <StatTile
-            value={learned ? learned.quality_vs_strongest_pct.toFixed(1) : "—"}
-            unit="%"
-            label="Of flagship quality retained"
-          />
-          <StatTile
-            value={spread ? fmtInt(spread) : "—"}
-            unit={spread ? "×" : undefined}
-            label="Cost spread across the model pool"
-          />
-          <StatTile
-            value={oracle ? oracle.cost_reduction_vs_strongest_pct.toFixed(1) : "—"}
-            unit="%"
-            label="Oracle ceiling cost reduction"
-          />
+        <div className="stat-block">
+          <span className="stat-grid-label">
+            Validated baseline evidence (legacy cascade + oracle)
+          </span>
+          <div className="stat-grid">
+            <StatTile
+              accent
+              value={learned ? learned.cost_reduction_vs_strongest_pct.toFixed(1) : "—"}
+              unit="%"
+              label="Cost cut vs always-GPT-5"
+            />
+            <StatTile
+              value={learned ? learned.quality_vs_strongest_pct.toFixed(1) : "—"}
+              unit="%"
+              label="Of flagship quality retained"
+            />
+            <StatTile
+              value={spread ? fmtInt(spread) : "—"}
+              unit={spread ? "×" : undefined}
+              label="Cost spread across the model pool"
+            />
+            <StatTile
+              value={oracle ? oracle.cost_reduction_vs_strongest_pct.toFixed(1) : "—"}
+              unit="%"
+              label="Oracle ceiling cost reduction"
+            />
+          </div>
         </div>
 
         <p className="hero-note">

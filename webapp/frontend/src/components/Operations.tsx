@@ -96,7 +96,7 @@ export function Operations({ boot, stats }: { boot: Bootstrap; stats: StatsPaylo
   return (
     <Section
       id="operations"
-      index="07"
+      index="08"
       eyebrow="Operations"
       title="Live telemetry of this demo session"
       lead="Every query routed through the arena is counted here. This is session data from

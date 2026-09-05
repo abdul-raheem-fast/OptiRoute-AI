@@ -85,35 +85,9 @@ export function MoDecision({ d }: { d: MoRouteDecision }) {
         </div>
       ) : (
         <>
-          <div className="mo-metrics">
-            <div className="mo-metric">
-              <span className="k">est. cost / query</span>
-              <span className="v num">{fmtUSD(d.estimated_cost_per_query, 6)}</span>
-              <span className="sub">vs GPT-5 {fmtUSD(d.strongest_cost_per_query, 6)}</span>
-            </div>
-            <div className="mo-metric">
-              <span className="k">est. model latency</span>
-              <span className="v num">{fmtLatency((d.estimated_latency_ms ?? 0) / 1000)}</span>
-              <span className="sub">measured benchmark average</span>
-            </div>
-            <div className="mo-metric">
-              <span className="k">savings vs GPT-5</span>
-              <span className="v num">{(d.est_saving_pct ?? 0).toFixed(1)}%</span>
-              <span className="sub">on this query</span>
-            </div>
-          </div>
-
           <div className="decision-block">
             <div className="block-label">
-              <span>Latency budget</span>
-              <span className="tag">router overhead is measured live</span>
-            </div>
-            <LatencyParts d={d} />
-          </div>
-
-          <div className="decision-block">
-            <div className="block-label">
-              <span>Why this route</span>
+              <span>Why this model?</span>
               <span className="tag mono">{d.reason_code}</span>
             </div>
             <p className="mo-reason">{d.reason}</p>
@@ -138,6 +112,32 @@ export function MoDecision({ d }: { d: MoRouteDecision }) {
               </span>
               {d.constraints.privacy_restricted ? <span className="cchip is-on">privacy-restricted</span> : null}
             </div>
+          </div>
+
+          <div className="mo-metrics">
+            <div className="mo-metric">
+              <span className="k">est. cost / query</span>
+              <span className="v num">{fmtUSD(d.estimated_cost_per_query, 6)}</span>
+              <span className="sub">vs GPT-5 {fmtUSD(d.strongest_cost_per_query, 6)}</span>
+            </div>
+            <div className="mo-metric">
+              <span className="k">est. model latency</span>
+              <span className="v num">{fmtLatency((d.estimated_latency_ms ?? 0) / 1000)}</span>
+              <span className="sub">measured benchmark average</span>
+            </div>
+            <div className="mo-metric">
+              <span className="k">savings vs GPT-5</span>
+              <span className="v num">{(d.est_saving_pct ?? 0).toFixed(1)}%</span>
+              <span className="sub">on this query</span>
+            </div>
+          </div>
+
+          <div className="decision-block">
+            <div className="block-label">
+              <span>Latency budget</span>
+              <span className="tag">router overhead is measured live</span>
+            </div>
+            <LatencyParts d={d} />
           </div>
 
           {d.why_not_strongest ? (

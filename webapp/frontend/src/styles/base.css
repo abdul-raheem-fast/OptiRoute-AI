@@ -779,6 +779,14 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* Stat tiles */
+.stat-block { margin-top: var(--s12); }
+.stat-block .stat-grid { margin-top: var(--s4); }
+.stat-grid-label {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

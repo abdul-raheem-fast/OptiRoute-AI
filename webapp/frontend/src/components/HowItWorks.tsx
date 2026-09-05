@@ -25,8 +25,8 @@ export function HowItWorks() {
       index="04"
       eyebrow="How it works"
       title="A decision made before any tokens are spent"
-      lead="Routing needs no live model calls — a small trained scorer runs before dispatch, so the
-            decision is essentially free."
+      lead="The routing decision is made locally, before dispatch — a small trained scorer estimates
+            each model's fit, so no extra LLM call is needed just to route."
     >
       <div className="steps">
         {STEPS.map((s) => (
@@ -37,6 +37,12 @@ export function HowItWorks() {
           </Card>
         ))}
       </div>
+      <p className="note" style={{ marginTop: "var(--s5)" }}>
+        These three steps describe the validated legacy cascade — a single confidence threshold
+        (t = 0.95). The multi-objective router reuses the same local scorer but ranks every eligible
+        model by utility (calibrated quality minus weighted cost and latency) behind hard privacy and
+        latency constraints, so different policies can take different paths.
+      </p>
     </Section>
   );
 }

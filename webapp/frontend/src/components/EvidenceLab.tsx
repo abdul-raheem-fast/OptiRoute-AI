@@ -50,7 +50,7 @@ export function EvidenceLab({ results }: { results: ResultsPayload }) {
   return (
     <Section
       id="evidence"
-      index="05"
+      index="06"
       eyebrow="Evidence lab"
       title="The provenance behind every number"
       lead="Split protocol, seed, strata count and the leakage audit — plus the three

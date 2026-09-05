@@ -9,6 +9,7 @@ import { MoEvidence } from "./components/MoEvidence";
 import { Nav } from "./components/Nav";
 import { Operations } from "./components/Operations";
 import { RouterSection } from "./components/RouterSection";
+import { WhatWeProved } from "./components/WhatWeProved";
 import { Collapsible, Skeleton } from "./components/ui";
 import { useBootstrap, useMultiObjective, useSessionStats, useTheme } from "./hooks";
 import type { MultiObjective } from "./lib/api";
@@ -68,6 +69,11 @@ export function App() {
         {/* 04 — how it works */}
         <ErrorBoundary label="How it works">
           <HowItWorks />
+        </ErrorBoundary>
+
+        {/* 05 — what we proved: a compact, factual close to the visible story */}
+        <ErrorBoundary label="What we proved">
+          <WhatWeProved />
         </ErrorBoundary>
 
         {/* Deep dive — provenance, savings and telemetry, folded away by default so the

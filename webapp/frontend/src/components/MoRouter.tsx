@@ -114,6 +114,9 @@ export function MoRouter({ boot, mo, loading }: Props) {
       <Card variant="elevated" className="arena-input" as="div">
         <div>
           <span className="field-label">Routing objective</span>
+          <p className="note objective-hint">
+            Five optimization policies — choose which trade-off matters most for this query.
+          </p>
           <Segmented
             ariaLabel="Routing objective"
             options={modeOptions}
