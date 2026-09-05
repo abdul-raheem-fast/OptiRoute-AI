@@ -1409,3 +1409,64 @@ pre.arch {
   }
 }
 
+/* ---------------------------------------------------------- collapsible */
+.collapsible {
+  margin-top: var(--grid-gap);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 14px);
+  background: var(--surface);
+  overflow: hidden;
+}
+.collapsible > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s4, 18px);
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  color: var(--text, inherit);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.collapsible > summary::-webkit-details-marker { display: none; }
+.collapsible > summary:hover { background: var(--grad-soft); }
+.collapsible-title { flex: 1 1 auto; }
+.collapsible > summary .hint {
+  font-weight: 400;
+  font-size: var(--fs-sm, 0.82rem);
+  opacity: 0.7;
+}
+.collapsible-chev {
+  flex: 0 0 auto;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+.collapsible[open] .collapsible-chev { transform: rotate(90deg); }
+.collapsible-body {
+  padding: 0 var(--s4, 18px) var(--s4, 18px);
+  border-top: 1px solid var(--border);
+}
+/* Content inside an open <details> was never seen by IntersectionObserver, so
+   force the scroll-reveal fade off and tighten nested-section rhythm. */
+details[open] .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+.collapsible-body .section { padding-block: var(--s4, 18px); }
+.collapsible-body .section:first-child { padding-top: var(--s3); }
+.collapsible-body .container { max-width: none; padding-inline: 0; }
+
+/* ------------------------------------------------- router strategy switch */
+/* Layout only — the switch reuses the existing .segmented toggle (semantic
+   buttons, aria-pressed active state, global :focus-visible outline). */
+.router-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-bottom: var(--grid-gap);
+}
+.router-switch .field-label { margin: 0; }
+

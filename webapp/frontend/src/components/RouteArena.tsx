@@ -1,72 +1,89 @@
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DecisionPanel } from "./DecisionPanel";
-import { Card, CardTitle, EmptyState, Pill, Section, Segmented, Skeleton } from "./ui";
+import { Card, EmptyState, Pill, Segmented } from "./ui";
+import { routeQuery } from "../lib/api";
 import { fmtUSD } from "../lib/format";
-import { modelColor, TIER_COLORS } from "../lib/palette";
-import type { Bootstrap, RouteDecision, StatsPayload } from "../lib/types";
+import { TIER_COLORS } from "../lib/palette";
+import type { Bootstrap, RouteDecision } from "../lib/types";
 
-interface Props {
-  boot: Bootstrap;
-  stats: StatsPayload | null;
-  mode: string;
-  onMode: (key: string) => void;
-  threshold: number;
-  onThreshold: (t: number) => void;
-  query: string;
-  onQuery: (q: string) => void;
-  queryClass: string;
-  onQueryClass: (c: string) => void;
-  decision: RouteDecision | null;
-  busy: boolean;
-  error: string | null;
-  onRoute: () => void;
-  /** Route a specific query immediately (scenario chips, challenge picks). */
-  onRouteWith: (query: string, queryClass: string) => void;
-  onChallenge: () => void;
-}
+/**
+ * The legacy confidence cascade, kept as a scientifically useful BASELINE beside the
+ * multi-objective default router. Self-contained: it owns its routing state so the parent
+ * only passes the bootstrap payload. Walks cheapest-first and takes the first model whose
+ * P(correct) clears the gate t, else escalates to the strongest — this is the frozen,
+ * validated headline result (see the Results section).
+ */
+export function RouteArena({ boot }: { boot: Bootstrap }) {
+  const [mode, setMode] = useState("balanced");
+  const [threshold, setThreshold] = useState(0.95);
+  const [query, setQuery] = useState("");
+  const [queryClass, setQueryClass] = useState("");
+  const [decision, setDecision] = useState<RouteDecision | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-/** Stacked bar of the demo session's routing distribution. */
-function SessionBar({ boot, stats }: { boot: Bootstrap; stats: StatsPayload }) {
-  const total = Math.max(1, stats.session_queries);
-  const segments = boot.models.models
-    .map((m, i) => ({ model: m.model, n: stats.distribution[m.model] ?? 0, color: modelColor(i) }))
-    .filter((s) => s.n > 0);
+  /** One routing round-trip. Threshold is passed explicitly so callers that just
+   *  changed it (mode switch, auto-route) never race stale state. */
+  const run = useCallback(async (q: string, cls: string, t: number) => {
+    const text = q.trim();
+    if (!text) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const d = await routeQuery({ query: text, query_class: cls || null, threshold: t });
+      setDecision(d);
+    } catch (e) {
+      setDecision(null);
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+    }
+  }, []);
 
-  if (!segments.length) {
-    return <p className="legend-empty">Route a query to start the session tally.</p>;
-  }
+  // Open with a real benchmark query already routed through the balanced policy.
+  const autoRan = useRef(false);
+  useEffect(() => {
+    if (autoRan.current) return;
+    autoRan.current = true;
+    const balanced = boot.modes.modes.find((m) => m.key === "balanced");
+    const t = balanced?.t ?? boot.modes.t_star ?? 0.95;
+    if (balanced) setMode(balanced.key);
+    setThreshold(t);
+    const first = boot.scenarios.scenarios[0];
+    if (first) {
+      setQuery(first.query);
+      setQueryClass(first.query_class);
+      void run(first.query, first.query_class, t);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return (
-    <>
-      <div className="distbar" role="img" aria-label="Routing distribution this session">
-        {segments.map((s) => (
-          <span
-            key={s.model}
-            style={{ width: `${((s.n / total) * 100).toFixed(2)}%`, background: s.color }}
-            title={`${s.model}: ${s.n}`}
-          />
-        ))}
-      </div>
-      <div className="legend">
-        {segments.map((s) => (
-          <span className="legend-item" key={s.model}>
-            <i className="legend-swatch" style={{ background: s.color }} />
-            <span className="nm">{s.model}</span>
-            <span className="pc">
-              {s.n} &middot; {((s.n / total) * 100).toFixed(0)}%
-            </span>
-          </span>
-        ))}
-      </div>
-    </>
+  const handleMode = useCallback(
+    (key: string) => {
+      setMode(key);
+      const preset = boot.modes.modes.find((m) => m.key === key);
+      if (!preset) return;
+      setThreshold(preset.t);
+      if (query.trim()) void run(query, queryClass, preset.t);
+    },
+    [boot, query, queryClass, run]
   );
-}
 
-export function RouteArena(p: Props) {
-  const { boot, stats } = p;
+  const handleChallenge = useCallback(() => {
+    const pool = boot.scenarios.challenges ?? [];
+    if (!pool.length) return;
+    let pick = pool[Math.floor(Math.random() * pool.length)];
+    for (let g = 0; pick.query === query && g < 12; g++) {
+      pick = pool[Math.floor(Math.random() * pool.length)];
+    }
+    setQuery(pick.query);
+    setQueryClass(pick.query_class);
+    void run(pick.query, pick.query_class, threshold);
+  }, [boot, query, run, threshold]);
+
   const activeMode = useMemo(
-    () => boot.modes.modes.find((m) => m.key === p.mode) ?? boot.modes.modes[0],
-    [boot.modes.modes, p.mode]
+    () => boot.modes.modes.find((m) => m.key === mode) ?? boot.modes.modes[0],
+    [boot.modes.modes, mode]
   );
 
   const modeOptions = boot.modes.modes.map((m) => ({
@@ -76,186 +93,130 @@ export function RouteArena(p: Props) {
   }));
 
   return (
-    <Section
-      id="arena"
-      index="01"
-      eyebrow="Route arena"
-      title="Watch the router decide, live"
-      lead="Type any prompt — or challenge the router. The trained scorer rates all eight
-            models offline, estimates complexity, walks its cheapest-first cascade, and
-            explains the decision."
-    >
-      <div className="arena">
-        {/* ---------------------------------------------------- input column */}
-        <Card variant="elevated" className="arena-input" as="div">
-          <div>
-            <span className="field-label">Routing policy</span>
-            <Segmented
-              ariaLabel="Routing policy"
-              options={modeOptions}
-              value={p.mode}
-              onChange={p.onMode}
-            />
-            {activeMode ? (
-              <p className="mode-note" style={{ marginTop: "var(--s3)" }}>
-                <b>
-                  {activeMode.label} (t = {activeMode.t.toFixed(2)})
-                </b>{" "}
-                — {activeMode.description}.{" "}
-                {activeMode.val_accuracy_pct != null ? (
-                  <>
-                    Measured on the {activeMode.measured_on}:{" "}
-                    {activeMode.val_accuracy_pct.toFixed(1)}% accuracy at{" "}
-                    {fmtUSD(activeMode.val_avg_cost_per_query ?? 0, 4)}/query.{" "}
-                  </>
-                ) : null}
-                {activeMode.meets_floor ? (
-                  <Pill tone="ok">clears quality floor</Pill>
-                ) : (
-                  <Pill tone="warn">below quality floor</Pill>
-                )}
-                <br />
-                Headline test-split numbers are for the Balanced policy.
-              </p>
-            ) : null}
-          </div>
-
-          <div>
-            <label className="field-label" htmlFor="arena-query">
-              Query
-            </label>
-            <textarea
-              id="arena-query"
-              className="textarea"
-              rows={6}
-              value={p.query}
-              placeholder="Click a real benchmark query below, or type your own. Note: free-text prompts outside the benchmark format are routed conservatively."
-              onChange={(e) => p.onQuery(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) p.onRoute();
-              }}
-            />
-          </div>
-
-          <div className="arena-row">
-            <div>
-              <label className="field-label" htmlFor="arena-class">
-                Capability class
-              </label>
-              <select
-                id="arena-class"
-                className="select"
-                value={p.queryClass}
-                onChange={(e) => p.onQueryClass(e.target.value)}
-              >
-                <option value="">auto-detect (heuristic)</option>
-                {boot.models.classes.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <div className="threshold-row">
-                <label className="field-label" htmlFor="arena-t" style={{ margin: 0 }}>
-                  Confidence threshold
-                </label>
-                <span className="threshold-value">t = {p.threshold.toFixed(2)}</span>
-              </div>
-              <input
-                id="arena-t"
-                type="range"
-                min={0.5}
-                max={0.99}
-                step={0.01}
-                value={p.threshold}
-                onChange={(e) => p.onThreshold(Number(e.target.value))}
-              />
-            </div>
-          </div>
-
-          <div className="arena-actions">
-            <button
-              type="button"
-              className="btn btn--primary"
-              onClick={p.onRoute}
-              disabled={p.busy || !p.query.trim()}
-            >
-              {p.busy ? "Routing…" : "Route it"}
-            </button>
-            <button
-              type="button"
-              className="btn btn--ghost"
-              onClick={p.onChallenge}
-              disabled={p.busy || !boot.scenarios.challenges.length}
-              title="Load a random real benchmark query"
-            >
-              &#9889; Challenge the router
-            </button>
-          </div>
-
-          <div>
-            <div className="scenario-strip">
-              <span className="field-label">Real benchmark queries:</span>
-              {boot.scenarios.scenarios.map((s) => (
-                <button
-                  key={s.label}
-                  type="button"
-                  className="chip"
-                  title={`${s.query_class} — expected: ${
-                    s.expected_route === "cheap" ? "cheap route" : "escalate to strongest"
-                  }`}
-                  onClick={() => {
-                    p.onQuery(s.query);
-                    p.onQueryClass(s.query_class);
-                    p.onRouteWith(s.query, s.query_class);
-                  }}
-                >
-                  <i
-                    className="dot"
-                    style={{ background: TIER_COLORS[s.dot] ?? TIER_COLORS.medium, color: TIER_COLORS[s.dot] ?? TIER_COLORS.medium }}
-                  />
-                  {s.label}
-                </button>
-              ))}
-            </div>
-            <p className="note" style={{ marginTop: "var(--s3)" }}>
-              Source: {boot.scenarios.source}.
-            </p>
-          </div>
-
-          <div className="arena-session">
-            <div className="arena-session-head">
-              <strong className="num">{stats?.session_queries ?? 0}</strong>
-              <span className="note">queries routed this demo session</span>
-              {stats && stats.session_queries > 0 ? (
-                <Pill tone={stats.escalation_rate_pct > 50 ? "warn" : "ok"}>
-                  {stats.escalation_rate_pct.toFixed(0)}% escalated
-                </Pill>
+    <div className="arena">
+      {/* ---------------------------------------------------- input column */}
+      <Card variant="elevated" className="arena-input" as="div">
+        <div>
+          <span className="field-label">Routing policy</span>
+          <Segmented ariaLabel="Routing policy" options={modeOptions} value={mode} onChange={handleMode} />
+          {activeMode ? (
+            <p className="mode-note" style={{ marginTop: "var(--s3)" }}>
+              <b>
+                {activeMode.label} (t = {activeMode.t.toFixed(2)})
+              </b>{" "}
+              — {activeMode.description}.{" "}
+              {activeMode.val_accuracy_pct != null ? (
+                <>
+                  Measured on the {activeMode.measured_on}: {activeMode.val_accuracy_pct.toFixed(1)}%
+                  accuracy at {fmtUSD(activeMode.val_avg_cost_per_query ?? 0, 4)}/query.{" "}
+                </>
               ) : null}
-            </div>
-            {stats ? <SessionBar boot={boot} stats={stats} /> : <Skeleton label="loading telemetry" />}
-          </div>
-        </Card>
+              {activeMode.meets_floor ? (
+                <Pill tone="ok">clears quality floor</Pill>
+              ) : (
+                <Pill tone="warn">below quality floor</Pill>
+              )}
+            </p>
+          ) : null}
+        </div>
 
-        {/* -------------------------------------------------- decision column */}
-        <Card variant="hero">
-          {p.error ? (
-            <EmptyState glyph="!" title="Routing failed" body={p.error} />
-          ) : p.decision ? (
-            <DecisionPanel decision={p.decision} models={boot.models.models} />
-          ) : (
-            <EmptyState
-              glyph="◎"
-              title="The routing decision appears here"
-              body="Complexity estimate, per-model confidence, the cascade walk, the
-                    reasoning, and what this query saves versus GPT-5."
+        <div>
+          <label className="field-label" htmlFor="arena-query">Query</label>
+          <textarea
+            id="arena-query"
+            className="textarea"
+            rows={5}
+            value={query}
+            placeholder="Click a real benchmark query below, or type your own."
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) void run(query, queryClass, threshold);
+            }}
+          />
+        </div>
+
+        <div className="arena-row">
+          <div>
+            <label className="field-label" htmlFor="arena-class">Capability class</label>
+            <select id="arena-class" className="select" value={queryClass} onChange={(e) => setQueryClass(e.target.value)}>
+              <option value="">auto-detect (heuristic)</option>
+              {boot.models.classes.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <div className="threshold-row">
+              <label className="field-label" htmlFor="arena-t" style={{ margin: 0 }}>Confidence threshold</label>
+              <span className="threshold-value">t = {threshold.toFixed(2)}</span>
+            </div>
+            <input
+              id="arena-t"
+              type="range" min={0.5} max={0.99} step={0.01} value={threshold}
+              onChange={(e) => setThreshold(Number(e.target.value))}
+              onMouseUp={() => { if (query.trim()) void run(query, queryClass, threshold); }}
+              onTouchEnd={() => { if (query.trim()) void run(query, queryClass, threshold); }}
             />
-          )}
-        </Card>
-      </div>
-    </Section>
+          </div>
+        </div>
+
+        <div className="arena-actions">
+          <button
+            type="button" className="btn btn--primary"
+            onClick={() => void run(query, queryClass, threshold)} disabled={busy || !query.trim()}
+          >
+            {busy ? "Routing…" : "Route it"}
+          </button>
+          <button
+            type="button" className="btn btn--ghost" onClick={handleChallenge}
+            disabled={busy || !boot.scenarios.challenges.length} title="Load a random real benchmark query"
+          >
+            &#9889; Challenge the router
+          </button>
+        </div>
+
+        <div>
+          <div className="scenario-strip">
+            <span className="field-label">Real benchmark queries:</span>
+            {boot.scenarios.scenarios.map((s) => (
+              <button
+                key={s.label}
+                type="button"
+                className="chip"
+                title={`${s.query_class} — expected: ${s.expected_route === "cheap" ? "cheap route" : "escalate to strongest"}`}
+                onClick={() => {
+                  setQuery(s.query);
+                  setQueryClass(s.query_class);
+                  void run(s.query, s.query_class, threshold);
+                }}
+              >
+                <i
+                  className="dot"
+                  style={{ background: TIER_COLORS[s.dot] ?? TIER_COLORS.medium, color: TIER_COLORS[s.dot] ?? TIER_COLORS.medium }}
+                />
+                {s.label}
+              </button>
+            ))}
+          </div>
+          <p className="note" style={{ marginTop: "var(--s3)" }}>Source: {boot.scenarios.source}.</p>
+        </div>
+      </Card>
+
+      {/* -------------------------------------------------- decision column */}
+      <Card variant="hero">
+        {error ? (
+          <EmptyState glyph="!" title="Routing failed" body={error} />
+        ) : decision ? (
+          <DecisionPanel decision={decision} models={boot.models.models} />
+        ) : (
+          <EmptyState
+            glyph="◎"
+            title="The cascade decision appears here"
+            body="Per-model confidence, the cheapest-first cascade walk against t, the reasoning,
+                  and what this query saves versus GPT-5."
+          />
+        )}
+      </Card>
+    </div>
   );
 }

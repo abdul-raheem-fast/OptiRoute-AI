@@ -30,6 +30,7 @@ import type { MoFrontiers, ParetoPoint } from "../lib/types";
  */
 
 interface DotPt extends ParetoPoint {
+  acc: number;
   r: number;
   approved: boolean;
 }
@@ -42,6 +43,18 @@ function latencyRadius(latency_s: number, lo: number, hi: number): number {
   return 6 + t * 12; // 6px (fastest) -> 18px (slowest)
 }
 
+/** Specific label placement offsets based on bubble size to prevent overlaps */
+const LABEL_CONFIG: Record<string, { anchor: "start" | "end" | "middle"; getOffset: (r: number) => { dx: number; dy: number } }> = {
+  "Llama-3.1-8B-Instruct": { anchor: "start", getOffset: (r) => ({ dx: r + 7, dy: 4 }) },
+  "Qwen3-8B": { anchor: "middle", getOffset: (r) => ({ dx: 0, dy: -(r + 8) }) },
+  "deepseek-v3-0324": { anchor: "middle", getOffset: (r) => ({ dx: 0, dy: r + 16 }) },
+  "gemini-2.5-flash": { anchor: "end", getOffset: (r) => ({ dx: -(r + 7), dy: -6 }) },
+  "gpt-4.1": { anchor: "start", getOffset: (r) => ({ dx: r + 7, dy: 14 }) },
+  "claude-sonnet-4": { anchor: "middle", getOffset: (r) => ({ dx: 0, dy: -(r + 8) }) },
+  "gpt-5": { anchor: "end", getOffset: (r) => ({ dx: -(r + 8), dy: -4 }) },
+  "gemini-2.5-pro": { anchor: "end", getOffset: (r) => ({ dx: -(r + 8), dy: 4 }) },
+};
+
 function Dot(props: Record<string, unknown>) {
   const cx = Number(props.cx ?? 0);
   const cy = Number(props.cy ?? 0);
@@ -49,6 +62,11 @@ function Dot(props: Record<string, unknown>) {
   if (!p) return <g />;
   const frontier = p.on_global_frontier;
   const fill = frontier ? CHART.accent : CHART.baseline;
+  const cfg = LABEL_CONFIG[p.model];
+  const pos = cfg
+    ? { anchor: cfg.anchor, ...cfg.getOffset(p.r) }
+    : { anchor: "middle" as const, dx: 0, dy: -(p.r + 6) };
+
   return (
     <g>
       {frontier ? <circle cx={cx} cy={cy} r={p.r + 6} fill={fill} opacity={0.14} /> : null}
@@ -63,11 +81,11 @@ function Dot(props: Record<string, unknown>) {
         style={frontier ? { filter: `drop-shadow(0 0 7px ${fill})` } : undefined}
       />
       <text
-        x={cx}
-        y={cy - p.r - 5}
-        textAnchor="middle"
-        fill={frontier ? "var(--text-1)" : "var(--text-3)"}
-        fontSize={10.5}
+        x={cx + pos.dx}
+        y={cy + pos.dy}
+        textAnchor={pos.anchor}
+        fill={frontier ? "var(--text)" : "var(--text-2)"}
+        fontSize={11}
         fontWeight={frontier ? 700 : 500}
         fontFamily="var(--font-mono)"
       >
@@ -83,7 +101,7 @@ function ParetoTooltip({ active, payload }: { active?: boolean; payload?: { payl
   return (
     <div className="rc-tooltip">
       <div className="t-title">{p.model}</div>
-      <div className="t-row">{(p.quality * 100).toFixed(2)}% accuracy &middot; {fmtUSD(p.cost, 6)}/query</div>
+      <div className="t-row">{p.acc.toFixed(2)}% accuracy &middot; {fmtUSD(p.cost, 6)}/query</div>
       <div className="t-row">{fmtLatency(p.latency_s)} measured latency</div>
       <div className="t-row">
         {p.on_global_frontier ? "on the global Pareto frontier" : `dominated by ${p.dominated_by.join(", ") || "-"}`}
@@ -106,18 +124,24 @@ export function ParetoFrontier({ points, frontiers, approved }: Props) {
   const lo = Math.min(...latencies);
   const hi = Math.max(...latencies);
   const approvedSet = new Set(approved);
-  const dots: DotPt[] = points.map((p) => ({
-    ...p,
-    r: latencyRadius(p.latency_s, lo, hi),
-    approved: approvedSet.has(p.model),
-  }));
+
+  const dots: DotPt[] = points.map((p) => {
+    const rawAcc = p.quality <= 1 ? p.quality * 100 : p.quality;
+    return {
+      ...p,
+      acc: Number(rawAcc.toFixed(2)),
+      r: latencyRadius(p.latency_s, lo, hi),
+      approved: approvedSet.has(p.model),
+    };
+  });
 
   const costs = points.map((p) => p.cost).filter((c) => c > 0);
   const minCost = Math.min(...costs) * 0.6;
-  const maxCost = Math.max(...costs) * 1.6;
-  const quals = points.map((p) => p.quality * 100);
-  const minQ = Math.floor(Math.min(...quals) - 6);
-  const maxQ = Math.ceil(Math.max(...quals) + 6);
+  const maxCost = Math.max(...costs) * 1.8;
+
+  const accs = dots.map((d) => d.acc);
+  const minQ = Math.max(0, Math.floor(Math.min(...accs) - 6));
+  const maxQ = Math.min(100, Math.ceil(Math.max(...accs) + 6));
 
   // Split so dominated dots render first (behind the frontier).
   const dominated = dots.filter((d) => !d.on_global_frontier);
@@ -125,9 +149,9 @@ export function ParetoFrontier({ points, frontiers, approved }: Props) {
 
   return (
     <div>
-      <div className="chart-box" style={{ height: 420 }}>
+      <div className="chart-box" style={{ height: 440 }}>
         <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 24, right: 28, bottom: 34, left: 6 }}>
+          <ScatterChart margin={{ top: 24, right: 48, bottom: 36, left: 16 }}>
             <CartesianGrid stroke={CHART.grid} strokeDasharray="3 5" />
             <XAxis
               type="number"
@@ -150,14 +174,16 @@ export function ParetoFrontier({ points, frontiers, approved }: Props) {
             />
             <YAxis
               type="number"
-              dataKey="quality"
-              name="quality"
+              dataKey="acc"
+              name="accuracy"
               unit="%"
               domain={[minQ, maxQ]}
-              tickFormatter={(v: number) => `${(v / 100).toFixed(2)}`}
+              allowDataOverflow
+              tickCount={5}
+              tickFormatter={(v: number) => `${Math.round(v)}%`}
               tick={{ fill: CHART.axis, fontSize: 11, fontFamily: "var(--font-mono)" }}
               stroke={CHART.grid}
-              width={54}
+              width={62}
               label={{
                 value: "measured accuracy",
                 angle: -90,

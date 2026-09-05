@@ -9,11 +9,11 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
   return (
     <Section
       id="models"
-      index="08"
+      index="03"
       eyebrow="The model pool"
       title="Eight models, ordered cheapest to strongest"
-      lead="Per-model accuracy by capability class on the aligned benchmark, with registry
-            pricing in USD per 1M tokens. The cascade always walks this order."
+      lead="Per-model accuracy by capability class, with registry pricing. The router walks this
+            cheapest-to-strongest order."
     >
       <div className="table-wrap">
         <table className="table">
@@ -59,9 +59,8 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
         </table>
       </div>
       <p className="chart-caption">
-        Two self-hosted models (Llama-3.1-8B-Instruct, Qwen3-8B) carry zero marginal token
-        cost, so their measured per-query cost is effectively 0 — that is where the savings
-        come from when the router is confident.
+        Two self-hosted models (Llama-3.1-8B, Qwen3-8B) have zero marginal token cost — that is
+        where the savings come from when the router is confident.
       </p>
     </Section>
   );

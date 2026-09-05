@@ -1,25 +1,28 @@
-import { Card, CardTitle, Pill, Section } from "./ui";
+import { Card, CardTitle, Collapsible, Pill, Section } from "./ui";
+import { FrontierChart } from "./FrontierChart";
 import { ParetoFrontier } from "./ParetoFrontier";
 import { PrivacyPanel } from "./PrivacyPanel";
 import { fmtLatency, fmtUSD } from "../lib/format";
-import type { MoEvalRow, ResultsPayload } from "../lib/types";
+import type { MoEvalRow, PolicyRow, ResultsPayload } from "../lib/types";
 import type { MultiObjective } from "../lib/api";
 
 /**
- * The honest evidence for the multi-objective claim:
- *   1. the model-level Pareto frontier (measured train-split quality/cost/latency);
- *   2. the sealed-test tradeoff table - every routing objective measured against
- *      always-cheapest / always-GPT-5 / the legacy cascade (COST x QUALITY x
- *      LATENCY x PRIVACY), from routing/results/mo_eval_report.csv;
- *   3. the privacy policy and per-model metadata that gate eligibility.
+ * The single "Measured results" section: the honest evidence for the whole claim.
+ *   • visible  — model Pareto frontier + sealed-test objective tradeoff table;
+ *   • folded   — legacy baselines / cost-accuracy frontier / quality guardrail,
+ *                and the privacy policy that gates eligibility before selection.
  *
- * No number here is invented: the chart reads /api/pareto, the table reads the
- * frozen evaluation CSV, and the privacy grid reads /api/privacy.
+ * No number here is invented: the chart reads /api/pareto, the tables read the
+ * frozen evaluation CSVs, and the privacy grid reads /api/privacy.
  */
 
 function signed(v: number, digits = 1, suffix = ""): string {
   const s = v > 0 ? "+" : "";
   return `${s}${v.toFixed(digits)}${suffix}`;
+}
+
+function floorMet(r: PolicyRow): boolean {
+  return r.meets_quality_floor === true || String(r.meets_quality_floor) === "True";
 }
 
 function TradeoffTable({ rows }: { rows: MoEvalRow[] }) {
@@ -74,6 +77,95 @@ function TradeoffTable({ rows }: { rows: MoEvalRow[] }) {
   );
 }
 
+function PolicyTable({ rows }: { rows: PolicyRow[] }) {
+  return (
+    <div className="table-wrap">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Policy</th>
+            <th>Accuracy</th>
+            <th>Quality vs GPT-5</th>
+            <th>Cost / query</th>
+            <th>Cost cut</th>
+            <th>Floor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => {
+            const us = r.policy.startsWith("learned");
+            const dim = r.policy === "always-cheapest" || r.policy === "random";
+            return (
+              <tr key={r.policy} className={`${us ? "is-us" : ""} ${dim ? "is-dim" : ""}`.trim()}>
+                <td className="text">{r.policy}</td>
+                <td>{Number(r.accuracy_pct).toFixed(2)}%</td>
+                <td>{Number(r.quality_vs_strongest_pct).toFixed(1)}%</td>
+                <td>{fmtUSD(Number(r.avg_cost_per_query), 6)}</td>
+                <td>{Number(r.cost_reduction_vs_strongest_pct).toFixed(1)}%</td>
+                <td>
+                  <span className={floorMet(r) ? "yes" : "no"}>
+                    {floorMet(r) ? "\u2713" : "\u2717"}
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function Guardrail({ rows }: { rows: PolicyRow[] }) {
+  const strongest = rows.find((r) => r.policy === "always-strongest");
+  const learned = rows.find((r) => r.policy.startsWith("learned"));
+  if (!strongest || !learned) return null;
+
+  const floor = Number(strongest.accuracy_pct) * 0.9;
+  const acc = Number(learned.accuracy_pct);
+  const margin = acc - floor;
+  const safe = margin >= 0;
+
+  return (
+    <Card variant="elevated" style={{ marginTop: "var(--grid-gap)" }}>
+      <CardTitle hint="quality is the constraint, cost is the objective">
+        Quality guardrail / SLO
+      </CardTitle>
+      <div className="guardrail">
+        <div className="g-cell">
+          <span className="v num">
+            {floor.toFixed(1)}
+            <small>%</small>
+          </span>
+          <span className="k">target quality floor</span>
+        </div>
+        <div className="g-cell">
+          <span className="v num">
+            {acc.toFixed(2)}
+            <small>%</small>
+          </span>
+          <span className="k">current policy (test split)</span>
+        </div>
+        <div className="g-cell">
+          <span className="v num">
+            {margin >= 0 ? "+" : ""}
+            {margin.toFixed(2)}
+            <small> pts</small>
+          </span>
+          <span className="k">margin above floor</span>
+        </div>
+        <div className="g-cell g-cell--status">
+          <Pill tone={safe ? "ok" : "bad"}>{safe ? "\u2713 SAFE" : "\u2717 AT RISK"}</Pill>
+        </div>
+        <p className="g-line">
+          Cost is the objective; quality is the constraint — OptiRoute is <b>not</b> “send
+          everything to the cheapest model”.
+        </p>
+      </div>
+    </Card>
+  );
+}
+
 interface Props {
   mo: MultiObjective;
   results: ResultsPayload;
@@ -83,17 +175,17 @@ export function MoEvidence({ mo, results }: Props) {
   const pareto = mo.pareto;
   const privacy = mo.privacy;
   const evalRows = results.mo_eval_report ?? [];
+  const policyRows = results.baselines_report ?? [];
   const approved = privacy?.deployment.approved_for_sensitive ?? [];
 
   return (
     <Section
-      id="frontier"
-      index="03"
-      eyebrow="Pareto & privacy"
-      title="Cost ↔ quality ↔ latency ↔ privacy"
-      lead="Why the router picks what it picks: the measured model frontier, the sealed-test
-            tradeoff for every objective, and the privacy policy that gates eligibility before
-            any utility is computed."
+      id="results"
+      index="02"
+      eyebrow="Measured results"
+      title="Every objective, measured on the sealed test split"
+      lead="Nothing here is simulated — the frontier reads /api/pareto and the tables read the frozen
+            evaluation CSVs. Tuned on train/val only; the test split stayed sealed until final scoring."
     >
       <div className="mo-evidence">
         <Card variant="elevated">
@@ -111,7 +203,7 @@ export function MoEvidence({ mo, results }: Props) {
         </Card>
 
         <Card variant="base">
-          <CardTitle hint="routing/results/mo_eval_report.csv · sealed test split">
+          <CardTitle hint="routing/results/mo_eval_report.csv · sealed test">
             Objective tradeoff — measured, not simulated
           </CardTitle>
           {evalRows.length ? (
@@ -122,11 +214,9 @@ export function MoEvidence({ mo, results }: Props) {
                 <span className="legend-item"><i className="legend-swatch is-mo" /><span className="nm">multi-objective (experimental)</span></span>
               </div>
               <p className="chart-caption">
-                The legacy cascade stays binary (Qwen3-8B / GPT-5) because under its ~80% quality
-                floor those two are the only economically admissible models — a measured finding,
-                not a limitation hidden by the demo. The multi-objective router spreads traffic
-                only where an objective genuinely rewards it (economy → cheap+fast models, speed →
-                gemini-2.5-flash, private → local models). Sealed test split; tuned on train/val only.
+                The legacy cascade stays binary (Qwen3-8B / GPT-5): under its ~80% quality floor
+                those are the only economically admissible models — a measured finding, not a hidden
+                limitation. The objectives spread traffic only where an objective genuinely rewards it.
               </p>
             </>
           ) : (
@@ -135,21 +225,39 @@ export function MoEvidence({ mo, results }: Props) {
             </p>
           )}
         </Card>
-
-        {privacy ? (
-          <Card variant="base" className="privacy-card">
-            <CardTitle hint="filter runs before selection">Privacy</CardTitle>
-            <PrivacyPanel privacy={privacy} />
-          </Card>
-        ) : null}
       </div>
 
+      <Collapsible title="Legacy baselines & quality guardrail" hint="the original cascade result">
+        <div className="grid grid-2">
+          <Card variant="elevated">
+            <CardTitle hint="test split">Policy comparison</CardTitle>
+            <PolicyTable rows={policyRows} />
+            <p className="chart-caption">
+              Floor: a policy must keep &ge;90% of always-strongest accuracy. Oracle = hindsight-optimal
+              pick per query, the theoretical ceiling.
+            </p>
+          </Card>
+          <Card variant="elevated">
+            <CardTitle hint="up and to the left is better">Cost – accuracy frontier</CardTitle>
+            <FrontierChart rows={policyRows} />
+          </Card>
+        </div>
+        <Guardrail rows={policyRows} />
+      </Collapsible>
+
+      {privacy ? (
+        <Collapsible title="Privacy policy & sensitivity filter" hint="runs before selection">
+          <PrivacyPanel privacy={privacy} />
+        </Collapsible>
+      ) : null}
+
       <div className="mo-status-line">
-        <Pill tone="info">default router: {mo.objectives?.default_router ?? "legacy"}</Pill>
+        <Pill tone="info">default experience: multi-objective</Pill>
         <span className="note">
-          The multi-objective router is exposed as an experimental mode. The legacy cascade remains
-          the production default because it preserves the validated headline result; the objectives
-          above trade cost, latency and privacy differently rather than dominating it on every axis.
+          Multi-objective is the default experience; the legacy cascade is the validated research
+          baseline (and the API's zero-argument default). No single objective dominates it on every
+          axis — each trades cost, latency and privacy differently, so the table above is the honest
+          head-to-head.
         </span>
       </div>
     </Section>

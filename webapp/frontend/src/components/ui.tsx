@@ -152,6 +152,33 @@ export function Segmented<T extends string>({
   );
 }
 
+/* ------------------------------------------------------------- Collapsible */
+interface CollapsibleProps {
+  id?: string;
+  title: ReactNode;
+  hint?: ReactNode;
+  defaultOpen?: boolean;
+  children: ReactNode;
+}
+
+/** Progressive-disclosure panel. Keeps deep detail (methodology, secondary
+ *  tables) one click away so the default demo view stays clean. Native
+ *  <details>/<summary>, so it works without JavaScript. */
+export function Collapsible({ id, title, hint, defaultOpen = false, children }: CollapsibleProps) {
+  return (
+    <details id={id} className="collapsible" open={defaultOpen || undefined}>
+      <summary>
+        <span className="collapsible-title">{title}</span>
+        {hint ? <span className="hint">{hint}</span> : null}
+        <span className="collapsible-chev" aria-hidden="true">
+          &#9656;
+        </span>
+      </summary>
+      <div className="collapsible-body">{children}</div>
+    </details>
+  );
+}
+
 /* ------------------------------------------------------------- Empty states */
 export function EmptyState({ glyph = "◎", title, body }: { glyph?: string; title: string; body?: ReactNode }) {
   return (

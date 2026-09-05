@@ -609,6 +609,7 @@ input[type="range"]::-moz-range-thumb {
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
+  white-space: nowrap;
   transition: color 0.2s ease, background 0.2s ease;
 }
 .segmented button:hover:not(.is-active) {
@@ -725,7 +726,7 @@ input[type="range"]::-moz-range-thumb {
 /* ------------------------------------------------------------------ hero */
 .hero {
   position: relative;
-  padding-block: clamp(56px, 8vw, 104px) var(--s16);
+  padding-block: clamp(40px, 5vw, 72px) var(--s16);
   overflow: hidden;
 }
 .hero-badge {
@@ -755,7 +756,7 @@ input[type="range"]::-moz-range-thumb {
   font-weight: 750;
   letter-spacing: -0.035em;
   line-height: 1.04;
-  max-width: 15ch;
+  max-width: 18ch;
 }
 .hero-lead {
   margin-top: var(--s6);
@@ -783,6 +784,11 @@ input[type="range"]::-moz-range-thumb {
   grid-template-columns: repeat(2, 1fr);
   gap: var(--s4);
   margin-top: var(--s12);
+}
+@media (min-width: 640px) {
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .stat-tile {
   position: relative;

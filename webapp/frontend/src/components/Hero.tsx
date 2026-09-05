@@ -40,7 +40,7 @@ export function Hero({ boot }: { boot: Bootstrap }) {
         </p>
 
         <div className="hero-actions">
-          <a className="btn btn--primary" href="#arena">
+          <a className="btn btn--primary" href="#router">
             Try the live router
           </a>
           <a className="btn btn--ghost" href="#results">
@@ -53,7 +53,7 @@ export function Hero({ boot }: { boot: Bootstrap }) {
             accent
             value={learned ? learned.cost_reduction_vs_strongest_pct.toFixed(1) : "—"}
             unit="%"
-            label="Cost reduction vs always-GPT-5"
+            label="Cost cut vs always-GPT-5"
           />
           <StatTile
             value={learned ? learned.quality_vs_strongest_pct.toFixed(1) : "—"}
@@ -73,10 +73,8 @@ export function Hero({ boot }: { boot: Bootstrap }) {
         </div>
 
         <p className="hero-note">
-          Measured on the official held-out test split ({fmtInt(testN)} queries),
-          stratified by capability class and difficulty tier. Quality floor = 90% of the{" "}
-          {strongest ? `${strongest.accuracy_pct.toFixed(2)}%` : "always-strongest"}{" "}
-          always-strongest policy.
+          Measured on the held-out test split ({fmtInt(testN)} queries). Quality floor = 90% of
+          always-strongest accuracy{strongest ? ` (${strongest.accuracy_pct.toFixed(2)}%)` : ""}.
         </p>
       </div>
     </section>

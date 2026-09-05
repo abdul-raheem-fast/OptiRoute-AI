@@ -1,15 +1,11 @@
 import { useActiveSection } from "../hooks";
 
 const LINKS = [
-  { id: "arena", label: "Arena" },
-  { id: "mo", label: "Multi-objective" },
-  { id: "frontier", label: "Pareto" },
+  { id: "router", label: "Router" },
   { id: "results", label: "Results" },
-  { id: "evidence", label: "Evidence" },
-  { id: "impact", label: "Savings" },
-  { id: "operations", label: "Ops" },
   { id: "models", label: "Models" },
   { id: "how", label: "How" },
+  { id: "deepdive", label: "Deep dive" },
 ] as const;
 
 /** Every section id, in page order — used for scroll-spy. */
