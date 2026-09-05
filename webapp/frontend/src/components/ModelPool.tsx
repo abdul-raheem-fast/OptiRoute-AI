@@ -12,8 +12,8 @@ export function ModelPool({ models }: { models: ModelsPayload }) {
       index="03"
       eyebrow="The model pool"
       title="Eight models, benchmarked cheapest to strongest"
-      lead="The router is built from empirical benchmarking — per-model accuracy by capability
-            class, registry pricing, and measured latency across 1,887 aligned queries."
+      lead="Per-model accuracy by capability class, pricing and latency — measured across 1,887
+            aligned queries."
     >
       <Collapsible title="View model benchmark details" hint="per-class accuracy · pricing · latency">
       <div className="table-wrap">

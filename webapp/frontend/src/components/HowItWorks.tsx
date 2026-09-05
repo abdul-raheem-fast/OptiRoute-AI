@@ -4,17 +4,17 @@ const STEPS = [
   {
     n: "a",
     title: "Score, don’t ask",
-    body: "From the query text alone, a per-model logistic head estimates P(correct) for all eight models. Milliseconds, zero tokens spent.",
+    body: "From the query text alone, a per-model head estimates P(correct) for all eight models — milliseconds, zero tokens.",
   },
   {
     n: "b",
     title: "Walk cheapest-first",
-    body: "Models are tried cheapest-first. The first whose P(correct) clears the threshold (t = 0.95) gets the query.",
+    body: "Models are tried cheapest-first; the first whose P(correct) clears t = 0.95 gets the query.",
   },
   {
     n: "c",
     title: "Escalate when unsure",
-    body: "If nothing clears the bar, the query falls back to the strongest model — the safety valve behind the 94.8% quality / 68.4% cost-cut headline.",
+    body: "If nothing clears the bar, it falls back to the strongest model — behind the 94.8% quality / 68.4% cost-cut headline.",
   },
 ];
 
@@ -25,8 +25,7 @@ export function HowItWorks() {
       index="04"
       eyebrow="How it works"
       title="A decision made before any tokens are spent"
-      lead="The routing decision is made locally, before dispatch — a small trained scorer estimates
-            each model's fit, so no extra LLM call is needed just to route."
+      lead="A small local scorer decides before dispatch — no extra LLM call is needed to route."
     >
       <div className="steps">
         {STEPS.map((s) => (
@@ -38,10 +37,8 @@ export function HowItWorks() {
         ))}
       </div>
       <p className="note" style={{ marginTop: "var(--s5)" }}>
-        These three steps describe the validated legacy cascade — a single confidence threshold
-        (t = 0.95). The multi-objective router reuses the same local scorer but ranks every eligible
-        model by utility (calibrated quality minus weighted cost and latency) behind hard privacy and
-        latency constraints, so different policies can take different paths.
+        These steps are the legacy cascade (single threshold t = 0.95). The multi-objective router
+        uses the same scorer but ranks eligible models by utility behind privacy and latency limits.
       </p>
     </Section>
   );

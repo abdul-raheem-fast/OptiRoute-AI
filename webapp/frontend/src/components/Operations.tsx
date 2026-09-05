@@ -99,8 +99,7 @@ export function Operations({ boot, stats }: { boot: Bootstrap; stats: StatsPaylo
       index="08"
       eyebrow="Operations"
       title="Live telemetry of this demo session"
-      lead="Every query routed through the arena is counted here. This is session data from
-            this browser and server process — not production traffic."
+      lead="Session data from this browser and server — every query routed in this demo, not production traffic."
     >
       <div className="ops-tiles">
         <StatTile accent value={fmtInt(s?.session_queries ?? 0)} label="Queries routed" />

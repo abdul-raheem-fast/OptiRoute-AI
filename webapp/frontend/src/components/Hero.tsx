@@ -14,7 +14,6 @@ function costSpread(boot: Bootstrap): number | null {
 export function Hero({ boot }: { boot: Bootstrap }) {
   const rows = boot.results.baselines_report ?? [];
   const learned = rows.find((r) => r.policy.startsWith("learned"));
-  const strongest = rows.find((r) => r.policy === "always-strongest");
   const oracle = rows.find((r) => r.policy === "oracle");
   const spread = costSpread(boot);
   const testN = boot.results.splits_manifest?.split_counts?.test ?? 282;
@@ -34,9 +33,8 @@ export function Hero({ boot }: { boot: Bootstrap }) {
         </h1>
 
         <p className="hero-lead">
-          OptiRoute AI balances <em>quality, cost, latency and privacy</em> to select the model
-          that best fits each query and routing policy. Eight production LLMs, five capability
-          classes — scored locally <em>before dispatch</em>, with no extra LLM call to route.
+          OptiRoute AI balances <em>quality, cost, latency and privacy</em> to route each query to
+          the best-fit model — scored locally, <em>before dispatch</em>, with no extra LLM call.
         </p>
 
         <div className="hero-actions">
@@ -78,8 +76,7 @@ export function Hero({ boot }: { boot: Bootstrap }) {
         </div>
 
         <p className="hero-note">
-          Measured on the held-out test split ({fmtInt(testN)} queries). Quality floor = 90% of
-          always-strongest accuracy{strongest ? ` (${strongest.accuracy_pct.toFixed(2)}%)` : ""}.
+          Measured on the sealed test split ({fmtInt(testN)} queries).
         </p>
       </div>
     </section>

@@ -53,8 +53,7 @@ export function EvidenceLab({ results }: { results: ResultsPayload }) {
       index="06"
       eyebrow="Evidence lab"
       title="The provenance behind every number"
-      lead="Split protocol, seed, strata count and the leakage audit — plus the three
-            reference policies side by side so the comparison is auditable."
+      lead="Split protocol, seed, strata and leakage audit — plus the three reference policies side by side."
     >
       {mf ? (
         <div className="manifest">

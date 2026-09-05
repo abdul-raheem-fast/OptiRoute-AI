@@ -55,8 +55,7 @@ export function BusinessImpact({ rows }: { rows: PolicyRow[] }) {
       index="07"
       eyebrow="Business impact"
       title="What the routing decision is worth"
-      lead="Projection from measured per-query averages on the test split: your current
-            strategy versus the OptiRoute learned cascade, at your traffic volume."
+      lead="Projection from measured test-split averages: your strategy versus the OptiRoute cascade, at your traffic volume."
     >
       <div className="impact">
         <Card variant="elevated" className="impact-inputs">

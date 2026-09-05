@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { Card, Collapsible, EmptyState, Pill, Segmented, Skeleton } from "./ui";
 import { MoDecision } from "./MoDecision";
 import { routeMo } from "../lib/api";
@@ -66,19 +66,6 @@ export function MoRouter({ boot, mo, loading }: Props) {
     []
   );
 
-  // Open with a real benchmark query already routed through the default objective.
-  const autoRan = useRef(false);
-  useEffect(() => {
-    if (!mo.available || autoRan.current) return;
-    const first = boot.scenarios.scenarios[0];
-    if (!first) return;
-    autoRan.current = true;
-    setQuery(first.query);
-    setQueryClass(first.query_class);
-    void run(first.query, first.query_class, mode, budgetOn, budgetMs, floorOn, floor, sens);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mo.available]);
-
   const rerun = (patch: Partial<{ mode: MoMode; budgetOn: boolean; budgetMs: number; floorOn: boolean; floor: number; sens: SensMode }> = {}) => {
     const next = { mode, budgetOn, budgetMs, floorOn, floor, sens, ...patch };
     if (query.trim()) void run(query, queryClass, next.mode, next.budgetOn, next.budgetMs, next.floorOn, next.floor, next.sens);
@@ -114,9 +101,7 @@ export function MoRouter({ boot, mo, loading }: Props) {
       <Card variant="elevated" className="arena-input" as="div">
         <div>
           <span className="field-label">Routing objective</span>
-          <p className="note objective-hint">
-            Five optimization policies — choose which trade-off matters most for this query.
-          </p>
+          <p className="note objective-hint">Choose which trade-off matters most for this query.</p>
           <Segmented
             ariaLabel="Routing objective"
             options={modeOptions}
@@ -301,8 +286,7 @@ export function MoRouter({ boot, mo, loading }: Props) {
           <EmptyState
             glyph="◎"
             title="Your routing decision appears here"
-            body="Selected model, calibrated routing score, estimated cost, latency breakdown,
-                  privacy status, and the eligible-frontier comparison."
+            body="Selected model, routing score, cost, latency breakdown and privacy."
           />
         )}
       </Card>

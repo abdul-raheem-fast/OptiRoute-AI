@@ -219,8 +219,8 @@ export function MoDecision({ d }: { d: MoRouteDecision }) {
       )}
 
       <p className="note" style={{ marginTop: "var(--s4)" }}>
-        The routing decision is pure local featurization + arithmetic — no model API is called to
-        route. {d.privacy_note ?? ""}
+        Routing is local featurization + arithmetic — no model API call is made to route.{" "}
+        {d.privacy_note ?? ""}
       </p>
     </>
   );

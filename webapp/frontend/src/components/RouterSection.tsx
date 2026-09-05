@@ -16,8 +16,8 @@ interface Props {
 }
 
 const LEAD: Record<Strategy, string> = {
-  mo: "The default experience — balance quality, cost, latency and privacy, behind hard privacy and latency constraints.",
-  legacy: "The validated cost-optimized cascade, kept as a research baseline for comparison.",
+  mo: "Balance quality, cost, latency and privacy behind hard constraints.",
+  legacy: "The validated cost-optimized cascade — a research baseline for comparison.",
 };
 
 /**

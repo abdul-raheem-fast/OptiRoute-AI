@@ -8,10 +8,10 @@ import { Section, StatTile } from "./ui";
  * validated cost-optimized cascade kept as an honest baseline.
  */
 const PROOFS = [
-  "Sealed, held-out test split — tuned on train/val only, scored once.",
-  "Local routing decision — no additional external LLM call is needed to route.",
+  "Sealed test split — tuned on train/val, scored once.",
+  "Local routing — no extra LLM call to route.",
   "Pareto-aware selection behind hard privacy and latency constraints.",
-  "A validated, cost-optimized legacy cascade kept as an honest baseline.",
+  "A validated, cost-optimized legacy baseline.",
 ];
 
 export function WhatWeProved() {
@@ -21,8 +21,8 @@ export function WhatWeProved() {
       index="05"
       eyebrow="Bottom line"
       title="What we proved"
-      lead="OptiRoute measures the trade-offs between quality, cost, latency and privacy, then lets
-            you choose the operating point that fits the workload — against a validated baseline."
+      lead="OptiRoute measures the quality, cost, latency and privacy trade-offs and lets you pick
+            the operating point that fits — against a validated baseline."
     >
       <div className="stat-grid">
         <StatTile accent value="1,887" label="Benchmark queries, aligned across models" />

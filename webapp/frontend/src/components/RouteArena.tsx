@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { DecisionPanel } from "./DecisionPanel";
 import { Card, EmptyState, Pill, Segmented } from "./ui";
 import { routeQuery } from "../lib/api";
@@ -38,24 +38,6 @@ export function RouteArena({ boot }: { boot: Bootstrap }) {
     } finally {
       setBusy(false);
     }
-  }, []);
-
-  // Open with a real benchmark query already routed through the balanced policy.
-  const autoRan = useRef(false);
-  useEffect(() => {
-    if (autoRan.current) return;
-    autoRan.current = true;
-    const balanced = boot.modes.modes.find((m) => m.key === "balanced");
-    const t = balanced?.t ?? boot.modes.t_star ?? 0.95;
-    if (balanced) setMode(balanced.key);
-    setThreshold(t);
-    const first = boot.scenarios.scenarios[0];
-    if (first) {
-      setQuery(first.query);
-      setQueryClass(first.query_class);
-      void run(first.query, first.query_class, t);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMode = useCallback(
@@ -212,8 +194,7 @@ export function RouteArena({ boot }: { boot: Bootstrap }) {
           <EmptyState
             glyph="◎"
             title="The cascade decision appears here"
-            body="Per-model confidence, the cheapest-first cascade walk against t, the reasoning,
-                  and what this query saves versus GPT-5."
+            body="Per-model confidence, the cascade walk against t, and savings vs GPT-5."
           />
         )}
       </Card>

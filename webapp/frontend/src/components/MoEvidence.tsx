@@ -184,8 +184,8 @@ export function MoEvidence({ mo, results }: Props) {
       index="02"
       eyebrow="Measured results"
       title="Every objective, measured on the sealed test split"
-      lead="Nothing here is simulated — the frontier reads /api/pareto and the tables read the frozen
-            evaluation CSVs. Tuned on train/val only; the test split stayed sealed until final scoring."
+      lead="Nothing simulated — the frontier reads /api/pareto, the tables read the frozen evaluation
+            CSVs. Tuned on train/val; the test split stayed sealed until final scoring."
     >
       <div className="mo-evidence">
         <Card variant="elevated">
@@ -214,11 +214,9 @@ export function MoEvidence({ mo, results }: Props) {
                 <span className="legend-item"><i className="legend-swatch is-mo" /><span className="nm">multi-objective (default experience)</span></span>
               </div>
               <p className="chart-caption">
-                The legacy cost-optimized cascade concentrates on Qwen3-8B and GPT-5 because the
-                measured pool has a sparse economic Pareto frontier — under its ~80% quality floor
-                those are the only economically admissible models. That is an empirical finding, not
-                an implementation bug: the multi-objective layer adds configurable objectives rather
-                than artificially forcing model diversity.
+                The legacy cascade concentrates on Qwen3-8B and GPT-5 because the pool's economic
+                Pareto frontier is sparse — under its quality floor those are the only admissible
+                models. An empirical finding, not a bug.
               </p>
             </>
           ) : (
@@ -256,10 +254,9 @@ export function MoEvidence({ mo, results }: Props) {
       <div className="mo-status-line">
         <Pill tone="info">default experience: multi-objective</Pill>
         <span className="note">
-          Multi-objective is the default experience; the legacy cascade is the validated research
-          baseline (and the API's zero-argument default). No single objective dominates it on every
-          axis — each trades cost, latency and privacy differently, so the table above is the honest
-          head-to-head.
+          Multi-objective is the default experience; the legacy cascade is the validated baseline and
+          the API default. No single objective dominates on every axis — the table above is the
+          honest head-to-head.
         </span>
       </div>
     </Section>
