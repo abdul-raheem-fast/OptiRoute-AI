@@ -49,8 +49,9 @@ yarn-error.log*
 htmlcov/
 
 # ---- Local-only captures ----
-screenshots/
-_shots/
+/screenshots/
+/_shots/
+!figures/screenshots/
 
 # Temporary audit artifacts
 _tmp_*
